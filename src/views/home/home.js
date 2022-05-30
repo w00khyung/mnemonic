@@ -8,10 +8,15 @@ import { randomId } from '/useful-functions.js';
 // 요소(element), input 혹은 상수
 const landingDiv = document.querySelector('#landingDiv');
 const greetingDiv = document.querySelector('#greetingDiv');
+const my = document.getElementById('id');
 
 addAllElements();
 addAllEvents();
 
+function myprofile() {
+ const my =  await Api.get('/api/my');
+ window.location.href = '/login'
+}
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
   insertTextToLanding();
@@ -22,6 +27,7 @@ async function addAllElements() {
 function addAllEvents() {
   landingDiv.addEventListener('click', alertLandingText);
   greetingDiv.addEventListener('click', alertGreetingText);
+  my.addEventListener('click', myprofile);
 }
 
 function insertTextToLanding() {
