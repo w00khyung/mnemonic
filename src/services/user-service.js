@@ -12,7 +12,7 @@ class UserService {
   // 회원가입
   async addUser(userInfo) {
     // 객체 destructuring
-    const { email, fullName, password } = userInfo;
+    const { email, fullName, password, phoneNumber, address } = userInfo;
 
     // 이메일 중복 확인
     const user = await this.userModel.findByEmail(email);
@@ -27,7 +27,13 @@ class UserService {
     // 우선 비밀번호 해쉬화(암호화)
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUserInfo = { fullName, email, password: hashedPassword };
+    const newUserInfo = {
+      fullName,
+      email,
+      password: hashedPassword,
+      phoneNumber,
+      address,
+    };
 
     // db에 저장
     const createdNewUser = await this.userModel.create(newUserInfo);
@@ -68,7 +74,7 @@ class UserService {
     // 로그인 성공 -> JWT 웹 토큰 생성
     const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
 
-    // 2개 프로퍼티를 jwt 토큰에 담음
+    // 2개 프로퍼티를 jwt 토큰에 담음, 첫번쨰 인덱스
     const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
 
     return { token };
@@ -125,6 +131,23 @@ class UserService {
     });
 
     return user;
+  }
+
+  // 해당 아이디 유저 가져오기
+  async getUser(userId) {
+    // 우선 해당 id의 유저가 db에 있는지 확인
+    let user = await this.userModel.findById(userId);
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!user) {
+      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+    }
+    return user;
+  }
+
+  // 유저 삭제
+  async deleteUser(userId) {
+    await this.userModel.deleteUser(userId);
   }
 }
 
