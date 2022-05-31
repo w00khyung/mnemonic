@@ -4,10 +4,13 @@
 
 import * as Api from '/api.js';
 import { randomId } from '/useful-functions.js';
+import { navRender } from '../components/header.js';
 
 // 요소(element), input 혹은 상수
 const landingDiv = document.querySelector('#landingDiv');
 const greetingDiv = document.querySelector('#greetingDiv');
+
+navRender();
 
 addAllElements();
 addAllEvents();
