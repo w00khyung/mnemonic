@@ -11,9 +11,16 @@ class OrderService {
     return orderData;
   }
 
+  // 특정 사용자의 주문 내역 조회
   async getOrderList(user) {
     const findOrderList = await this.orderModel.findById(user);
     return findOrderList;
+  }
+
+  // 전체 사용자의 주묵 내역 조회
+  async getAllOrderList() {
+    const findAllOrderList = await this.orderModel.findAll();
+    return findAllOrderList;
   }
 }
 
