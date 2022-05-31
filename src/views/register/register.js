@@ -6,17 +6,43 @@ const fullNameInput = document.querySelector('#fullNameInput');
 const emailInput = document.querySelector('#emailInput');
 const passwordInput = document.querySelector('#passwordInput');
 const passwordConfirmInput = document.querySelector('#passwordConfirmInput');
+const receiverPhoneNumberInput = document.querySelector('#receiverPhoneNumber');
+const postalCodeInput = document.querySelector('#postalCode');
+const addressOneInput = document.querySelector('#address1');
+const addressTwoInput = document.querySelector('#address2');
 const submitButton = document.querySelector('#submitButton');
 
-addAllElements();
-addAllEvents();
-
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-async function addAllElements() {}
+// async function addAllElements() {
+
+// }
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   submitButton.addEventListener('click', handleSubmit);
+  postalCodeInput.addEventListener('click', findAddr);
+}
+
+// addAllElements();
+addAllEvents();
+
+// Daum api
+function findAddr() {
+  new daum.Postcode({
+    oncomplete: function (data) {
+      const roadAddr = data.roadAddress;
+      const jibunAddr = data.jibunAddress;
+
+      postalCodeInput.value = data.zonecode;
+      if (roadAddr !== '') {
+        addressOneInput.value = roadAddr;
+      } else if (jibunAddr !== '') {
+        addressOneInput.value = jibunAddr;
+      }
+
+      addressTwoInput.focus();
+    },
+  }).open();
 }
 
 // 회원가입 진행
@@ -27,12 +53,17 @@ async function handleSubmit(e) {
   const email = emailInput.value;
   const password = passwordInput.value;
   const passwordConfirm = passwordConfirmInput.value;
+  const phoneNumber = receiverPhoneNumberInput.value;
+  const postalCode = postalCodeInput.value;
+  const addressOne = addressOneInput.value;
+  const addressTwo = addressTwoInput.value;
 
   // 잘 입력했는지 확인
   const isFullNameValid = fullName.length >= 2;
   const isEmailValid = validateEmail(email);
   const isPasswordValid = password.length >= 4;
   const isPasswordSame = password === passwordConfirm;
+  const isPhoneNumber = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 
   if (!isFullNameValid || !isPasswordValid) {
     return alert('이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.');
@@ -46,9 +77,25 @@ async function handleSubmit(e) {
     return alert('비밀번호가 일치하지 않습니다.');
   }
 
+  if (isPhoneNumber.test(phoneNumber) === false) {
+    return alert('휴대폰 번호를 입력해주세요.');
+  }
+
+  if (!postalCode || !addressTwo) {
+    return alert('주소를 입력해주세요.');
+  }
+
   // 회원가입 api 요청
   try {
-    const data = { fullName, email, password };
+    const data = {
+      fullName,
+      email,
+      password,
+      phoneNumber,
+      postalCode,
+      addressOne,
+      addressTwo,
+    };
 
     await Api.post('/api/register', data);
 
