@@ -13,6 +13,11 @@ export class OrderModel {
     const findUser = await Order.findOne({ user });
     return findUser;
   }
+
+  async findAll() {
+    const orders = await Order.find({});
+    return orders;
+  }
 }
 
 const orderModel = new OrderModel();
