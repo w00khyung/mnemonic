@@ -46,7 +46,7 @@ async function handleSubmit(e) {
     sessionStorage.setItem('token', token);
     alert(`정상적으로 로그인되었습니다.`);
 
-    //sessionStorage.removeItem?
+    // sessionStorage.removeItem?
 
     // 로그인 성공
 

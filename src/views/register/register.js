@@ -10,53 +10,36 @@ const receiverPhoneNumberInput = document.querySelector('#receiverPhoneNumber');
 const postalCodeInput = document.querySelector('#postalCode');
 const addressOneInput = document.querySelector('#address1');
 const addressTwoInput = document.querySelector('#address2');
-const searchAddressButton = document.querySelector('#searchAddressButton');
 const submitButton = document.querySelector('#submitButton');
 
-// addAllElements();
-addAllEvents();
-
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-// function addAllElements() {
+// async function addAllElements() {
 
 // }
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  searchAddressButton.addEventListener('click', findAddress);
   submitButton.addEventListener('click', handleSubmit);
+  postalCodeInput.addEventListener('click', findAddr);
 }
 
+// addAllElements();
+addAllEvents();
+
 // Daum api
-async function findAddress() {
+function findAddr() {
   new daum.Postcode({
     oncomplete: function (data) {
-      let addr = '';
-      let extraAddr = '';
-
-      if (data.userSelectedType === 'R') {
-        addr = data.roadAddress;
-      } else {
-        addr = data.jibunAddress;
-      }
-
-      if (data.userSelectedType === 'R') {
-        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-          extraAddr += data.bname;
-        }
-        if (data.buildingName !== '' && data.apartment === 'Y') {
-          extraAddr +=
-            extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
-        }
-        if (extraAddr !== '') {
-          extraAddr = ' (' + extraAddr + ')';
-        }
-      } else {
-      }
+      const roadAddr = data.roadAddress;
+      const jibunAddr = data.jibunAddress;
 
       postalCodeInput.value = data.zonecode;
-      addressOneInput.value = `${addr} ${extraAddr}`;
-      addressTwoInput.placeholder = '상세 주소를 입력해 주세요.';
+      if (roadAddr !== '') {
+        addressOneInput.value = roadAddr;
+      } else if (jibunAddr !== '') {
+        addressOneInput.value = jibunAddr;
+      }
+
       addressTwoInput.focus();
     },
   }).open();
@@ -98,18 +81,30 @@ async function handleSubmit(e) {
     return alert('휴대폰 번호를 입력해주세요.');
   }
 
-  // // 회원가입 api 요청
-  // try {
-  //   const data = { fullName, email, password, phoneNumber, postalCode, addressTwo };
+  if (!postalCode || !addressTwo) {
+    return alert('주소를 입력해주세요.');
+  }
 
-  //   await Api.post('/api/register', data);
+  // 회원가입 api 요청
+  try {
+    const data = {
+      fullName,
+      email,
+      password,
+      phoneNumber,
+      postalCode,
+      addressOne,
+      addressTwo,
+    };
 
-  //   alert(`정상적으로 회원가입되었습니다.`);
+    await Api.post('/api/register', data);
 
-  //   // 로그인 페이지 이동
-  //   window.location.href = '/login';
-  // } catch (err) {
-  //   console.error(err.stack);
-  //   alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
-  // }
+    alert(`정상적으로 회원가입되었습니다.`);
+
+    // 로그인 페이지 이동
+    window.location.href = '/login';
+  } catch (err) {
+    console.error(err.stack);
+    alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
+  }
 }
