@@ -8,6 +8,11 @@ export class OrderModel {
     const createdNewOrder = await Order.create(orderInfo);
     return createdNewOrder;
   }
+
+  async findById(user) {
+    const findUser = await Order.findOne({ user });
+    return findUser;
+  }
 }
 
 const orderModel = new OrderModel();

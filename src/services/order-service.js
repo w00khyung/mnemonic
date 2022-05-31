@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import { orderModel } from '../db';
 
 class OrderService {
@@ -10,6 +9,11 @@ class OrderService {
   async addOrder(info) {
     const orderData = await this.orderModel.create(info);
     return orderData;
+  }
+
+  async getOrderList(user) {
+    const findOrderList = await this.orderModel.findById(user);
+    return findOrderList;
   }
 }
 
