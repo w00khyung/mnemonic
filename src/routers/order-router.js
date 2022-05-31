@@ -17,7 +17,7 @@ const orderRouter = Router();
 // });
 
 // 주문 정보 저장 (주문 완료)
-orderRouter.post('/', async (req, res, next) => {
+orderRouter.post('/order', async (req, res, next) => {
   try {
     // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
     if (is.emptyObject(req.body)) {
@@ -25,7 +25,11 @@ orderRouter.post('/', async (req, res, next) => {
         'headers의 Content-Type을 application/json으로 설정해주세요'
       );
     }
-    orderService.addOrder(req.body);
+
+    // 현재 주문하는 유저와 주문 정보를 req에서 받아와서 저장
+    const user = req.currentUserId;
+    const { shippingInfo, orderInfo } = req.body;
+    orderService.addOrder({ user, shippingInfo, orderInfo });
     res.status(200).json(req.body);
   } catch (err) {
     next(err);

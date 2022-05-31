@@ -7,9 +7,9 @@ class OrderService {
   }
 
   // 주문 정보 저장 (주문 완료)
-  async addOrder(userId) {
-    const orderInfo = await this.orderModel.create(userId);
-    return orderInfo;
+  async addOrder(info) {
+    const orderData = await this.orderModel.create(info);
+    return orderData;
   }
 }
 
