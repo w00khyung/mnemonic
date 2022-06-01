@@ -12,18 +12,12 @@ const addressOneInput = document.querySelector('#address1');
 const addressTwoInput = document.querySelector('#address2');
 const submitButton = document.querySelector('#submitButton');
 
-// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-// async function addAllElements() {
-
-// }
-
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   submitButton.addEventListener('click', handleSubmit);
   postalCodeInput.addEventListener('click', findAddr);
 }
 
-// addAllElements();
 addAllEvents();
 
 // Daum api
@@ -55,8 +49,8 @@ async function handleSubmit(e) {
   const passwordConfirm = passwordConfirmInput.value;
   const phoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
-  const addressOne = addressOneInput.value;
-  const addressTwo = addressTwoInput.value;
+  const address1 = addressOneInput.value;
+  const address2 = addressTwoInput.value;
 
   // 잘 입력했는지 확인
   const isFullNameValid = fullName.length >= 2;
@@ -81,7 +75,7 @@ async function handleSubmit(e) {
     return alert('휴대폰 번호를 입력해주세요.');
   }
 
-  if (!postalCode || !addressTwo) {
+  if (!postalCode || !address2) {
     return alert('주소를 입력해주세요.');
   }
 
@@ -92,9 +86,11 @@ async function handleSubmit(e) {
       email,
       password,
       phoneNumber,
-      postalCode,
-      addressOne,
-      addressTwo,
+      address: {
+        postalCode,
+        address1,
+        address2,
+      },
     };
 
     await Api.post('/api/register', data);
