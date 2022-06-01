@@ -138,7 +138,4 @@ userRouter.patch(
   }
 );
 
-// 사용자 로그아웃
-userRouter.get('/logout',(r))
-
 export { userRouter };

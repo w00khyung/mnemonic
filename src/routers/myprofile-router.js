@@ -11,13 +11,7 @@ const myprofileRouter = Router();
  * 2. userId를 통해 db에서 값 찾기
  * 3. 값을 찾을
  */
-myprofileRouter.get('/checkRouter', function (req, res) {
-  try {
-    res.status(200).send('dddd');
-  } catch (error) {
-    next(error);
-  }
-});
+
 myprofileRouter.get('/', loginRequired, async function (req, res, next) {
   try {
     const userId = req.currentUserId;
