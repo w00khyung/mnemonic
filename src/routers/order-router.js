@@ -42,6 +42,20 @@ orderRouter.get('/orderlist', async (req, res, next) => {
   }
 });
 
+orderRouter.delete('/orderlist/:orderNum', async (req, res, next) => {
+  try {
+    const user = req.currentUserId;
+    const { orderNum } = req.params;
+    await orderService.deleteOrder(user, orderNum);
+
+    res.status(200).json({
+      messaege: `${orderNum}번째 주문 정보가 정상적으로 삭제되었습니다.`,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
 // 전체 사용자의 주문 내역 조회 (관리자 전용)
 orderRouter.get('/admin/orderlist', adminRequired, async (req, res, next) => {
   try {
