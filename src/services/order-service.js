@@ -21,7 +21,6 @@ class OrderService {
       const { orderInfo, createdAt } = orderlist;
       newOrderList.push({ orderInfo, createdAt });
     });
-    console.log(newOrderList);
     return newOrderList;
   }
 
