@@ -1,7 +1,7 @@
 {
   "cart": [{
     	"name": "아이보리 니트",
-    	"price": "19,000원",
+    	"price": "19000",
     	"brand": "스플래시",
     	"content": "따뜻한 느낌을 줍니다. 지금깥은 날씨에 제격입니다!",
     	"imagePath": "<img src='./knit.jpg'>",
@@ -9,7 +9,7 @@
     },
     {
     	"name": "파란 니트",
-    	"price": "29,000원",
+    	"price": "29000",
     	"brand": "스플래시",
     	"content": "따뜻한 느낌을 줍니다. 지금깥은 날씨에 제격입니다!",
     	"imagePath": "<img src='./knit.jpg'>",
@@ -17,7 +17,7 @@
     },
     {
     	"name": "검정 니트",
-    	"price": "39,000원",
+    	"price": "39000",
     	"brand": "스플래시",
     	"content": "따뜻한 느낌을 줍니다. 지금깥은 날씨에 제격입니다!",
     	"imagePath": "<img src='./knit.jpg'>",
@@ -25,7 +25,7 @@
     },
     {
     	"name": "무지개 니트",
-    	"price": "49,000원",
+    	"price": "49000",
     	"brand": "스플래시",
     	"content": "따뜻한 느낌을 줍니다. 지금깥은 날씨에 제격입니다!",
     	"imagePath": "<img src='./knit.jpg'>",
