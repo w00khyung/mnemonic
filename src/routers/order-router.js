@@ -36,7 +36,9 @@ orderRouter.get('/orderlist', async (req, res, next) => {
   try {
     const user = req.currentUserId;
     const result = await orderService.getOrderList(user);
-    res.status(200).json(result);
+    res.status(200).json({
+      data: result,
+    });
   } catch (err) {
     next(err);
   }
