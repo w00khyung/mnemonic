@@ -1,17 +1,16 @@
 const UserLogOut = () => {
-  if(!sessionStorage.getItem('token')) {
-    alert("로그인 페이지로 이동합니다.")
+  if (!sessionStorage.getItem('token')) {
     window.location.href = '/login';
     return;
   }
-  alert("로그아웃 하시겠습니까?");
+  alert('로그아웃 하시겠습니까?');
   sessionStorage.removeItem('token');
   window.location.href = '/';
 };
 
 const onOffLoginOut = () => {
-    const logout = document.querySelector('.logout');
-    logout.addEventListener('click', UserLogOut);
+  const logout = document.querySelector('.logout');
+  logout.addEventListener('click', UserLogOut);
 };
 
 const navSection = () => {
@@ -42,15 +41,19 @@ const navSection = () => {
       <div class="navbar-end breadcrumb my-auto" aria-label="breadcrumbs">
         <ul id="navbar">
           <li><a class="logout">${isLoggedIn ? `로그아웃` : `로그인`}</a></li>
-          ${isLoggedIn ? "" : `<li><a href="/register">회원가입</a></li>` }
-          <li>
-            <a href="#cart" aria-current="page">
-              <span class="icon">
-                <i class="fas fa-cart-shopping"></i>
-              </span>
-              <span>카트</span>
-            </a>
-          </li>
+          ${isLoggedIn ? '' : `<li><a href="/register">회원가입</a></li>`}
+          ${
+            isLoggedIn
+              ? `<li>
+          <a href="#cart" aria-current="page">
+            <span class="icon">
+              <i class="fas fa-cart-shopping"></i>
+            </span>
+            <span>카트</span>
+          </a>
+        </li>`
+              : ''
+          }
         </ul>
       </div>
     </div>

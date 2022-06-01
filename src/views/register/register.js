@@ -1,5 +1,6 @@
 import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
+import { navRender } from '../components/header.js';
 
 // 요소(element), input 혹은 상수
 const fullNameInput = document.querySelector('#fullNameInput');
@@ -18,6 +19,7 @@ function addAllEvents() {
   postalCodeInput.addEventListener('click', findAddr);
 }
 
+navRender();
 addAllEvents();
 
 // Daum api
