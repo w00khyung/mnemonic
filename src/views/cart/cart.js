@@ -74,6 +74,7 @@ function cartDataDisplay() {
     const data = localStorage.getItem(localStorage.key(i));
     const objectData = JSON.parse(data);
 
+    //사진이랑 품목 클릭시 주소 이동 부분 변수값 고민 중 나중에 수정 필요
     cartProductsContainer.insertAdjacentHTML(
       'beforeend',
       `
@@ -85,7 +86,7 @@ function cartDataDisplay() {
         <p><a href="/ivoryknit">${objectData.imagePath}</a></p>
       
       <div class="content">
-        <p>${objectData.name}</p>
+        <p><a href="/ivoryknit">${objectData.name}</p>
       
         </div>
         <p class="price">${objectData.price}</p>
@@ -130,5 +131,6 @@ document.querySelectorAll('.itemquantity').forEach((items) => {
     priceKey.quantity = changeQuantity;
     console.log(priceKey);
     localStorage.setItem(priceKey._id, JSON.stringify(priceKey));
+    window.location.reload();
   });
 });
