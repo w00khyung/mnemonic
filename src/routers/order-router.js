@@ -7,7 +7,7 @@ import { adminRequired } from '../middlewares';
 const orderRouter = Router();
 
 // 주문 정보 저장 (주문 완료)
-orderRouter.post('/order', async (req, res, next) => {
+orderRouter.post('/', async (req, res, next) => {
   try {
     // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
     if (is.emptyObject(req.body)) {
@@ -32,7 +32,7 @@ orderRouter.post('/order', async (req, res, next) => {
 });
 
 // 특정 사용자의 주문 내역 조회
-orderRouter.get('/orderlist', async (req, res, next) => {
+orderRouter.get('/', async (req, res, next) => {
   try {
     const user = req.currentUserId;
     const result = await orderService.getOrderList(user);
@@ -45,11 +45,10 @@ orderRouter.get('/orderlist', async (req, res, next) => {
 });
 
 // 주문 내역 삭제 (본인)
-orderRouter.delete('/orderlist/:orderId', async (req, res, next) => {
+orderRouter.delete('/:orderId', async (req, res, next) => {
   try {
-    const user = req.currentUserId;
     const { orderId } = req.params;
-    await orderService.deleteOrder(user, orderId);
+    await orderService.deleteOrder(orderId);
 
     res.status(200).json({
       messaege: '주문 정보가 정상적으로 삭제되었습니다.',
@@ -60,7 +59,7 @@ orderRouter.delete('/orderlist/:orderId', async (req, res, next) => {
 });
 
 // 전체 사용자의 주문 내역 조회 (관리자 전용)
-orderRouter.get('/admin/orderlist', adminRequired, async (req, res, next) => {
+orderRouter.get('/admin', adminRequired, async (req, res, next) => {
   try {
     const result = await orderService.getAllOrderList();
     res.status(200).json(result);
@@ -69,23 +68,18 @@ orderRouter.get('/admin/orderlist', adminRequired, async (req, res, next) => {
   }
 });
 
-// 주문 내역 삭제 (관리자)
-orderRouter.delete(
-  '/admin/orderlist/:orderId',
-  adminRequired,
-  async (req, res, next) => {
-    try {
-      // const user = req.currentUserId;
-      // const { orderId } = req.params;
-      // await orderService.deleteOrder(user, orderId);
+// 주문 내역 삭제 (관리자 전용)
+orderRouter.delete('/admin/:orderId', adminRequired, async (req, res, next) => {
+  try {
+    const { orderId } = req.params;
+    await orderService.deleteOrder(orderId);
 
-      res.status(200).json({
-        messaege: '주문 정보가 정상적으로 삭제되었습니다.',
-      });
-    } catch (err) {
-      next(err);
-    }
+    res.status(200).json({
+      messaege: '주문 정보가 정상적으로 삭제되었습니다.',
+    });
+  } catch (err) {
+    next(err);
   }
-);
+});
 
 export { orderRouter };
