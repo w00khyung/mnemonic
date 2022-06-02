@@ -25,7 +25,7 @@ class OrderService {
 
   // 특정 사용자의 주문 내역 삭제
   async deleteOrder(orderId) {
-    const willDeleteOrder = await this.orderModel.deleteOrder(orderId);
+    const willDeleteOrder = await this.orderModel.deleteOrder({ orderId });
     return willDeleteOrder;
   }
 

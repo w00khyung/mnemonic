@@ -45,7 +45,7 @@ orderRouter.get('/', async (req, res, next) => {
 });
 
 // 주문 내역 삭제 (본인)
-orderRouter.delete('/:orderId', async (req, res, next) => {
+orderRouter.patch('/:orderId', async (req, res, next) => {
   try {
     const { orderId } = req.params;
     await orderService.deleteOrder(orderId);
@@ -69,7 +69,7 @@ orderRouter.get('/admin', adminRequired, async (req, res, next) => {
 });
 
 // 주문 내역 삭제 (관리자 전용)
-orderRouter.delete('/admin/:orderId', adminRequired, async (req, res, next) => {
+orderRouter.patch('/admin/:orderId', adminRequired, async (req, res, next) => {
   try {
     const { orderId } = req.params;
     await orderService.deleteOrder(orderId);
