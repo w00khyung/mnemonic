@@ -23,6 +23,7 @@
 }
 .cart-products-container {
 	width: 100%;
+	
 }
 .cart-products-header {
 	border-bottom: 1px solid #555;
@@ -54,21 +55,24 @@
 	line-height: 1rem;
 }
 .cart-product-item {
+	
 	align-items: center;
 	display: flex;
+	width:100%;
 	margin-bottom: 0.5rem;
 	padding-bottom: 2rem;
 	padding-top: 0.3rem;
-	position: relative;
+	
   justify-content: space-between;
+}
+
+.cart-product-item p{
+	
 }
 .cart-product-item:not(:last-child) {
 	border-bottom: 1px solid #ddd;
 }
-.cart-product-item label {
-	position: absolute;
-	top: 0.2rem;
-}
+
 .cart-product-item .delete-button {
 	background-color: transparent;
 	border: none;
@@ -91,7 +95,7 @@
 .cart-product-item .content {
 	align-items: center;
 	display: flex;
-	flex-basis: 12rem;
+	flex-basis: 10rem;
 	flex-direction: column;
 	margin-bottom: 0;
 	margin-left: 1rem;
@@ -105,6 +109,10 @@
 .cart-product-item .content p:hover {
 	opacity: 0.8;
 }
+.price {
+	font-size: 1.4rem;
+	margin-bottom: 0.5em;
+}
 .cart-product-item .quantity .button {
 	border-color: #aaa;
 	font-size: 0.6rem;
@@ -117,12 +125,7 @@
 	text-align: center;
 	width: 2.5rem;
 }
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
+
 .calculation {
 	display: flex;
 	flex-grow: 1;
@@ -221,30 +224,27 @@ input[type='number']::-webkit-outer-spin-button {
 	}
 }
 
-.productTable{
+.productTag{
   width:100%;
-  
+  display:flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	border-bottom: 1px solid black;
+	padding-bottom : 10px;
+	
 }
 
-.productTable thead tr{
-  display:flex;
-  justify-content: space-between;
-}
-.productTable thead th{
-  padding:10px;
-  display:flex;
-  align-items: center;
-}
 
-.productTable tbody tr {
+.emptyCart {
+  width:100%;
   display:flex;
-  padding:10px;
-  justify-content: center;
-}
-.empty_cart {
-  display:flex;
+	justify-content: center;
+	align-items: center;
+	height: 70px;
+	
 }
 
 #cartProductsContainer img {
-  width: 150px;
+  width: 110px;
+	cursor: pointer;
 }

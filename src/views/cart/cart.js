@@ -6,6 +6,10 @@ const deliveryFeeInfo = document.querySelector('#deliveryFee');
 const productsCountInfo = document.querySelector('#productsCount');
 const productsTotalInfo = document.querySelector('#productsTotal');
 const orderTotalInfo = document.querySelector('#orderTotal');
+const orderPaymentBtn = document.querySelector('#purchaseButton');
+
+let itemsPrice = [];
+//const itemquantityChange = document.querySelector('.itemquantity');
 // 저장된 json 데이터 localstorage에 저장
 async function loadItems() {
   const res = await fetch('./cart.json');
@@ -13,8 +17,9 @@ async function loadItems() {
   const result = jsonData.cart;
 
   for (let i = 0; i < result.length; i += 1) {
-    const { name, price, brand, content, imagePath, quantity } = result[i];
+    const { _id, name, price, brand, content, imagePath, quantity } = result[i];
     const productData = {
+      _id: _id,
       name: name,
       price: price,
       brand: brand,
@@ -22,8 +27,9 @@ async function loadItems() {
       imagePath: imagePath,
       quantity: quantity,
     };
+
     const storageData = JSON.stringify(productData);
-    localStorage.setItem(i + 1, storageData);
+    localStorage.setItem(productData._id, storageData);
   }
 }
 
@@ -44,11 +50,11 @@ function cartPurchaseInfo() {
   let deliveryFee = 3000;
 
   deliveryFeeInfo.innerHTML = `${deliveryFee.toLocaleString()}원`;
-  for (let i = 1; i <= localStorage.length; i++) {
-    const data = localStorage.getItem(i);
+  for (let i = 0; i < localStorage.length; i++) {
+    const data = localStorage.getItem(localStorage.key(i));
     const objectData = JSON.parse(data);
     productsCount += Number(objectData.quantity);
-    productsTotal += Number(objectData.price);
+    productsTotal += Number(objectData.price * objectData.quantity);
   }
 
   productsCountInfo.innerText = `${productsCount.toLocaleString()}개`;
@@ -57,43 +63,36 @@ function cartPurchaseInfo() {
     productsTotal + deliveryFee
   ).toLocaleString()}`;
 }
-function cartDataDisplay() {
-  // let data = {
-  // 	name: '아이보리 니트',
-  // 	price: '19,000원',
-  // 	brand: '스플래시',
-  // 	content: '따뜻한 느낌을 줍니다. 지금깥은 날씨에 제격입니다!',
-  // 	imagePath: `<img src="../knit.jpg">`,
-  // };
 
+function cartDataDisplay() {
   // localStorage에 저장된 값 가져와서 장바구니에 출력
   if (localStorage.length !== 0) {
     const emptyCart = document.querySelector('.emptyCart');
     emptyCart.style.display = 'none';
   }
   for (let i = 0; i < localStorage.length; i += 1) {
-    const data = localStorage.getItem(i + 1);
+    const data = localStorage.getItem(localStorage.key(i));
     const objectData = JSON.parse(data);
 
     cartProductsContainer.insertAdjacentHTML(
       'beforeend',
       `
-    <div class="cart-product-item">
-      <div>
-        <input type="checkbox">
-      </div>
-      <div>
-        ${objectData.imagePath}
-      </div>
-      <div>
-        ${objectData.name}
-      </div>
-      <div>
-        ${objectData.price}
-      </div>
-      <div>
-        ${objectData.quantity}
-      </div> 
+    <div class="cart-product-item" id="${objectData._id}">
+      
+       <input type="checkbox">
+      
+      
+        <p><a href="/ivoryknit">${objectData.imagePath}</a></p>
+      
+      <div class="content">
+        <p>${objectData.name}</p>
+      
+        </div>
+        <p class="price">${objectData.price}</p>
+       
+      
+        <input type="number" class="itemquantity" min="1" max="99" value="${objectData.quantity}" style="width:50px;height:30px"></input>
+      
     </div>
     `
     );
@@ -102,17 +101,17 @@ function cartDataDisplay() {
 
 function selectItemDelete() {
   const checkboxs = document.querySelectorAll('input[type="checkbox"]');
-  console.log(checkboxs);
-  let results;
-  for (let i = 1; i < checkboxs.length; i++) {
-    results = checkboxs[i].checked === true;
-    const key = window.localStorage.key(results[i]);
-    console.log(key);
-  }
 
-  //const result = checkboxs.map((e)=>e.checked===true)
+  for (let i = 1; i < checkboxs.length; i++) {
+    if (checkboxs[i].checked == true) {
+      localStorage.removeItem(checkboxs[i].parentElement.id);
+    }
+    window.location.reload();
+  }
 }
-loadItems();
+//장바구니에 저장된 값 가져오는 함수
+//loadItems();
+
 cartDataDisplay();
 cartPurchaseInfo();
 allDeleteBtn?.addEventListener('click', () => {
@@ -121,3 +120,15 @@ allDeleteBtn?.addEventListener('click', () => {
 });
 checkboxAll?.addEventListener('click', checkboxAllSelect);
 selectDeleteBtn?.addEventListener('click', selectItemDelete);
+orderPaymentBtn?.addEventListener('click', () => {
+  location.href = '/order';
+});
+document.querySelectorAll('.itemquantity').forEach((items) => {
+  items.addEventListener('change', () => {
+    const priceKey = JSON.parse(localStorage.getItem(items.parentElement.id));
+    const changeQuantity = Number(items.value);
+    priceKey.quantity = changeQuantity;
+    console.log(priceKey);
+    localStorage.setItem(priceKey._id, JSON.stringify(priceKey));
+  });
+});

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" 
     <title>쇼핑-데모</title>
     <!-- 아이콘 -->
     <link
@@ -101,11 +101,21 @@
               </div>
 
               <!-- 장바구니에 담긴 상품들의 html 요소(카드 형태)가 주입되는 곳 -->
-							<table class='productTable'>
+							<div class='productTag'>
+                <input type="checkbox" class="checkboxAll">
+                <p>이미지</p>
+                <p>상품명</p>
+                <p>가격</p>
+                <p>수량</p>
+              </div>
+              <div class="emptyCart">
+                장바구니가 비었습니다.
+              </div>
+              <!-- <table class='productTable'>
 								<thead>
 									<tr>
 										<th scope='col'><input type="checkbox" class="checkboxAll"></th>
-										<th scope='col' class='cartImage'>이미지</th>
+										<th scope='col' >이미지</th>
 										<th scope='col'>상품명</th>
 										<th scope='col'>가격</th>
 										<th scope='col'>수량</th>	
@@ -116,7 +126,7 @@
 										<th colspan="5" class="emptyCart">장바구니가 비었습니다.</th>
 									</tr>
 								</tbody>
-							</table>
+							</table> -->
             </div>
           </div>
           <!-- 선택한 상품 총 요약 -->
@@ -128,16 +138,16 @@
               <div class="order-info">
                 <div class="info">
                   <p>상품수</p>
-                  <p id="productsCount">개</p>
+                  <p id="productsCount"></p>
 									
                 </div>
                 <div class="info">
                   <p>상품금액</p>
-                  <p id="productsTotal">원</p>
+                  <p id="productsTotal"></p>
                 </div>
                 <div class="info">
                   <p>배송비</p>
-                  <p id="deliveryFee">원</p>
+                  <p id="deliveryFee"></p>
                 </div>
               </div>
               <div class="total">
