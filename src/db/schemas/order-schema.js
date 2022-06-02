@@ -2,11 +2,11 @@ import { Schema } from 'mongoose';
 
 const OrderSchema = new Schema(
   {
-    user: {
+    orderer: {
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
-    shippingInfo: {
+    recipient: {
       name: String,
       phoneNumber: String,
       address: {
@@ -23,12 +23,12 @@ const OrderSchema = new Schema(
         required: true,
       },
     },
-    orderInfo: {
+    purchaseOrderInfo: {
       type: new Schema(
         {
-          item: Array,
+          products: Array,
           totalAmount: Number,
-          status: {
+          shippingStatus: {
             type: String,
             required: false,
             default: '상품 준비중',

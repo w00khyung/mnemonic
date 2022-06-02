@@ -17,13 +17,13 @@ orderRouter.post('/order', async (req, res, next) => {
     }
 
     // 현재 주문하는 유저와 주문 정보를 req에서 받아와서 저장
-    const user = req.currentUserId;
-    const { shippingInfo, orderInfo } = req.body;
+    const orderer = req.currentUserId;
+    const { recipient, purchaseOrderInfo } = req.body;
 
     const result = await orderService.addOrder({
-      user,
-      shippingInfo,
-      orderInfo,
+      orderer,
+      recipient,
+      purchaseOrderInfo,
     });
     res.status(200).json(result);
   } catch (err) {
@@ -44,14 +44,15 @@ orderRouter.get('/orderlist', async (req, res, next) => {
   }
 });
 
-orderRouter.delete('/orderlist/:orderNum', async (req, res, next) => {
+// 주문 내역 삭제 (본인)
+orderRouter.delete('/orderlist/:orderId', async (req, res, next) => {
   try {
     const user = req.currentUserId;
-    const { orderNum } = req.params;
-    await orderService.deleteOrder(user, orderNum);
+    const { orderId } = req.params;
+    await orderService.deleteOrder(user, orderId);
 
     res.status(200).json({
-      messaege: `${orderNum}번째 주문 정보가 정상적으로 삭제되었습니다.`,
+      messaege: '주문 정보가 정상적으로 삭제되었습니다.',
     });
   } catch (err) {
     next(err);
@@ -67,5 +68,24 @@ orderRouter.get('/admin/orderlist', adminRequired, async (req, res, next) => {
     next(err);
   }
 });
+
+// 주문 내역 삭제 (관리자)
+orderRouter.delete(
+  '/admin/orderlist/:orderId',
+  adminRequired,
+  async (req, res, next) => {
+    try {
+      // const user = req.currentUserId;
+      // const { orderId } = req.params;
+      // await orderService.deleteOrder(user, orderId);
+
+      res.status(200).json({
+        messaege: '주문 정보가 정상적으로 삭제되었습니다.',
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 export { orderRouter };
