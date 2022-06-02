@@ -40,6 +40,10 @@ const OrderSchema = new Schema(
       ),
       required: true,
     },
+    deletedAt: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true,
