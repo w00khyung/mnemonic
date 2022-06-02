@@ -71,7 +71,6 @@ const addressTwoInput = document.querySelector('#address2');
 const profileUpdateBtn = document.querySelector('.profile-update-btn');
 const userDeleteBtn = document.querySelector('.profile-user-data-delete');
 
-
 // modal DOM
 const body = document.querySelector('body');
 const modal = document.querySelector('.mypage-confirm-modal');
@@ -202,8 +201,8 @@ async function handleSubmit(e) {
 async function handleDelete(e) {
   e.preventDefault();
 
-  const confirm = window.confirm("정말 탈퇴하시겠습니까?");
-  if(!confirm) return;
+  const confirm = window.confirm('정말 탈퇴하시겠습니까?');
+  if (!confirm) return;
 
   // 회원정보 수정 api 요청
   try {
