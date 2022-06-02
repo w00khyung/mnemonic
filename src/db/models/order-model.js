@@ -19,12 +19,9 @@ export class OrderModel {
     return orders;
   }
 
-  async deleteOrder(user, orderNum) {
-    const findDeleteOrder = await Order.find({ user }).skip(orderNum);
-    const willDeleteOrder = await Order.deleteOne({
-      _id: findDeleteOrder[0]._id.toString(),
-    });
-    return willDeleteOrder;
+  async deleteOrder(orderId) {
+    const findDeleteOrder = await Order.findOneAndDelete({ _id: orderId });
+    return findDeleteOrder;
   }
 }
 
