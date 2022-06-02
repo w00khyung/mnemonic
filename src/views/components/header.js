@@ -4,6 +4,7 @@ const UserLogOut = () => {
     return;
   }
   alert('로그아웃 하시겠습니까?');
+  sessionStorage.removeItem('email');
   sessionStorage.removeItem('token');
   window.location.href = '/';
 };

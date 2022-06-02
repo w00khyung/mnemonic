@@ -132,6 +132,11 @@ class UserService {
 
     return user;
   }
+
+  // 사용자 정보 삭제
+  async deleteUser(userId) {
+    return userModel.delete(userId);
+  }
 }
 
 const userService = new UserService(userModel);
