@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프로필 정보</title>
+    <!-- 아이콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/elice-rabbit-favicon.png"
+    />
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 다음 주소 api -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 커스텀 css, js -->
+  <link rel="stylesheet" href="profile.css" />
+  <script src="profile.js" type="module" defer></script>
+</head>
+<body>
+  <!-- 헤더 -->
+  <div class="shopping-mall-header"></div>
+
+  <section class="mypage-container">
+    <section class="mypage-container-left">
+      <h2><a href="/mypage">마이페이지</a></h2>
+        <ul>
+          <h3>쇼핑 정보</h3>
+          <li><a class="mypage-li-list" href="#">구매 내역</a></li>
+          <li><a class="mypage-li-list" href="#">판매 내역</a></li>
+        </ul>
+        <ul>
+          <h3>내 정보</h3>
+          <li><a class="mypage-li-list" href="/profile">프로필 정보</a></li>
+          <li><a class="mypage-li-list" href="#">주소록</a></li>
+        </ul>
+      </ul>
+    </section>
+    <section class="mypage-container-right">
+        <div class="mypage-user-profile">
+          <div class="mypage-user-profile-top">
+            <img src="../elice-rabbit.png" alt="프로필">
+            <p class="mypage-user-profile-name">엘리스</p>
+            <span>님 환영합니다.</span>
+          </div>
+          <div class="mypage-user-profile-list">
+            <form >
+              <div class="register-user-form-left-input">
+                
+                <!-- password -->
+                <div class="field">
+                  <label class="label" for="passwordInput">비밀번호</label>
+                  <input
+                    class="input"
+                    id="passwordInput"
+                    type="password"
+                    placeholder="****"
+                    autocomplete="off"
+                  />
+                </div>
+      
+                <!-- passwordConfirm -->
+                <div class="field mb-5">
+                  <label class="label" for="passwordConfirmInput"
+                    >비밀번호 확인</label
+                  >
+                  <input
+                    class="input"
+                    id="passwordConfirmInput"
+                    type="password"
+                    placeholder="****"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+      
+              <div class="register-user-form-right-input">
+                <!-- phoneNumber -->
+                <div class="field mb-5">
+                  <label class="label" for="receiverPhoneNumber">연락처</label>
+                  <input
+                    class="input"
+                    id="receiverPhoneNumber"
+                    type="number"
+                    placeholder="01012345678"
+                    autocomplete="on"
+                  />
+                </div>
+      
+                <!-- postalCode -->
+                <div class="field">
+                  <label class="label" for="address2">주소</label>
+                  <div class="field-body search">
+                    <input
+                      class="input"
+                      id="postalCode"
+                      type="text"
+                      placeholder="우편번호 찾기"
+                      readonly
+                    />
+                  </div>
+                </div>
+      
+                <!-- address1 -->
+                <div class="field">
+                  <input
+                    class="input"
+                    id="address1"
+                    type="text"
+                    placeholder=""
+                    autocomplete="on"
+                    readonly
+                  />
+                </div>
+      
+                <!-- address2 -->
+                <div class="field mb-5">
+                  <input
+                    class="input"
+                    id="address2"
+                    type="text"
+                    placeholder="상세주소를 입력해주세요"
+                    autocomplete="on"
+                  />
+                </div>
+      
+                <button class="button is-black profile-update-btn">
+                  수정하기
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="profile-user-data-delete">
+          <p>회원 탈퇴</p>
+        </div>
+    </section>
+  </section>
+
+  <!-- 모달 -->
+  <section class="mypage-confirm-modal">
+    <div class="mypage-confirm-modal-wrap">
+      <p>회원정보 수정을 진행합니다.</p>
+        <div class="field">
+          <label class="label" for="currentPasswordInput">현재 비밀번호</label>
+          <input
+            class="input"
+            id="currentPasswordInput"
+            type="password"
+            placeholder="현재 비밀번호를 입력해주세요."
+            autocomplete="off"
+          />
+        </div>
+        <div class="mypage-confirm-modal-btns">
+          <button class="button is-light clear-btn">
+            뒤로가기
+          </button>
+          </button>
+          <button class="button is-black update-btn">
+            수정하기
+          </button>
+        </div>
+    </div>
+  </section>
+</body>
+</html>

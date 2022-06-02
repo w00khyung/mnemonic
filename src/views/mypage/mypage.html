@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이페이지</title>
+  
+    <!-- 아이콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/elice-rabbit-favicon.png"
+    />
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 커스텀 css, js -->
+  <link rel="stylesheet" href="mypage.css" />
+  <script src="mypage.js" type="module" defer></script>
+</head>
+<body>
+  <!-- 헤더 -->
+  <div class="shopping-mall-header"></div>
+  <section class="mypage-container">
+    <section class="mypage-container-left">
+      <h2><a href="/mypage">마이페이지</a></h2>
+        <ul>
+          <h3>쇼핑 정보</h3>
+          <li><a class="mypage-li-list" href="#">구매 내역</a></li>
+          <li><a class="mypage-li-list" href="#">판매 내역</a></li>
+        </ul>
+        <ul>
+          <h3>내 정보</h3>
+          <li><a class="mypage-li-list" href="/profile">프로필 정보</a></li>
+          <li><a class="mypage-li-list" href="#">주소록</a></li>
+        </ul>
+      </ul>
+    </section>
+    <section class="mypage-container-right">
+      <a href="/profile">
+        <div class="mypage-user-profile">
+          <div class="mypage-user-profile-img">
+            <img src="../elice-rabbit.png" alt="프로필">
+          </div>
+          <div class="mypage-user-profile-list">
+            <ul>
+              <li>엘리스</li>
+              <li>abc@naver.com</li>
+              <li>010-0000-0000</li>
+            </ul>
+          </div>
+          <div class="mypage-user-profile-author">
+            <p>일반회원</p>
+          </div>
+        </div>
+      </a>
+      <div class="mypage-user-shopping">
+        <div class="mypage-user-shopping-order">
+          <p>구매 내역</p>
+          <span>더보기 ></span>
+          <ul>
+            <li>구매 목록입니다.</li>
+            <li>구매 목록입니다.</li>
+            <li>구매 목록입니다.</li>
+            <li>구매 목록입니다.</li>
+            <li>구매 목록입니다.</li>
+            <li>구매 목록입니다.</li>
+          </ul>
+        </div>
+        <div class="mypage-user-shopping-sell">
+          <p>판매 내역</p>
+          <span>더보기 ></span>
+          <ul>
+            <li>판매 목록입니다.</li>
+            <li>판매 목록입니다.</li>
+            <li>판매 목록입니다.</li>
+            <li>판매 목록입니다.</li>
+            <li>판매 목록입니다.</li>
+            <li>판매 목록입니다.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </section>
+</body>
+</html>
