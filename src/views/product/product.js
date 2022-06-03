@@ -1,29 +1,39 @@
 import * as Api from '/api.js';
+import { addCommas } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
 
 navRender();
 
-// const productList = await Api.get(`/api/userlist`);
+const productList = await Api.get(`/api/product/productlist`);
+const productUl = document.querySelector('.product-list-ul');
 
-const productUl = document.querySelector(".product-list-ul");
+let productImgSrc = '';
+let productBrand = '';
+let productName = '';
+let productContent = '';
+let productPrice = '';
 
-const productImgSrc = "https://pbs.twimg.com/media/EXePq-uU8AE1jf7.jpg";
-const productBrand = "1";
-const productName = "1";
-const productContent = "1";
-const productPrice = "1";
+const productCount = document.querySelector('.product-list-count');
+productCount.innerHTML = `상품 ${productList.length}`;
 
-const productTemplate = `
+for (let i = 0; i < productList.length; i++) {
+  productImgSrc = productList[i].imagePath;
+  productBrand = productList[i].brand;
+  productName = productList[i].name;
+  productContent = productList[i].content;
+  productPrice = addCommas(productList[i].price);
+
+  const productTemplate = `
 <li>
 <a href="/product-detail">
   <img class="product-list-box-img" src="${productImgSrc}" alt="의상" />
   <p class="product-list-box-brand">${productBrand}</p>
   <p class="product-list-box-name">${productName}</p>
   <p class="product-list-box-content">${productContent}</p>
-  <p class="product-list-box-price">${productPrice}</p>
+  <p class="product-list-box-price">${productPrice}원</p>
 </a>
 </li>
 `;
 
-productUl.insertAdjacentHTML('beforeend', productTemplate);
-
+  productUl.insertAdjacentHTML('afterbegin', productTemplate);
+}
