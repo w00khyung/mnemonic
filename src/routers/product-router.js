@@ -103,6 +103,7 @@ productRouter.patch(
           'headers의 Content-Type을 application/json으로 설정해주세요'
         );
       }
+      const curretUserId = req.currentUserId;
 
       // params로부터 id를 가져옴
       const { productId } = req.params;
@@ -127,9 +128,10 @@ productRouter.patch(
       };
 
       // 제품 정보를 업데이트함.
-      const updatedProductInfo = await productService.setUser(
+      const updatedProductInfo = await productService.setProduct(
         productInfoRequired,
-        toUpdate
+        toUpdate,
+        curretUserId
       );
 
       // 업데이트 이후의 제품 데이터를 프론트에 보내 줌
