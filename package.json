@@ -15,7 +15,9 @@
     "express": "^4.17.3",
     "google-auth-library": "^8.0.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.1"
+    "mongoose": "^6.3.1",
+    "multer": "^1.4.5-lts.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -30,5 +32,10 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15"
+  },
+  "description": "제품들을 조회하고, 장바구니에 추가하고, 또 주문을 할 수 있는 쇼핑몰 웹 서비스 제작 프로젝트입니다. <br />\r **웹 구현 예시** (링크는 프로젝트 기간에만 유효합니다)",
+  "repository": {
+    "type": "git",
+    "url": "https://kdt-gitlab.elice.io/sw_track/class_02_busan/web_project/team6/shopping-mall.git"
   }
 }

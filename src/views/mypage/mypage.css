@@ -1,0 +1,131 @@
+/* reset CSS */
+a {
+  color: #000;
+}
+
+/* clicked class */
+.focus {
+  color: #000;
+  font-weight: bold;
+}
+
+.mypage-container {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mypage-container-left {
+  width: 220px;
+  height: 700px;
+  padding: 20px;
+}
+
+.mypage-container-left h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.mypage-container-left ul {
+  margin-bottom: 50px;
+}
+
+.mypage-container-left ul h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.mypage-container-left ul li a {
+  color: #999 !important;
+}
+
+.mypage-container-right {
+  width: 1000px;
+  height: 700px;
+  padding: 20px 50px;
+}
+
+.mypage-container-right img {
+  width: 120px;
+  height: 120px;
+  border-radius: 120px;
+  background-color: #999;
+  filter: grayscale(1);
+}
+
+.mypage-user-profile {
+  height: 30%;
+  padding: 20px;
+  border: 1px solid #999;
+  border-radius: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.mypage-user-profile-img {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.mypage-user-profile-list {
+  width: 56%;
+  border-right: 1px solid #999;
+}
+
+.mypage-user-profile-list ul li:first-child {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.mypage-user-profile-author {
+  width: 24%;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.mypage-user-shopping {
+  height: 80%;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mypage-user-shopping p {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #000;
+}
+
+.mypage-user-shopping-order {
+  width: 48%;
+  height: 70%;
+  position: relative;
+}
+
+.mypage-user-shopping-order span {
+  position: absolute;
+  top: 5px;
+  right: 0;
+}
+
+.mypage-user-shopping-sell {
+  width: 48%;
+  height: 70%;
+  position: relative;
+}
+
+.mypage-user-shopping-sell span {
+  position: absolute;
+  top: 5px;
+  right: 0;
+}

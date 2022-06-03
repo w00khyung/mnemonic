@@ -14,7 +14,7 @@
     <!-- bulma css -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
     <!-- 폰트 어썸: 아이콘 -->
     <script
@@ -23,21 +23,50 @@
       crossorigin="anonymous"
     ></script>
     <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/nomalize.css" />
     <script src="home.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
     <div class="shopping-mall-header"></div>
-
-    <div class="div-container">
-      <div class="landing" id="landingDiv">
-        <h1>랜딩 페이지</h1>
-      </div>
-      <div class="greeting" id="greetingDiv">
-        <h1>안녕하세요!</h1>
+    <div class="slidebox">
+      <input type="radio" name="slide" id="slide01" checked />
+      <input type="radio" name="slide" id="slide02" />
+      <input type="radio" name="slide" id="slide03" />
+      <div class="slidewrap">
+        <ul class="slidelist">
+          <li class="slideitem hero is-success is-halfheight">
+            <div>
+              <p class="subtitle">Hello?</p>
+              <p class="title">안녕하세요?</p>
+              <label for="slide03" class="left"></label>
+              <label for="slide02" class="right"></label>
+              <a href=""></a>
+            </div>
+          </li>
+          <li class="slideitem hero is-info is-halfheight">
+            <div>
+              <p class="subtitle">Nice to meet you.</p>
+              <p class="title">만나서 반갑습니다.</p>
+              <label for="slide01" class="left"></label>
+              <label for="slide03" class="right"></label>
+              <a href=""></a>
+            </div>
+          </li>
+          <li class="slideitem hero is-success is-halfheight">
+            <div>
+              <p class="subtitle">Make shoppingMal.</p>
+              <p class="title">쇼핑몰을 구상중입니다.</p>
+              <label for="slide02" class="left"></label>
+              <label for="slide01" class="right"></label>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
+    <div class="setCategoryProducts"></div>
 
+    <a id="backtotop"><i class="fa-solid fa-arrow-up-to-line"></i></a>
   </body>
 </html>
