@@ -22,6 +22,9 @@ const OrderSchema = new Schema(
         ),
         required: true,
       },
+      request: {
+        type: String,
+      },
     },
     purchaseOrderInfo: {
       type: new Schema(
