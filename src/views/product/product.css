@@ -37,7 +37,7 @@ a {
 }
 
 .product-list-category {
-  margin: 20px;
+  margin: 0 20px;
 }
 
 .product-list-category p {
@@ -78,6 +78,10 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.product-list-box {
+  cursor: pointer;
 }
 
 .product-list-box-img {
