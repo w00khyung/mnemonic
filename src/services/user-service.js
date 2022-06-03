@@ -1,7 +1,8 @@
-import { userModel } from '../db';
-
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { userModel } from '../db';
+
+const { OAuth2Client } = require('google-auth-library');
 
 class UserService {
   // 본 파일의 맨 아래에서, new UserService(userModel) 하면, 이 함수의 인자로 전달됨
@@ -78,6 +79,19 @@ class UserService {
     const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
 
     return { token };
+  }
+
+  // 소셜 로그인 (구글)
+  async verify(credential) {
+    const client = new OAuth2Client(process.env.GOOGLE_ClIENT_ID);
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_ClIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    const { email, name } = payload;
+    const isRegister = await this.userModel.findByEmail(email);
+    return { isRegister, email, fullName: name };
   }
 
   // 사용자 목록을 받음.

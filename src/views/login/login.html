@@ -25,6 +25,9 @@
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="login.css" />
     <script src="login.js" type="module" defer></script>
+
+    <!-- 구글 로그인  -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -63,6 +66,26 @@
         <button class="button is-info is-fullwidth" id="submitButton">
           로그인하기
         </button>
+
+        <!-- 구글 로그인 버튼 -->
+        <div
+          id="g_id_onload"
+          data-client_id="712926701732-kulb4bs65d4t7arno34o89skm3e75n3j.apps.googleusercontent.com"
+          data-callback="handleCredentialResponse"
+          data-login_uri="http://localhost:5002/api/google/login"
+          data-auto_prompt="false"
+          data-auto_select="true"
+        ></div>
+        <!-- 구글 로그인 모달창 -->
+        <div
+          class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="outline"
+          data-text="sign_in_with"
+          data-shape="rectangular"
+          data-logo_alignment="left"
+        ></div>
       </form>
     </div>
   </body>
