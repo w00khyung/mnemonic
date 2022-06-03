@@ -72,7 +72,7 @@
           id="g_id_onload"
           data-client_id="712926701732-kulb4bs65d4t7arno34o89skm3e75n3j.apps.googleusercontent.com"
           data-callback="handleCredentialResponse"
-          data-login_uri="http://localhost:5002/api/google/login"
+          data-login_uri="/api/google/login"
           data-auto_prompt="false"
           data-auto_select="true"
         ></div>
@@ -86,6 +86,35 @@
           data-shape="rectangular"
           data-logo_alignment="left"
         ></div>
+
+        <!-- 카카오 로그인 -->
+        <a href="javascript:kakaoLogin();">카카오 로그인</a>
+
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+        <script>
+          window.Kakao.init('c1b1af7b8ea4af897fed56fba0952918');
+
+          function kakaoLogin() {
+            window.Kakao.Auth.login({
+              scope: 'profile_nickname, profile_image, account_email', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+              success: function (response) {
+                console.log(response); // 로그인 성공하면 받아오는 데이터
+                window.Kakao.API.request({
+                  // 사용자 정보 가져오기
+                  url: '/v2/user/me',
+                  success: (res) => {
+                    const kakao_account = res.kakao_account;
+                    console.log(kakao_account);
+                  },
+                });
+                // window.location.href='/ex/kakao_login.html' //리다이렉트 되는 코드
+              },
+              fail: function (error) {
+                console.log(error);
+              },
+            });
+          }
+        </script>
       </form>
     </div>
   </body>
