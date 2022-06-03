@@ -6,14 +6,14 @@ const Product = model('products', ProductSchema);
 export class ProductModel {
   async findByProduct(name) {
     const product = await Product.findOne({ name })
-      .populate('sellerId')
+      .populate({ path: 'sellerId', select: { password: 0, address: 0 } })
       .populate('category');
     return product;
   }
 
   async findById(productId) {
     const product = await Product.findOne({ _id: productId })
-      .populate('sellerId')
+      .populate({ path: 'sellerId', select: { password: 0, address: 0 } })
       .populate('category');
     return product;
   }
