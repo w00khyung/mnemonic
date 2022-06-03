@@ -52,9 +52,9 @@ class CategoryService {
   }
 
   // 해당 카테고리 id 값으로 가져오기
-  async getCategoryCode(categoryCode) {
+  async getCategoryCodeName(categoryCode) {
     // 우선 해당 id의 카테고리가 db에 있는지 확인
-    const category = await this.categoryModel.findByCode(categoryCode);
+    const category = await this.categoryModel.findByCodeName(categoryCode);
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!category) {

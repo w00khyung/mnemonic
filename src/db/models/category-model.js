@@ -14,7 +14,7 @@ export class CategoryModel {
     return category;
   }
 
-  async findByCode(CategoryCode) {
+  async findByCodeName(CategoryCode) {
     const category = await Category.findOne({ code: CategoryCode });
     return category;
   }
@@ -23,6 +23,7 @@ export class CategoryModel {
     const category = await Category.findOne({ codeRef: CategoryCodeRef });
     return category;
   }
+
   async create(CategoryInfo) {
     const createdNewCategory = await Category.create(CategoryInfo);
     return createdNewCategory;
@@ -44,6 +45,7 @@ export class CategoryModel {
     );
     return updatedCategory;
   }
+
   // delteCategory 추가
   async deleteCategory(CategoryId) {
     await Category.deleteOne({ _id: CategoryId });
