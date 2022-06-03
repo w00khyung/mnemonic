@@ -72,7 +72,7 @@ a {
 
 .product-list-area-right ul li {
   width: 23%;
-  height: 350px;
+  height: 380px;
   margin-right: 20px;
   margin-bottom: 30px;
   display: flex;
@@ -82,7 +82,7 @@ a {
 
 .product-list-box-img {
   width: 100%;
-  height: 80%;
+  height: 230px;
   background-color: #999;
   border-radius: 10px;
 }
