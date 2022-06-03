@@ -48,7 +48,7 @@ async function getProductsAndCategory() {
 
       const products = getProducts[i];
       // 제폼 목록 페이지 구현하기 a herf="#"에 추가하기
-      console.log(products);
+
       insertProductsOfCategory += `
   <section>
       <div class="inner">
@@ -96,9 +96,7 @@ async function getProductsAndCategory() {
     </section>
     `;
     }
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
   setCategoryProducts.innerHTML = insertProductsOfCategory;
 }
 

@@ -53,10 +53,7 @@ const navSection = () => {
             </span>
             <span>카트</span>
           </a>
-          <a href="/addproduct" aria-current="page">
-           
-            <span>상품 추가</span>
-          </a>
+         
         </li>`
               : ''
           }

@@ -31,7 +31,7 @@ async function start() {
 async function handleSubmit(e) {
   e.preventDefault();
 
-  // 로그인 api 요청
+  // 상품 추가 요청
   try {
     const name = productName1.value;
     const price = price1.value;
