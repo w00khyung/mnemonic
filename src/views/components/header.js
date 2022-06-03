@@ -4,6 +4,7 @@ const UserLogOut = () => {
     return;
   }
   alert('로그아웃 하시겠습니까?');
+  sessionStorage.removeItem('email');
   sessionStorage.removeItem('token');
   window.location.href = '/';
 };
@@ -40,12 +41,13 @@ const navSection = () => {
   
       <div class="navbar-end breadcrumb my-auto" aria-label="breadcrumbs">
         <ul id="navbar">
+        ${isLoggedIn ? `<li><a href="/mypage">마이페이지</a></li>` : ''}
           <li><a class="logout">${isLoggedIn ? `로그아웃` : `로그인`}</a></li>
           ${isLoggedIn ? '' : `<li><a href="/register">회원가입</a></li>`}
           ${
             isLoggedIn
               ? `<li>
-          <a href="#cart" aria-current="page">
+          <a href="/cart" aria-current="page">
             <span class="icon">
               <i class="fas fa-cart-shopping"></i>
             </span>

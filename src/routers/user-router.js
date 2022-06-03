@@ -134,4 +134,19 @@ userRouter.patch('/users/:userId', loginRequired, async (req, res, next) => {
   }
 });
 
+// 회원탈퇴
+userRouter.delete('/users', loginRequired, async function (req, res, next) {
+  try {
+    const userId = req.currentUserId;
+    await userService.deleteUser(userId);
+
+    // 사용자 정보를 JSON 형태로 프론트에 보냄
+    res.status(200).json({
+      message: '${userId}유저는 탈퇴처리 되었습니다.',
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export { userRouter };

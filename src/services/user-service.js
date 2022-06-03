@@ -132,6 +132,7 @@ class UserService {
     return user;
   }
 
+<<<<<<< HEAD
   // 해당 아이디 유저 가져오기-----------------------------------------해당 user 가져오기와 user 삭제 기능 ----------------------------------------
   async getUser(userId) {
     // 우선 해당 id의 유저가 db에 있는지 확인
@@ -147,6 +148,11 @@ class UserService {
   // 유저 삭제
   async deleteUser(userId) {
     await this.userModel.deleteUser(userId);
+=======
+  // 사용자 정보 삭제
+  async deleteUser(userId) {
+    return userModel.delete(userId);
+>>>>>>> 44f925f3b48bc443e8cb40ae6bbd8933b15772af
   }
 }
 

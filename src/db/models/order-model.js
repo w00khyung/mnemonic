@@ -10,21 +10,25 @@ export class OrderModel {
   }
 
   async findById(user) {
-    const findUser = await Order.find({ user });
+    const findUser = await Order.find({ user, deletedAt: null });
     return findUser;
   }
 
   async findAll() {
-    const orders = await Order.find({});
+    const orders = await Order.find({ deletedAt: null });
     return orders;
   }
 
-  async deleteOrder(user, orderNum) {
-    const findDeleteOrder = await Order.find({ user }).skip(orderNum);
-    const willDeleteOrder = await Order.deleteOne({
-      _id: findDeleteOrder[0]._id.toString(),
-    });
-    return willDeleteOrder;
+  async deleteOrder({ orderId }) {
+    const filter = { _id: orderId };
+    const option = { returnOriginal: false };
+
+    const findDeleteOrder = await Order.findOneAndUpdate(
+      filter,
+      { deletedAt: new Date() },
+      option
+    );
+    return findDeleteOrder;
   }
 }
 
