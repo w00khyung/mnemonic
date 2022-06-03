@@ -1,3 +1,8 @@
+import * as Api from '/api.js';
+import { navRender } from '../components/header.js';
+
+navRender();
+
 const cartProductsContainer = document.querySelector('#cartProductsContainer');
 const checkboxAll = document.querySelector('.checkboxAll');
 const allDeleteBtn = document.querySelector('.allDeleteBtn');

@@ -47,7 +47,7 @@ const navSection = () => {
           ${
             isLoggedIn
               ? `<li>
-          <a href="#cart" aria-current="page">
+          <a href="/cart" aria-current="page">
             <span class="icon">
               <i class="fas fa-cart-shopping"></i>
             </span>
