@@ -53,6 +53,7 @@ const navSection = () => {
             </span>
             <span>카트</span>
           </a>
+         
         </li>`
               : ''
           }

@@ -25,7 +25,7 @@ addAllEvents();
 // Daum api
 function findAddr() {
   new daum.Postcode({
-    oncomplete: function (data) {
+    oncomplete(data) {
       const roadAddr = data.roadAddress;
       const jibunAddr = data.jibunAddress;
 
