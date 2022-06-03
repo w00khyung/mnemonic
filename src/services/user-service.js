@@ -1,7 +1,6 @@
-import { userModel } from '../db';
-
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { userModel } from '../db';
 
 class UserService {
   // 본 파일의 맨 아래에서, new UserService(userModel) 하면, 이 함수의 인자로 전달됨
@@ -131,6 +130,23 @@ class UserService {
     });
 
     return user;
+  }
+
+  // 해당 아이디 유저 가져오기-----------------------------------------해당 user 가져오기와 user 삭제 기능 ----------------------------------------
+  async getUser(userId) {
+    // 우선 해당 id의 유저가 db에 있는지 확인
+    const user = await this.userModel.findById(userId);
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!user) {
+      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+    }
+    return user;
+  }
+
+  // 유저 삭제
+  async deleteUser(userId) {
+    await this.userModel.deleteUser(userId);
   }
 }
 
