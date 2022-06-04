@@ -1,3 +1,11 @@
+a {
+  color: #fff;
+}
+
+body {
+  overflow: visible;
+}
+
 .product-detail-wrap {
   width: 100%;
   height: 90vh;
@@ -66,4 +74,49 @@
 .product-detail-page-btns button {
   width: 49%;
   height: 60px;
+}
+
+/* 모달 */
+.product-success-modal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-success-modal-wrap {
+  width: 500px;
+  height: 300px;
+  padding: 50px;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-success-modal-wrap p {
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
+.product-success-modal-btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-success-modal-btns button {
+  width: 190px;
+}
+
+.product-list-btn a {
+  color: #000;
 }
