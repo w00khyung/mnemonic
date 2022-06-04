@@ -43,7 +43,8 @@
       })
         .then((response) => response.json())
         .then((result) => {
-      document.getElementById('imgId').src = result['file'];
+          document.getElementById('imgId').src =result['imageUrl'];
+      //document.getElementById('imgId').src = `/${result['imagePath']}`;
           document.getElementsByClassName('custom-file-label')[0].value = result['originalName'];
           console.log('성공:', result);
         })
