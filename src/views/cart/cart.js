@@ -15,28 +15,6 @@ const orderPaymentBtn = document.querySelector('#purchaseButton');
 
 let itemsPrice = [];
 //const itemquantityChange = document.querySelector('.itemquantity');
-// 저장된 json 데이터 localstorage에 저장
-async function loadItems() {
-  const res = await fetch('./cart.json');
-  const jsonData = await res.json();
-  const result = jsonData.cart;
-
-  for (let i = 0; i < result.length; i += 1) {
-    const { _id, name, price, brand, content, imagePath, quantity } = result[i];
-    const productData = {
-      _id: _id,
-      name: name,
-      price: price,
-      brand: brand,
-      content: content,
-      imagePath: imagePath,
-      quantity: quantity,
-    };
-
-    const storageData = JSON.stringify(productData);
-    localStorage.setItem(productData._id, storageData);
-  }
-}
 
 function checkboxAllSelect() {
   const checkboxs = document.querySelectorAll('input[type="checkbox"]');
@@ -79,26 +57,19 @@ function cartDataDisplay() {
     const data = localStorage.getItem(localStorage.key(i));
     const objectData = JSON.parse(data);
 
+    console.log();
     //사진이랑 품목 클릭시 주소 이동 부분 변수값 고민 중 나중에 수정 필요
     cartProductsContainer.insertAdjacentHTML(
       'beforeend',
       `
     <div class="cart-product-item" id="${objectData._id}">
-      
        <input type="checkbox">
-      
-      
-        <p><a href="/ivoryknit">${objectData.imagePath}</a></p>
-      
+        <p><a href="/product-detail"><img src="${objectData.imagePath}" alt="" /></a></p>
       <div class="content">
-        <p><a href="/ivoryknit">${objectData.name}</p>
-      
+        <p><a href="/product-detail">${objectData.name}</a></p>
         </div>
         <p class="price">${objectData.price}</p>
-       
-      
         <input type="number" class="itemquantity" min="1" max="99" value="${objectData.quantity}" style="width:50px;height:30px"></input>
-      
     </div>
     `
     );
@@ -115,8 +86,6 @@ function selectItemDelete() {
     window.location.reload();
   }
 }
-//장바구니에 저장된 값 가져오는 함수
-//loadItems();
 
 cartDataDisplay();
 cartPurchaseInfo();

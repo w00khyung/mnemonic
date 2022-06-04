@@ -7,7 +7,7 @@ navRender();
 const productList = await Api.get(`/api/product/productlist`);
 const productUl = document.querySelector('.product-list-ul');
 
-let productImgSrc = '';
+let productImagePath = '';
 let productBrand = '';
 let productName = '';
 let productContent = '';
@@ -17,23 +17,29 @@ const productCount = document.querySelector('.product-list-count');
 productCount.innerHTML = `상품 ${productList.length}`;
 
 for (let i = 0; i < productList.length; i++) {
-  productImgSrc = productList[i].imagePath;
+  productImagePath = productList[i].imagePath;
   productBrand = productList[i].brand;
   productName = productList[i].name;
   productContent = productList[i].content;
   productPrice = addCommas(productList[i].price);
 
   const productTemplate = `
-<li>
-<a href="/product-detail">
-  <img class="product-list-box-img" src="${productImgSrc}" alt="의상" />
-  <p class="product-list-box-brand">${productBrand}</p>
-  <p class="product-list-box-name">${productName}</p>
-  <p class="product-list-box-content">${productContent}</p>
-  <p class="product-list-box-price">${productPrice}원</p>
-</a>
-</li>
+  <li class="product-list-box">
+    <a href="/product-detail">
+      <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
+      <p class="product-list-box-brand">${productBrand}</p>
+      <p class="product-list-box-name">${productName}</p>
+      <p class="product-list-box-content">${productContent}</p>
+      <p class="product-list-box-price">${productPrice}원</p>
+    </a>
+  </li>
 `;
 
   productUl.insertAdjacentHTML('afterbegin', productTemplate);
+
+  const productListBox = document.querySelector('.product-list-box');
+
+  productListBox.addEventListener('click', () => {
+    sessionStorage.setItem('productId', productList[i]._id);
+  });
 }
