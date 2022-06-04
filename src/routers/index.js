@@ -8,3 +8,4 @@ export * from './myprofile-router';
 export * from './product-router';
 export * from './category-router';
 export * from './upload-router';
+export * from './social-login-router';
