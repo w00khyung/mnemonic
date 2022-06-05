@@ -173,8 +173,8 @@ function productTitle() {
 
   productCount.innerHTML = `상품 ${countProduct}`;
 }
-// 좌측 카테고리 네비게이션
-function productCategory() {
+// 좌측 카테고리 네비게이션 렌더
+function renderProductCategory() {
   const categoryArea = document.querySelector('.product-list-area-left');
   const category = `
   <div class="product-list-category">
@@ -226,8 +226,8 @@ function renderProductAll() {
     <a href="/product-detail">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
-      <p class="product-list-box-name">${productName}</p>
-      <p class="product-list-box-content">${productContent}</p>
+      <p class="product-list-box-name text-eliellipsis">${productName}</p>
+      <p class="product-list-box-content text-eliellipsis">${productContent}</p>
       <p class="product-list-box-price">${productPrice}원</p>
     </a>
   </li>
@@ -256,8 +256,8 @@ function renderProductClothing() {
     <a href="/product-detail">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
-      <p class="product-list-box-name">${productName}</p>
-      <p class="product-list-box-content">${productContent}</p>
+      <p class="product-list-box-name text-eliellipsis">${productName}</p>
+      <p class="product-list-box-content text-eliellipsis">${productContent}</p>
       <p class="product-list-box-price">${productPrice}원</p>
     </a>
   </li>
@@ -287,8 +287,8 @@ function renderProductAccessories() {
     <a href="/product-detail">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
-      <p class="product-list-box-name">${productName}</p>
-      <p class="product-list-box-content">${productContent}</p>
+      <p class="product-list-box-name text-eliellipsis">${productName}</p>
+      <p class="product-list-box-content text-eliellipsis">${productContent}</p>
       <p class="product-list-box-price">${productPrice}원</p>
     </a>
   </li>
@@ -323,8 +323,8 @@ function renderProductIndividual() {
     <a href="/product-detail">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
-      <p class="product-list-box-name">${productName}</p>
-      <p class="product-list-box-content">${productContent}</p>
+      <p class="product-list-box-name text-eliellipsis">${productName}</p>
+      <p class="product-list-box-content text-eliellipsis">${productContent}</p>
       <p class="product-list-box-price">${productPrice}원</p>
     </a>
   </li>
@@ -339,7 +339,7 @@ function renderProductIndividual() {
   }
 }
 // 조건에 맞는 제품 리스트 렌더
-function productItemList() {
+function renderproductItemList() {
   const productUl = document.querySelector('.product-list-ul');
 
   // 등록된 상품이 존재하지 않을 경우
@@ -349,14 +349,14 @@ function productItemList() {
     accArr.length === 0
   ) {
     productUl.innerHTML = `
-    <div class="product-list-none">
+    <div class="product-list-none display-center">
       <p>현재 등록된 상품이 없습니다.</p>
     </div>
     `;
 
     if (isMain || isClothing || isAcc) {
       productUl.innerHTML = `
-    <div style="display:none" class="product-list-none">
+      <div style="display:none" class="product-list-none display-center">
       <p>현재 등록된 상품이 없습니다.</p>
     </div>
     `;
@@ -392,5 +392,9 @@ function productItemList() {
     renderProductIndividual();
   }
 }
+// 완성된 카테고리, 제품 리스트 렌더
+function renderAllProduct() {
+  renderProductCategory(), renderproductItemList();
+}
 
-export { productTitle, productCategory, productItemList };
+export { productTitle, renderAllProduct };

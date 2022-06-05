@@ -24,11 +24,11 @@ for (let i = 0; i < productList.length; i++) {
   }
 }
 
-function productDetail() {
+function renderProductDetail() {
   const wrap = document.querySelector('.product-detail-wrap');
   const productDetailTemplate = `
-<section class="product-detail-page">
-<div class="product-detail-page-left">
+<section class="product-detail-page display-center">
+<div class="product-detail-page-left display-center">
   <img class="productt-detail-page-img" src="${productImagePath}" alt="제품" />
 </div>
 <div class="product-detail-page-right">
@@ -49,7 +49,7 @@ function productDetail() {
   wrap.innerHTML = productDetailTemplate;
 }
 
-productDetail();
+renderProductDetail();
 
 const addCartBtn = document.querySelector('.add-cart-btn');
 

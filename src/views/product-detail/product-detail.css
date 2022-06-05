@@ -1,83 +1,69 @@
+@import '../useful-css.css';
+
 a {
   color: #fff;
 }
-
 body {
   overflow: visible;
 }
-
 .product-detail-wrap {
-  width: 100%;
-  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
+  height: 90vh;
 }
-
 .product-detail-page {
-  width: 1280px;
-  height: 700px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 80rem;
+  height: 43.75rem;
 }
-
 .product-detail-page-left {
   width: 50%;
-  height: 700px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 43.75rem;
 }
-
 .productt-detail-page-img {
-  width: 600px;
-  height: 600px;
-  background-color: #999;
+  width: 37.5rem;
+  height: 37.5rem;
+  background-color: var(--gray-color);
 }
-
 .product-detail-page-right {
-  width: 50%;
-  height: 700px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 50px;
+  width: 50%;
+  height: 43.75rem;
+  padding: 3rem;
 }
-
 .productt-detail-page-brand {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.2rem;
   text-decoration: underline;
 }
-
 .productt-detail-page-name {
-  font-size: 40px;
+  font-size: 2.5rem;
 }
-
 .productt-detail-page-price {
   font-weight: bold;
-  font-size: 40px;
+  font-size: 2.5rem;
 }
-
 .productt-detail-page-content {
-  font-size: 20px;
-  margin-top: 20px;
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
 }
-
 .product-detail-page-btns {
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
-
 .product-detail-page-btns button {
   width: 49%;
-  height: 60px;
+  height: 3rem;
 }
-
 /* 모달 */
 .product-success-modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -86,37 +72,29 @@ body {
   z-index: 30;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
 }
-
 .product-success-modal-wrap {
-  width: 500px;
-  height: 300px;
-  padding: 50px;
-  border-radius: 10px;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 31rem;
+  height: 19rem;
+  padding: 3.2rem;
+  border-radius: 0.6rem;
+  background-color: #fff;
 }
-
 .product-success-modal-wrap p {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 1.5rem;
   text-align: center;
 }
-
 .product-success-modal-btns {
   display: flex;
   justify-content: space-between;
 }
-
 .product-success-modal-btns button {
-  width: 190px;
+  width: 11.8rem;
 }
-
 .product-list-btn a {
-  color: #000;
+  color: var(--black-color);
 }
