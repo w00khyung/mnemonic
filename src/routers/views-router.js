@@ -23,6 +23,8 @@ viewsRouter.use('/profile', serveStatic('profile'));
 viewsRouter.use('/cart', serveStatic('cart'));
 viewsRouter.use('/order', serveStatic('order'));
 viewsRouter.use('/addproduct', serveStatic('addproduct'));
+viewsRouter.use('/order/complete', serveStatic('complete'));
+viewsRouter.use('/mypage/orders', serveStatic('mypage-orders'));
 
 // 제품 리스트
 viewsRouter.use('/product', serveStatic('product'));
