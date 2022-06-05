@@ -91,8 +91,11 @@ function handleSubmit() {
     return (window.location.href = '/login');
   }
   displayModal();
-  localStorage.setItem(`product${randomId}`, dataString);
+  localStorage.setItem(currentProductId, dataString);
 }
+const dataString = JSON.stringify(data);
+
+addCartBtn.addEventListener('click', handleSubmit);
 
 // open modal
 function displayModal() {
