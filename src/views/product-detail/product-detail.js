@@ -67,17 +67,6 @@ const data = {
   quantity: productQuantity,
 };
 
-const today = new Date();
-
-const hours = today.getHours();
-const minutes = today.getMinutes();
-const seconds = today.getSeconds();
-const milliseconds = today.getMilliseconds();
-
-const num = `${hours}${minutes}${seconds}${milliseconds}`;
-
-const randomId = Math.floor(Math.random() * parseInt(num));
-
 const dataString = JSON.stringify(data);
 
 addCartBtn.addEventListener('click', handleSubmit);
@@ -93,9 +82,6 @@ function handleSubmit() {
   displayModal();
   localStorage.setItem(currentProductId, dataString);
 }
-const dataString = JSON.stringify(data);
-
-addCartBtn.addEventListener('click', handleSubmit);
 
 // open modal
 function displayModal() {
