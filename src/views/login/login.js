@@ -6,12 +6,10 @@ import { navRender } from '../components/header.js';
 const emailInput = document.querySelector('#emailInput');
 const passwordInput = document.querySelector('#passwordInput');
 const submitButton = document.querySelector('#submitButton');
-const kakaoLogin = document.querySelector('#kakao');
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   submitButton.addEventListener('click', handleSubmit);
-  kakaoLogin.addEventListener('click', handleKakaoLogin);
 }
 
 navRender();
@@ -39,12 +37,13 @@ async function handleSubmit(e) {
     const data = { email, password };
 
     const result = await Api.post('/api/login', data);
-    const { token } = result;
+    const { accessToken, refreshToken } = result;
 
     // 로그인 성공, 토큰을 세션 스토리지에 저장
     // 물론 다른 스토리지여도 됨
     sessionStorage.setItem('email', email);
-    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('accessToken', accessToken);
+    sessionStorage.setItem('refreshToken', refreshToken);
     alert(`정상적으로 로그인되었습니다.`);
 
     // 로그인 성공
@@ -55,13 +54,4 @@ async function handleSubmit(e) {
     console.error(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
   }
-}
-
-async function handleKakaoLogin(e) {
-  e.preventDefault();
-  // const result = await Api.get('/auth', 'kakao');
-  // console.log(result);
-  // const { token } = result;
-  // sessionStorage.setItem('token', token);
-  window.location.href = '/';
 }

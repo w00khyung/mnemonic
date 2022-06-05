@@ -73,12 +73,28 @@ class UserService {
     }
 
     // 로그인 성공 -> JWT 웹 토큰 생성
-    const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
+    const aceessTokenSecretKey =
+      process.env.ACCESS_TOKEN_SECRET_KEY || 'secret-key';
 
     // 2개 프로퍼티를 jwt 토큰에 담음
-    const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
+    // jwt 발급 시 access token(세션), refresh token(세션, DB) 2개를 발급함. => 보안을 위해서
+    // refresh가 만료되지 않고, 발급된 적이 있으면 => 기존 토큰 사용, refresh가 없다 => 재발급
+    const accessToken = jwt.sign(
+      { userId: user._id, role: user.role },
+      aceessTokenSecretKey,
+      { expiresIn: '2h' }
+    );
 
-    return { token };
+    // refresh token이 처음 로그인 했거나 만료되서 없으면 생성하고, DB에 저장함.
+    let { refreshToken } = user;
+    if (!refreshToken) {
+      refreshToken = await this.userModel.generateRefreshToken(
+        user._id,
+        refreshToken
+      );
+    }
+
+    return { accessToken, refreshToken };
   }
 
   // 소셜 로그인 (구글)
