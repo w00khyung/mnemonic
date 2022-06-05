@@ -97,6 +97,7 @@ async function loginRequired(req, res, next) {
       jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET_KEY);
       const user = await userModel.findById(userId);
       if (refreshToken === user.refreshToken) {
+        req.currentUserId = user._id;
         next();
       }
     } catch (error) {

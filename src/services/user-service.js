@@ -88,10 +88,7 @@ class UserService {
     // refresh token이 처음 로그인 했거나 만료되서 없으면 생성하고, DB에 저장함.
     let { refreshToken } = user;
     if (!refreshToken) {
-      refreshToken = await this.userModel.generateRefreshToken(
-        user._id,
-        refreshToken
-      );
+      refreshToken = await this.userModel.generateRefreshToken(user._id);
     }
 
     return { accessToken, refreshToken };

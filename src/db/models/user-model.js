@@ -33,19 +33,19 @@ export class UserModel {
     return updatedUser;
   }
 
-  async generateRefreshToken(userId, refreshToken) {
+  async generateRefreshToken(userId) {
     const filter = { _id: userId };
     const option = { returnOriginal: false };
 
-    await User.findOneAndUpdate(filter, { refreshToken }, option);
-    const newRefreshToken = jwt.sign(
+    const refreshToken = jwt.sign(
       { userId },
       process.env.REFRESH_TOKEN_SECRET_KEY,
       {
         expiresIn: '14d',
       }
     );
-    return newRefreshToken;
+    await User.findOneAndUpdate(filter, { refreshToken }, option);
+    return refreshToken;
   }
 
   async delete(userId) {
