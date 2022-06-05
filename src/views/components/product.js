@@ -349,10 +349,18 @@ function productItemList() {
     accArr.length === 0
   ) {
     productUl.innerHTML = `
-  <div class="product-list-none">
-    <p>현재 등록된 상품이 없습니다.</p>
-  </div>
-  `;
+    <div class="product-list-none">
+      <p>현재 등록된 상품이 없습니다.</p>
+    </div>
+    `;
+
+    if (isMain || isClothing || isAcc) {
+      productUl.innerHTML = `
+    <div style="display:none" class="product-list-none">
+      <p>현재 등록된 상품이 없습니다.</p>
+    </div>
+    `;
+    }
   }
 
   // 전체상품 리스트 호출
