@@ -126,10 +126,9 @@ function displayModal(e) {
   if (!address2) {
     alert('상세주소를 입력해주세요.');
     return addressTwoInput.focus();
-  } else {
-    body.style.overflow = 'hidden';
-    modal.style.display = 'flex';
   }
+  body.style.overflow = 'hidden';
+  modal.style.display = 'flex';
 }
 
 // back to profile
@@ -142,7 +141,7 @@ function backToProfile(e) {
 // Daum api
 function findAddr() {
   new daum.Postcode({
-    oncomplete: function (data) {
+    oncomplete(data) {
       const roadAddr = data.roadAddress;
       const jibunAddr = data.jibunAddress;
 
@@ -208,7 +207,9 @@ async function handleDelete(e) {
   try {
     await Api.delete('/api/users');
     sessionStorage.removeItem('email');
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('refreshToken');
+
     alert('정상적으로 삭제되었습니다.');
 
     // 로그인 페이지 이동
