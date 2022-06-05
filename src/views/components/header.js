@@ -6,7 +6,8 @@ const UserLogOut = () => {
     window.location.href = '/login';
     return;
   }
-  alert('로그아웃 하시겠습니까?');
+  const logout = window.confirm('로그아웃 하시겠습니까?');
+  if(!logout) return;
   sessionStorage.removeItem('email');
   sessionStorage.removeItem('accessToken');
   sessionStorage.removeItem('refreshToken');

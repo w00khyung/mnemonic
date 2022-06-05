@@ -1,0 +1,18 @@
+:root {
+  --black-color: var(--black-color);
+  --gray-color: #999;
+}
+
+/* 가운데 배치 */
+.display-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 텍스트 한 줄 넘어갈 시, 말줄임표 생성 */
+.text-eliellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
