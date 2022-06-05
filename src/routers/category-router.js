@@ -15,9 +15,7 @@ categoryRouter.post('/register', adminRequired, async (req, res, next) => {
     }
 
     // req (request)의 body 에서 데이터 가져오기
-    const { name } = req.body;
-    const { code } = req.body;
-    const { codeRef } = req.body;
+    const { name, code, codeRef } = req.body;
 
     // 위 데이터를 카테고리 DB에 추가하기
     const newCategory = await categoryService.addCategory({
@@ -46,7 +44,7 @@ categoryRouter.get('/categorylist', async (req, res, next) => {
 });
 
 // 카테고리 상세
-categoryRouter.get('/detail/:categoryId', async (req, res, next) => {
+categoryRouter.get('/:categoryId', async (req, res, next) => {
   try {
     const { categoryId } = req.params;
     const getcategoryId = await categoryService.getCategoryId(categoryId);
@@ -58,18 +56,18 @@ categoryRouter.get('/detail/:categoryId', async (req, res, next) => {
 });
 
 // 카테고리 삭제
-categoryRouter.delete(
-  '/delete/:categoryId',
-  adminRequired,
-  async (req, res, next) => {
-    try {
-      const { categoryId } = req.params;
-      await categoryService.deleteCategory(categoryId);
-      const ok = { success: 'success' };
-      res.status(200).json(ok);
-    } catch (error) {
-      next(error);
-    }
+categoryRouter.delete('/:categoryId', adminRequired, async (req, res, next) => {
+  try {
+    const { categoryId } = req.params;
+    await categoryService.deleteCategory(categoryId);
+
+    const success = {
+      status: 200,
+      message: '카테고리가 정상적으로 삭제했습니다.',
+    };
+    res.status(200).json(success);
+  } catch (error) {
+    next(error);
   }
-);
+});
 export { categoryRouter };
