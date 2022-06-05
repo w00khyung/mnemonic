@@ -88,8 +88,8 @@ class ProductService {
   async getCategoryProducts(categoryId, start, end) {
     const products = await this.productModel.findByProductsOfCategory(
       categoryId,
-      Number(start),
-      Number(end) - Number(start)
+      start,
+      end - start
     );
     if (!products) {
       const stuckProduct = 0;

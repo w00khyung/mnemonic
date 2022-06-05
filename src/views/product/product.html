@@ -25,45 +25,27 @@
       crossorigin="anonymous"
     ></script>
     <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="../useful-css.css" />
     <link rel="stylesheet" href="product.css" />
     <script src="product.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
     <div class="shopping-mall-header"></div>
+
     <div class="product-list-warp">
       <section class="product-list-area">
-        <div class="product-list-area-top">
-          <h2>전체상품</h2>
-          <p class="product-list-count">상품 1,234</p>
-        </div>
-        <div class="product-list-area-left">
-          <div class="product-list-category">
-            <p><a href="/product">카테고리</a></p>
-            <ul>
-              <a href="/product">전체상품</a>
-            </ul>
-            <ul>
-              <a href="#">의류</a>
-              <li><a href="#">상의</a></li>
-              <li><a href="#">아우터</a></li>
-              <li><a href="#">바지</a></li>
-              <li><a href="#">원피스</a></li>
-              <li><a href="#">스커트</a></li>
-            </ul>
-            <ul>
-              <a href="#">악세사리</a>
-              <li><a href="#">가방</a></li>
-              <li><a href="#">스니커즈</a></li>
-              <li><a href="#">신발</a></li>
-              <li><a href="#">시계</a></li>
-              <li><a href="#">모자</a></li>
-              <li><a href="#">양말</a></li>
-            </ul>
+        <!-- 타이틀 -->
+        <div class="product-list-area-top"></div>
+
+        <div class="product-list-area-bottom">
+          <!-- 카테고리 -->
+          <div class="product-list-area-left"></div>
+
+          <!-- 상품 리스트 -->
+          <div class="product-list-area-right">
+            <ul class="product-list-ul"></ul>
           </div>
-        </div>
-        <div class="product-list-area-right">
-          <ul class="product-list-ul"></ul>
         </div>
       </section>
     </div>

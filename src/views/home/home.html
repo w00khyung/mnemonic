@@ -30,41 +30,65 @@
   <body>
     <!-- 헤더 -->
     <div class="shopping-mall-header"></div>
-    <div class="slidebox">
-      <input type="radio" name="slide" id="slide01" checked />
-      <input type="radio" name="slide" id="slide02" />
-      <input type="radio" name="slide" id="slide03" />
-      <div class="slidewrap">
-        <ul class="slidelist">
-          <li class="slideitem hero is-success is-halfheight">
-            <div>
-              <p class="subtitle">Hello?</p>
-              <p class="title">안녕하세요?</p>
-              <label for="slide03" class="left"></label>
-              <label for="slide02" class="right"></label>
-              <a href=""></a>
+
+    <div class="slide-container">
+      <div class="slider">
+        <div class="slides">
+          <input
+            type="radio"
+            class="radio-btn"
+            name="radio-btn"
+            id="radio1"
+            checked
+          />
+          <input type="radio" class="radio-btn" name="radio-btn" id="radio2" />
+          <input type="radio" class="radio-btn" name="radio-btn" id="radio3" />
+          <input type="radio" class="radio-btn" name="radio-btn" id="radio4" />
+
+          <div class="slide first">
+            <img src="./img/bannerImg1.jpg" alt="" />
+          </div>
+
+          <div class="slide">
+            <img src="./img/bannerImg2.jpg" alt="" />
+          </div>
+
+          <div class="slide">
+            <img src="./img/bannerImg3.jpg" alt="" />
+          </div>
+
+          <div class="slide">
+            <img src="./img/bannerImg4.jpg" alt="" />
+          </div>
+
+          <div class="slide">
+            <img src="./img/bannerImg1.jpg" alt="" />
+          </div>
+
+          <div class="navigation-auto">
+            <div class="auto-btn1"></div>
+            <div class="auto-btn2"></div>
+            <div class="auto-btn3"></div>
+            <div class="auto-btn4"></div>
+          </div>
+          <div class="navigation-manual">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+          </div>
+          <div class="arrow">
+            <div class="arrow-left">
+              <img src="./img/left-arrow.png" alt="" />
             </div>
-          </li>
-          <li class="slideitem hero is-info is-halfheight">
-            <div>
-              <p class="subtitle">Nice to meet you.</p>
-              <p class="title">만나서 반갑습니다.</p>
-              <label for="slide01" class="left"></label>
-              <label for="slide03" class="right"></label>
-              <a href=""></a>
+            <div class="arrow-right">
+              <img src="./img/right-arrow.png" alt="" />
             </div>
-          </li>
-          <li class="slideitem hero is-success is-halfheight">
-            <div>
-              <p class="subtitle">Make shoppingMal.</p>
-              <p class="title">쇼핑몰을 구상중입니다.</p>
-              <label for="slide02" class="left"></label>
-              <label for="slide01" class="right"></label>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
+
     <div class="setCategoryProducts"></div>
 
     <a id="backtotop"><i class="fa-solid fa-arrow-up-to-line"></i></a>

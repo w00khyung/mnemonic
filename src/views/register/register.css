@@ -1,39 +1,32 @@
+@import "../useful-css.css";
+
 .register-user-form-container {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 85vh;
 }
-
 .register-user-form-box {
   display: flex;
   justify-content: space-between;
   width: 45em;
 }
-
 .register-user-form-box .title {
   text-align: center;
 }
-
 .register-user-form-left-input {
-  width: 20em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 20em;
 }
-
 .register-user-form-right-input {
-  width: 20em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 20em;
 }
-
 .register-user-form-box .button {
   font-weight: bold;
 }
-
 .register-user-form-box .input:focus {
   border-color: #00d1b2;
   box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);

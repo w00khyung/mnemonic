@@ -41,10 +41,7 @@ async function handleSubmit(e) {
     const category = select1.value;
     const data = { name, price, brand, content, imagePath, category };
 
-    const result = await Api.post('/api/product/register', data);
-    const { token } = result;
-
-    sessionStorage.setItem('token', token);
+    await Api.post('/api/product/register', data);
 
     // 기본 페이지로 이동
     window.location.href = '/';

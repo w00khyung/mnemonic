@@ -36,6 +36,10 @@ const UserSchema = new Schema(
       required: false,
       default: 'basic-user',
     },
+    refreshToken: {
+      type: String,
+      required: false,
+    },
   },
   {
     collection: 'users',
