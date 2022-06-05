@@ -13,22 +13,23 @@ const productsTotalInfo = document.querySelector('#productsTotal');
 const orderTotalInfo = document.querySelector('#orderTotal');
 const orderPaymentBtn = document.querySelector('#purchaseButton');
 
-function checkboxAllSelect() {
+// 체크박스 클릭했을 때 장바구니의 모든 상품 전부 선택
+function selectAllCheckbox() {
   const checkboxs = document.querySelectorAll('input[type="checkbox"]');
-  for (let i = 0; i < checkboxs.length; i++) {
+  checkboxs.forEach((box) => {
     if (checkboxAll.checked === true) {
-      checkboxs[i].checked = true;
+      box.checked = true;
     } else {
-      checkboxs[i].checked = false;
+      box.checked = false;
     }
-  }
+  });
 }
 // 카트에 담긴 상품들의 정보(상품 수량, 상품 가격등)
-function cartPurchaseInfo() {
+function purchaseCartInfo() {
   let productsCount = 0;
   let productsTotal = 0;
   let deliveryFee = 3000;
-  const regx = /,/g;
+
   deliveryFeeInfo.innerHTML = `${deliveryFee.toLocaleString()}원`;
   for (let i = 0; i < localStorage.length; i++) {
     const data = localStorage.getItem(localStorage.key(i));
@@ -38,7 +39,6 @@ function cartPurchaseInfo() {
       storageDataParse.price.replace(/,/g, '') * storageDataParse.quantity
     );
   }
-
   productsCountInfo.innerText = `${productsCount.toLocaleString()}개`;
   productsTotalInfo.innerText = `${productsTotal.toLocaleString()}원`;
   orderTotalInfo.innerText = `${(
@@ -52,8 +52,10 @@ function cartDataDisplay() {
     const emptyCart = document.querySelector('.emptyCart');
     emptyCart.style.display = 'none';
   }
+
   for (let i = 0; i < localStorage.length; i += 1) {
     const data = localStorage.getItem(localStorage.key(i));
+
     const storageDataParse = JSON.parse(data);
 
     // 사진이랑 품목 클릭시 주소 이동 부분 변수값 고민 중 나중에 수정 필요
@@ -67,7 +69,7 @@ function cartDataDisplay() {
         <p><a href="/product-detail">${storageDataParse.name}</a></p>
         </div>
         <p class="price">${storageDataParse.price}</p>
-        <input type="number" class="itemquantity" min="1" max="99" value="${storageDataParse.quantity}" style="width:50px;height:30px"></input>
+        <input type="number" class="itemquantity" min="1" max="99" value="${storageDataParse.quantity}" ></input>
     </div>
     `
     );
@@ -87,12 +89,13 @@ function selectItemDelete() {
 }
 
 cartDataDisplay();
-cartPurchaseInfo();
+purchaseCartInfo();
+
 allDeleteBtn?.addEventListener('click', () => {
   window.localStorage.clear();
   window.location.reload();
 });
-checkboxAll?.addEventListener('click', checkboxAllSelect);
+checkboxAll?.addEventListener('click', selectAllCheckbox);
 selectDeleteBtn?.addEventListener('click', selectItemDelete);
 orderPaymentBtn?.addEventListener('click', () => {
   location.href = '/order';
