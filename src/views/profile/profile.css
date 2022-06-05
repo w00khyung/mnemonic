@@ -1,100 +1,86 @@
+@import "../useful-css.css";
+
 /* reset CSS */
 a {
-  color: #000;
+  color: var(--black-color);
 }
-
 /* clicked class */
 .focus {
-  color: #000;
+  color: var(--black-color);
   font-weight: bold;
 }
-
 body {
   overflow: visible;
 }
-
 .mypage-container {
   width: 100%;
   height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-
 .mypage-container-left {
-  width: 220px;
-  height: 700px;
-  padding: 20px;
+  width: 13.75rem;
+  height: 43.75rem;
+  padding: 1.25rem;
 }
-
 .mypage-container-left h2 {
-  font-size: 30px;
+  margin-bottom: 1.25rem;
+  font-size: 1.87rem;
   font-weight: bold;
-  margin-bottom: 20px;
 }
-
 .mypage-container-left ul {
-  margin-bottom: 50px;
+  margin-bottom: 3.12rem;
 }
-
 .mypage-container-left ul h3 {
-  font-size: 20px;
+  margin: 0.3rem 0;
+  font-size: 1.25rem;
   font-weight: bold;
-  margin: 5px 0;
 }
-
 .mypage-container-left ul li a {
-  color: #999 !important;
+  color: var(--gray-color);
 }
-
 .mypage-container-right {
-  width: 1000px;
-  height: 700px;
-  padding: 20px 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 62.5rem;
+  height: 43.75rem;
+  padding: 1.25rem 3.12rem;
 }
-
 .mypage-user-profile-top {
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #999;
-  padding-bottom: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.12rem solid var(--gray-color);
 }
-
 .mypage-user-profile-top img {
-  width: 80px;
-  height: 80px;
-  border-radius: 80px;
-  background-color: #999;
+  width: 5rem;
+  height: 5rem;
+  margin-right: 1.25rem;
+  border-radius: 5rem;
+  background-color: var(--gray-color);
   filter: grayscale(1);
-  margin-right: 20px;
 }
-
 .mypage-user-profile-top p {
   font-weight: bold;
-  font-size: 30px;
+  font-size: 1.87rem;
 }
-
 .mypage-user-profile-list form {
-  width: 50%;
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
-
 .profile-user-data-delete {
-  padding: 80px 0;
+  padding: 5rem 0;
 }
-
 .profile-user-data-delete p {
-  cursor: pointer;
+  color: var(--gray-color);
   text-decoration: underline;
-  color: #999;
+  cursor: pointer;
 }
-
 .mypage-confirm-modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -103,33 +89,26 @@ body {
   z-index: 30;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
 }
-
 .mypage-confirm-modal-wrap {
-  width: 500px;
-  height: 300px;
-  padding: 50px;
-  border-radius: 10px;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 31.25rem;
+  height: 18.75rem;
+  padding: 3.12rem;
+  border-radius: 0.62rem;
+  background-color: #fff;
 }
-
 .mypage-confirm-modal-wrap p {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 1.56rem;
   text-align: center;
 }
-
 .mypage-confirm-modal-btns {
   display: flex;
   justify-content: space-between;
 }
-
 .mypage-confirm-modal-btns button {
-  width: 190px;
+  width: 11.87rem;
 }

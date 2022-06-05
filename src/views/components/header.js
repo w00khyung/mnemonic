@@ -1,11 +1,16 @@
 const UserLogOut = () => {
-  if (!sessionStorage.getItem('token')) {
+  if (
+    !sessionStorage.getItem('accessToken') &&
+    !sessionStorage.getItem('refreshToken')
+  ) {
     window.location.href = '/login';
     return;
   }
-  alert('로그아웃 하시겠습니까?');
+  const logout = window.confirm('로그아웃 하시겠습니까?');
+  if(!logout) return;
   sessionStorage.removeItem('email');
-  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('accessToken');
+  sessionStorage.removeItem('refreshToken');
   window.location.href = '/';
 };
 
@@ -15,7 +20,9 @@ const onOffLoginOut = () => {
 };
 
 const navSection = () => {
-  const isLoggedIn = sessionStorage.getItem('token');
+  const isLoggedIn =
+    sessionStorage.getItem('accessToken') ||
+    sessionStorage.getItem('refreshToken');
   const shoppingMallHeader = document.querySelector('.shopping-mall-header');
   const header = `
   <nav class="navbar" role="navigation" aria-label="main navigation">
