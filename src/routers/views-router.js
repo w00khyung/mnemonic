@@ -51,3 +51,13 @@ viewsRouter.use('/product-socks', serveStatic('product-socks'));
 viewsRouter.use('/', serveStatic(''));
 
 export { viewsRouter };
+
+
+
+
+
+
+
+
+
+
