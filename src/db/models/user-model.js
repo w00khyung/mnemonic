@@ -1,4 +1,5 @@
 import { model } from 'mongoose';
+import jwt from 'jsonwebtoken';
 import { UserSchema } from '../schemas/user-schema';
 
 const User = model('users', UserSchema);
@@ -30,6 +31,21 @@ export class UserModel {
 
     const updatedUser = await User.findOneAndUpdate(filter, update, option);
     return updatedUser;
+  }
+
+  async generateRefreshToken(userId, refreshToken) {
+    const filter = { _id: userId };
+    const option = { returnOriginal: false };
+
+    await User.findOneAndUpdate(filter, { refreshToken }, option);
+    const newRefreshToken = jwt.sign(
+      { userId },
+      process.env.REFRESH_TOKEN_SECRET_KEY,
+      {
+        expiresIn: '14d',
+      }
+    );
+    return newRefreshToken;
   }
 
   async delete(userId) {
