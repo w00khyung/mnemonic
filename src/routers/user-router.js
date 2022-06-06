@@ -185,4 +185,13 @@ userRouter.delete('/users', loginRequired, async (req, res, next) => {
   }
 });
 
+userRouter.post('/checkUserMail', async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const checkResultMail = await userService.getUserMail(email);
+    res.send(checkResultMail);
+  } catch (error) {
+    next(error);
+  }
+});
 export { userRouter };
