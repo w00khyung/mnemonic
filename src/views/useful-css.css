@@ -1,6 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
-  --black-color: var(--black-color);
+  --black-color: #000;
   --gray-color: #999;
+  --white-color: #fff;
 }
 
 /* 가운데 배치 */

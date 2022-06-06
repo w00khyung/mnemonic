@@ -1,0 +1,76 @@
+@import '../../useful-css.css';
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.product-add-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 90vh;
+}
+
+.product-add-content {
+  display: flex;
+  width: 80rem;
+  height: 43.75rem;
+}
+
+.product-add-content-left {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 43.75rem;
+}
+
+.product-add-content-left img {
+  width: 37.5rem;
+  height: 37.5rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.product-add-content-right {
+  width: 50%;
+  height: 43.75rem;
+  padding: 3rem;
+}
+
+.product-add-content-right form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 37.5rem;
+}
+
+.upload-zone {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 2.6rem;
+}
+
+.custom-file-input {
+  width: 24rem;
+  height: 2.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+}
+
+input[type=file]::file-selector-button {
+  width: 10rem;
+  height: 2.6rem;
+  margin-right: 1rem;
+  border: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.product-add-sumit {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
