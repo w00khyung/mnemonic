@@ -20,19 +20,19 @@ let accArr = [];
 
 // 경로 변수
 const isMain = currentURL === '/product/';
-const isClothing = currentURL === '/product-clothing/';
-const isAcc = currentURL === '/product-accessories/';
-const isTop = currentURL === '/product-top/';
-const isOuter = currentURL === '/product-outer/';
-const isPants = currentURL === '/product-pants/';
-const isOnepiece = currentURL === '/product-onepiece/';
-const isSkirt = currentURL === '/product-skirt/';
-const isBag = currentURL === '/product-bag/';
-const isSneakers = currentURL === '/product-sneakers/';
-const isShoes = currentURL === '/product-shoes/';
-const isWatch = currentURL === '/product-watch/';
-const isHat = currentURL === '/product-hat/';
-const isSocks = currentURL === '/product-socks/';
+const isClothing = currentURL === '/product/clothing/';
+const isAcc = currentURL === '/product/accessories/';
+const isTop = currentURL === '/product/top/';
+const isOuter = currentURL === '/product/outer/';
+const isPants = currentURL === '/product/pants/';
+const isOnepiece = currentURL === '/product/onepiece/';
+const isSkirt = currentURL === '/product/skirt/';
+const isBag = currentURL === '/product/bag/';
+const isSneakers = currentURL === '/product/sneakers/';
+const isShoes = currentURL === '/product/shoes/';
+const isWatch = currentURL === '/product/watch/';
+const isHat = currentURL === '/product/hat/';
+const isSocks = currentURL === '/product/socks/';
 
 clothingProductList();
 accProductList();
@@ -173,8 +173,8 @@ function productTitle() {
 
   productCount.innerHTML = `상품 ${countProduct}`;
 }
-// 좌측 카테고리 네비게이션
-function productCategory() {
+// 좌측 카테고리 네비게이션 렌더
+function renderProductCategory() {
   const categoryArea = document.querySelector('.product-list-area-left');
   const category = `
   <div class="product-list-category">
@@ -183,29 +183,29 @@ function productCategory() {
     <a href="/product" ${isMain ? `class="focus"` : ''}>전체상품</a>
   </ul>
   <ul>
-    <a href="/product-clothing" ${isClothing ? `class="focus"` : ''}>의류</a>
-    <li><a href="/product-top" ${isTop ? `class="focus"` : ''}>상의</a></li>
-    <li><a href="/product-outer" ${
+    <a href="/product/clothing" ${isClothing ? `class="focus"` : ''}>의류</a>
+    <li><a href="/product/top" ${isTop ? `class="focus"` : ''}>상의</a></li>
+    <li><a href="/product/outer" ${
       isOuter ? `class="focus"` : ''
     }>아우터</a></li>
-    <li><a href="/product-pants" ${isPants ? `class="focus"` : ''}>바지</a></li>
-    <li><a href="/product-onepiece" ${
+    <li><a href="/product/pants" ${isPants ? `class="focus"` : ''}>바지</a></li>
+    <li><a href="/product/onepiece" ${
       isOnepiece ? `class="focus"` : ''
     }>원피스</a></li>
-    <li><a href="/product-skirt" ${
+    <li><a href="/product/skirt" ${
       isSkirt ? `class="focus"` : ''
     }>스커트</a></li>
   </ul>
   <ul>
-    <a href="/product-accessories" ${isAcc ? `class="focus"` : ''}>악세사리</a>
-    <li><a href="/product-bag" ${isBag ? `class="focus"` : ''}>가방</a></li>
-    <li><a href="/product-sneakers" ${
+    <a href="/product/accessories" ${isAcc ? `class="focus"` : ''}>악세사리</a>
+    <li><a href="/product/bag" ${isBag ? `class="focus"` : ''}>가방</a></li>
+    <li><a href="/product/sneakers" ${
       isSneakers ? `class="focus"` : ''
     }>스니커즈</a></li>
-    <li><a href="/product-shoes" ${isShoes ? `class="focus"` : ''}>신발</a></li>
-    <li><a href="/product-watch" ${isWatch ? `class="focus"` : ''}>시계</a></li>
-    <li><a href="/product-hat" ${isHat ? `class="focus"` : ''}>모자</a></li>
-    <li><a href="/product-socks" ${isSocks ? `class="focus"` : ''}>양말</a></li>
+    <li><a href="/product/shoes" ${isShoes ? `class="focus"` : ''}>신발</a></li>
+    <li><a href="/product/watch" ${isWatch ? `class="focus"` : ''}>시계</a></li>
+    <li><a href="/product/hat" ${isHat ? `class="focus"` : ''}>모자</a></li>
+    <li><a href="/product/socks" ${isSocks ? `class="focus"` : ''}>양말</a></li>
   </ul>
   </div>
   `;
@@ -223,11 +223,11 @@ function renderProductAll() {
 
     const productTemplate = `
   <li class="product-list-box">
-    <a href="/product-detail">
+    <a href="/product/detail/">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
-      <p class="product-list-box-name">${productName}</p>
-      <p class="product-list-box-content">${productContent}</p>
+      <p class="product-list-box-name text-eliellipsis">${productName}</p>
+      <p class="product-list-box-content text-eliellipsis">${productContent}</p>
       <p class="product-list-box-price">${productPrice}원</p>
     </a>
   </li>
@@ -253,11 +253,11 @@ function renderProductClothing() {
 
     const productTemplate = `
   <li class="product-list-box">
-    <a href="/product-detail">
+    <a href="/product/detail/">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
-      <p class="product-list-box-name">${productName}</p>
-      <p class="product-list-box-content">${productContent}</p>
+      <p class="product-list-box-name text-eliellipsis">${productName}</p>
+      <p class="product-list-box-content text-eliellipsis">${productContent}</p>
       <p class="product-list-box-price">${productPrice}원</p>
     </a>
   </li>
@@ -284,11 +284,11 @@ function renderProductAccessories() {
 
     const productTemplate = `
   <li class="product-list-box">
-    <a href="/product-detail">
+    <a href="/product/detail/">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
-      <p class="product-list-box-name">${productName}</p>
-      <p class="product-list-box-content">${productContent}</p>
+      <p class="product-list-box-name text-eliellipsis">${productName}</p>
+      <p class="product-list-box-content text-eliellipsis">${productContent}</p>
       <p class="product-list-box-price">${productPrice}원</p>
     </a>
   </li>
@@ -320,11 +320,11 @@ function renderProductIndividual() {
 
     const productTemplate = `
   <li class="product-list-box">
-    <a href="/product-detail">
+    <a href="/product/detail/">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
-      <p class="product-list-box-name">${productName}</p>
-      <p class="product-list-box-content">${productContent}</p>
+      <p class="product-list-box-name text-eliellipsis">${productName}</p>
+      <p class="product-list-box-content text-eliellipsis">${productContent}</p>
       <p class="product-list-box-price">${productPrice}원</p>
     </a>
   </li>
@@ -339,7 +339,7 @@ function renderProductIndividual() {
   }
 }
 // 조건에 맞는 제품 리스트 렌더
-function productItemList() {
+function renderproductItemList() {
   const productUl = document.querySelector('.product-list-ul');
 
   // 등록된 상품이 존재하지 않을 경우
@@ -349,14 +349,14 @@ function productItemList() {
     accArr.length === 0
   ) {
     productUl.innerHTML = `
-    <div class="product-list-none">
+    <div class="product-list-none display-center">
       <p>현재 등록된 상품이 없습니다.</p>
     </div>
     `;
 
     if (isMain || isClothing || isAcc) {
       productUl.innerHTML = `
-    <div style="display:none" class="product-list-none">
+      <div style="display:none" class="product-list-none display-center">
       <p>현재 등록된 상품이 없습니다.</p>
     </div>
     `;
@@ -392,5 +392,9 @@ function productItemList() {
     renderProductIndividual();
   }
 }
+// 완성된 카테고리, 제품 리스트 렌더
+function renderAllProduct() {
+  renderProductCategory(), renderproductItemList();
+}
 
-export { productTitle, productCategory, productItemList };
+export { productTitle, renderAllProduct };

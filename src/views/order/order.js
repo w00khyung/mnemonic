@@ -52,7 +52,7 @@ async function deliveryInfo() {
   try {
     await Api.post('/api/orders/', data);
     alert('결제 및 주문이 정상적으로 완료되었습니다.');
-    window.location.href = './complete';
+    window.location.href = '/order/complete';
   } catch (err) {
     alert('문제발생' + err);
   }
@@ -83,7 +83,6 @@ function searchAddress() {
         if (extraAddr !== '') {
           extraAddr = ' (' + extraAddr + ')';
         }
-      } else {
       }
 
       postalCode.value = data.zonecode;
@@ -103,7 +102,7 @@ function cartPurchaseInfo() {
   for (let i = 0; i < localStorage.length; i++) {
     const data = localStorage.getItem(localStorage.key(i));
     const objectData = JSON.parse(data);
-    productsTotal += objectData.price * objectData.quantity;
+    productsTotal += objectData.price.replace(/,/g, '') * objectData.quantity;
     cartItemInfo.push(`${objectData.name} / ${objectData.quantity}`);
   }
 

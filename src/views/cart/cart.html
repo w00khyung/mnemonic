@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" /> 
+    <meta name="viewport" />
     <title>쇼핑-데모</title>
     <!-- 아이콘 -->
     <link
@@ -22,17 +22,17 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
-    
-      <!-- 커스텀 css, js -->
+
+    <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="cart.css" />
     <script src="cart.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
-  <div class="shopping-mall-header"></div>
+    <div class="shopping-mall-header"></div>
 
     <!-- 장바구니 -->
-    <section class="section">
+    <cartContainer class="cartContainer">
       <div class="container">
         <div class="cart-header">
           <div class="title">
@@ -44,43 +44,25 @@
             </p>
           </div>
         </div>
-				
+
         <div class="tile is-ancestor">
           <div class="tile is-8 is-parent cart-products">
             <!-- 장바구니에 담긴 상품 모음 -->
             <div class="box cart-products-container" id="cartProductsContainer">
               <div class="cart-products-header">
-								<button class="button is-link selectDeleteBtn">선택삭제</button>
+                <button class="button is-link selectDeleteBtn">선택삭제</button>
                 <button class="button is-link allDeleteBtn">전체삭제</button>
               </div>
 
               <!-- 장바구니에 담긴 상품들의 html 요소(카드 형태)가 주입되는 곳 -->
-							<div class='productTag'>
-                <input type="checkbox" class="checkboxAll">
+              <div class="productTag">
+                <input type="checkbox" class="checkboxAll" />
                 <p>이미지</p>
                 <p>상품명</p>
                 <p>가격</p>
                 <p>수량</p>
               </div>
-              <div class="emptyCart">
-                장바구니가 비었습니다.
-              </div>
-              <!-- <table class='productTable'>
-								<thead>
-									<tr>
-										<th scope='col'><input type="checkbox" class="checkboxAll"></th>
-										<th scope='col' >이미지</th>
-										<th scope='col'>상품명</th>
-										<th scope='col'>가격</th>
-										<th scope='col'>수량</th>	
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th colspan="5" class="emptyCart">장바구니가 비었습니다.</th>
-									</tr>
-								</tbody>
-							</table> -->
+              <div class="emptyCart">장바구니가 비었습니다.</div>
             </div>
           </div>
           <!-- 선택한 상품 총 요약 -->
@@ -93,7 +75,6 @@
                 <div class="info">
                   <p>상품수</p>
                   <p id="productsCount"></p>
-									
                 </div>
                 <div class="info">
                   <p>상품금액</p>
@@ -117,6 +98,6 @@
           </div>
         </div>
       </div>
-    </section>
+    </cartContainer>
   </body>
 </html>

@@ -1,131 +1,108 @@
 /* reset CSS */
 a {
-  color: #000;
+  color: var(--black-color);
 }
-
 /* clicked class */
 .focus {
-  color: #000;
+  color: var(--black-color);
   font-weight: bold;
 }
-
 .mypage-container {
   width: 100%;
   height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-
 .mypage-container-left {
-  width: 220px;
-  height: 700px;
-  padding: 20px;
+  width: 13.75rem;
+  height: 43.75rem;
+  padding: 1.25rem;
 }
-
 .mypage-container-left h2 {
-  font-size: 30px;
+  margin-bottom: 1.25rem;
+  font-size: 1.87rem;
   font-weight: bold;
-  margin-bottom: 20px;
 }
-
 .mypage-container-left ul {
-  margin-bottom: 50px;
+  margin-bottom: 3.12rem;
 }
-
 .mypage-container-left ul h3 {
-  font-size: 20px;
+  margin: 0.3rem 0;
+  font-size: 1.25rem;
   font-weight: bold;
-  margin: 5px 0;
 }
-
 .mypage-container-left ul li a {
-  color: #999 !important;
+  color: var(--gray-color);
 }
-
 .mypage-container-right {
-  width: 1000px;
-  height: 700px;
-  padding: 20px 50px;
+  width: 62.5rem;
+  height: 43.75rem;
+  padding: 1.25rem 3.12rem;
 }
-
 .mypage-container-right img {
-  width: 120px;
-  height: 120px;
-  border-radius: 120px;
-  background-color: #999;
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 7.5rem;
+  background-color: var(--gray-color);
   filter: grayscale(1);
 }
-
 .mypage-user-profile {
-  height: 30%;
-  padding: 20px;
-  border: 1px solid #999;
-  border-radius: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  height: 30%;
+  padding: 1.25rem;
+  border: 0.062rem solid var(--gray-color);
+  border-radius: 1.25rem;
 }
-
 .mypage-user-profile-img {
-  width: 20%;
   display: flex;
   justify-content: center;
+  width: 20%;
 }
-
 .mypage-user-profile-list {
   width: 56%;
-  border-right: 1px solid #999;
+  border-right: 0.062rem solid var(--gray-color);
 }
-
 .mypage-user-profile-list ul li:first-child {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
-
 .mypage-user-profile-author {
-  width: 24%;
-  font-weight: bold;
-  font-size: 20px;
   display: flex;
   justify-content: center;
+  width: 24%;
+  font-weight: bold;
+  font-size: 1.25rem;
 }
-
 .mypage-user-shopping {
-  height: 80%;
-  margin-top: 40px;
   display: flex;
   justify-content: space-between;
+  height: 80%;
+  margin-top: 2.5rem;
 }
-
 .mypage-user-shopping p {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #000;
+  padding-bottom: 0.62rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 0.12rem solid var(--black-color);
 }
-
 .mypage-user-shopping-order {
   width: 48%;
   height: 70%;
   position: relative;
 }
-
 .mypage-user-shopping-order span {
   position: absolute;
-  top: 5px;
+  top: 0.3rem;
   right: 0;
 }
-
 .mypage-user-shopping-sell {
   width: 48%;
   height: 70%;
   position: relative;
 }
-
 .mypage-user-shopping-sell span {
   position: absolute;
-  top: 5px;
+  top: 0.3rem;
   right: 0;
 }

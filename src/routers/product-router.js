@@ -23,13 +23,8 @@ productRouter.post('/register', loginRequired, async (req, res, next) => {
     const sellerId = req.currentUserId;
 
     // req (request)의 body 에서 데이터 가져오기
-    const { name } = req.body;
-    const { price } = req.body;
-    const { brand } = req.body;
-    const { content } = req.body;
-    const { imagePath } = req.body;
-    const { category } = req.body;
-    console.log(sellerId);
+    const { name, price, brand, content, imagePath, category } = req.body;
+
     // 위 데이터를 제품 db에 추가하기
     const newProduct = await productService.addProduct({
       name,
@@ -63,31 +58,28 @@ productRouter.get('/productlist', async (req, res, next) => {
 });
 
 // 카테고리별 상품 목록을 가져옴 (배열 형태임) AND 특정 개수 출력 모두 출력아님!
-productRouter.get(
-  '/category/:categoryId/:start/:end',
-  async (req, res, next) => {
-    try {
-      const { categoryId, start, end } = req.params;
+productRouter.post('/category/:categoryId', async (req, res, next) => {
+  try {
+    const { categoryId } = req.params;
+    const { start, end } = req.body;
+    const products = await productService.getCategoryProducts(
+      categoryId,
+      Number(start),
+      Number(end)
+    );
+    // 특점 범위값을 얻음
+    const result = {
+      categoryId,
+      start,
+      end,
+    };
 
-      const products = await productService.getCategoryProducts(
-        categoryId,
-        start,
-        end
-      );
-      // 특점 범위값을 얻음
-      const result = {
-        categoryId,
-        start,
-        end,
-      };
-
-      // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
-      res.status(200).json(products);
-    } catch (error) {
-      next(error);
-    }
+    // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
+    res.status(200).json(products);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 // 상품 정보 수정
 // (예를 들어 /api/products/abc12345 로 요청하면 req.params.productId는 'abc12345' 문자열로 됨)
@@ -109,11 +101,7 @@ productRouter.patch(
       const { productId } = req.params;
 
       // body data 로부터 업데이트할 사용자 정보를 추출함.
-      const { name } = req.body;
-      const { price } = req.body;
-      const { brand } = req.body;
-      const { content } = req.body;
-      const { imagePath } = req.body;
+      const { name, price, brand, content, imagePath } = req.body;
 
       const productInfoRequired = productId;
 
@@ -147,7 +135,7 @@ productRouter.get('/detail/:productId', async (req, res, next) => {
   try {
     const { productId } = req.params;
     const getProductId = await productService.getProduct(productId);
-    console.log('ddd');
+
     res.status(200).json(getProductId);
   } catch (error) {
     next(error);
