@@ -224,7 +224,12 @@ function renderProductAll() {
     const productTemplate = `
   <li class="product-list-box">
     <a href="/product/detail/">
-      <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
+      <div class="product-list-box-img">
+       <img src="${productImagePath}" alt="의상" />
+       <div class="product-list-box-img-btn display-center">
+        <button class="product-list-box-img-btn-order">바로 구매하기</button>
+       </div>
+      </div>
       <p class="product-list-box-brand">${productBrand}</p>
       <p class="product-list-box-name text-eliellipsis">${productName}</p>
       <p class="product-list-box-content text-eliellipsis">${productContent}</p>
@@ -234,10 +239,30 @@ function renderProductAll() {
 `;
     productUl.insertAdjacentHTML('afterbegin', productTemplate);
 
-    // 제품 클릭 시 상세 페이지로 이동
     const productListBox = document.querySelector('.product-list-box');
+    const productImgBtn = document.querySelector('.product-list-box-img-btn');
+    const productImgOrderBtn = document.querySelector(
+      '.product-list-box-img-btn-order'
+    );
+
+    // 제품 클릭 시 상세 페이지로 이동
     productListBox.addEventListener('click', () => {
       sessionStorage.setItem('productId', productList[i]._id);
+    });
+
+    // 바로 주문하기 버튼 나타냄
+    productListBox.addEventListener('mouseenter', () => {
+      productImgBtn.classList.add('go-top');
+    });
+    productListBox.addEventListener('mouseleave', () => {
+      productImgBtn.classList.remove('go-top');
+    });
+    productImgOrderBtn.addEventListener('mouseenter', () => {
+      productImgOrderBtn.innerHTML =
+        '<i class="fa-solid fa-arrow-right-long"></i>';
+    });
+    productImgOrderBtn.addEventListener('mouseleave', () => {
+      productImgOrderBtn.innerHTML = '바로 구매하기';
     });
   }
 }
@@ -254,7 +279,12 @@ function renderProductClothing() {
     const productTemplate = `
   <li class="product-list-box">
     <a href="/product/detail/">
-      <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
+      <div class="product-list-box-img">
+       <img src="${productImagePath}" alt="의상" />
+       <div class="product-list-box-img-btn display-center">
+        <button class="product-list-box-img-btn-order">바로 구매하기</button>
+       </div>
+      </div>
       <p class="product-list-box-brand">${productBrand}</p>
       <p class="product-list-box-name text-eliellipsis">${productName}</p>
       <p class="product-list-box-content text-eliellipsis">${productContent}</p>
@@ -264,10 +294,30 @@ function renderProductClothing() {
 `;
     productUl.insertAdjacentHTML('afterbegin', productTemplate);
 
-    // 제품 클릭 시 상세 페이지로 이동
     const productListBox = document.querySelector('.product-list-box');
+    const productImgBtn = document.querySelector('.product-list-box-img-btn');
+    const productImgOrderBtn = document.querySelector(
+      '.product-list-box-img-btn-order'
+    );
+
+    // 제품 클릭 시 상세 페이지로 이동
     productListBox.addEventListener('click', () => {
       sessionStorage.setItem('productId', clothingArr[i]._id);
+    });
+
+    // 바로 주문하기 버튼 나타냄
+    productListBox.addEventListener('mouseenter', () => {
+      productImgBtn.classList.add('go-top');
+    });
+    productListBox.addEventListener('mouseleave', () => {
+      productImgBtn.classList.remove('go-top');
+    });
+    productImgOrderBtn.addEventListener('mouseenter', () => {
+      productImgOrderBtn.innerHTML =
+        '<i class="fa-solid fa-arrow-right-long"></i>';
+    });
+    productImgOrderBtn.addEventListener('mouseleave', () => {
+      productImgOrderBtn.innerHTML = '바로 구매하기';
     });
   }
 }
@@ -285,7 +335,12 @@ function renderProductAccessories() {
     const productTemplate = `
   <li class="product-list-box">
     <a href="/product/detail/">
-      <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
+      <div class="product-list-box-img">
+       <img src="${productImagePath}" alt="의상" />
+       <div class="product-list-box-img-btn display-center">
+        <button class="product-list-box-img-btn-order">바로 구매하기</button>
+       </div>
+      </div>
       <p class="product-list-box-brand">${productBrand}</p>
       <p class="product-list-box-name text-eliellipsis">${productName}</p>
       <p class="product-list-box-content text-eliellipsis">${productContent}</p>
@@ -295,10 +350,30 @@ function renderProductAccessories() {
 `;
     productUl.insertAdjacentHTML('afterbegin', productTemplate);
 
-    // 제품 클릭 시 상세 페이지로 이동
     const productListBox = document.querySelector('.product-list-box');
+    const productImgBtn = document.querySelector('.product-list-box-img-btn');
+    const productImgOrderBtn = document.querySelector(
+      '.product-list-box-img-btn-order'
+    );
+
+    // 제품 클릭 시 상세 페이지로 이동
     productListBox.addEventListener('click', () => {
       sessionStorage.setItem('productId', accArr[i]._id);
+    });
+
+    // 바로 주문하기 버튼 나타냄
+    productListBox.addEventListener('mouseenter', () => {
+      productImgBtn.classList.add('go-top');
+    });
+    productListBox.addEventListener('mouseleave', () => {
+      productImgBtn.classList.remove('go-top');
+    });
+    productImgOrderBtn.addEventListener('mouseenter', () => {
+      productImgOrderBtn.innerHTML =
+        '<i class="fa-solid fa-arrow-right-long"></i>';
+    });
+    productImgOrderBtn.addEventListener('mouseleave', () => {
+      productImgOrderBtn.innerHTML = '바로 구매하기';
     });
   }
 }
@@ -321,7 +396,12 @@ function renderProductIndividual() {
     const productTemplate = `
   <li class="product-list-box">
     <a href="/product/detail/">
-      <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
+      <div class="product-list-box-img">
+       <img src="${productImagePath}" alt="의상" />
+       <div class="product-list-box-img-btn display-center">
+        <button class="product-list-box-img-btn-order">바로 구매하기</button>
+       </div>
+      </div>
       <p class="product-list-box-brand">${productBrand}</p>
       <p class="product-list-box-name text-eliellipsis">${productName}</p>
       <p class="product-list-box-content text-eliellipsis">${productContent}</p>
@@ -331,10 +411,30 @@ function renderProductIndividual() {
 `;
     productUl.insertAdjacentHTML('afterbegin', productTemplate);
 
-    // 제품 클릭 시 상세 페이지로 이동
     const productListBox = document.querySelector('.product-list-box');
+    const productImgBtn = document.querySelector('.product-list-box-img-btn');
+    const productImgOrderBtn = document.querySelector(
+      '.product-list-box-img-btn-order'
+    );
+
+    // 제품 클릭 시 상세 페이지로 이동
     productListBox.addEventListener('click', () => {
       sessionStorage.setItem('productId', sameCategory[i]._id);
+    });
+
+    // 바로 주문하기 버튼 나타냄
+    productListBox.addEventListener('mouseenter', () => {
+      productImgBtn.classList.add('go-top');
+    });
+    productListBox.addEventListener('mouseleave', () => {
+      productImgBtn.classList.remove('go-top');
+    });
+    productImgOrderBtn.addEventListener('mouseenter', () => {
+      productImgOrderBtn.innerHTML =
+        '<i class="fa-solid fa-arrow-right-long"></i>';
+    });
+    productImgOrderBtn.addEventListener('mouseleave', () => {
+      productImgOrderBtn.innerHTML = '바로 구매하기';
     });
   }
 }
