@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>쇼핑-데모</title>
+    <!-- 아이콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/elice-rabbit-favicon.png"
+    />
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Daum 주소 API 사용하기 위한 파일 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="admin-orders.css" />
+    <script src="admin-orders.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <div class="shopping-mall-header"></div>
+
+    <!-- 주문조회 -->
+    <section class="section">
+      <div class="container">
+        <div class="block account-header">
+          <h1 class="subtitle is-4">관리자 주문조회</h1>
+        </div>
+        <div class="container orders-container" id="ordersContainer">
+          <div
+            class="columns notification is-info is-light is-mobile orders-top"
+          >
+            <div class="column is-2">날짜</div>
+            <div class="column is-2">아이디</div>
+            <div class="column is-4">주문정보</div>
+            <div class="column is-2">상태</div>
+            <div class="column is-2">신청</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+    </div>
+  </body>
+</html>

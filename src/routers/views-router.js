@@ -25,6 +25,8 @@ viewsRouter.use('/order', serveStatic('order'));
 viewsRouter.use('/addproduct', serveStatic('addproduct'));
 viewsRouter.use('/order/complete', serveStatic('complete'));
 viewsRouter.use('/mypage/orders', serveStatic('mypage-orders'));
+viewsRouter.use('/admin', serveStatic('admin'));
+viewsRouter.use('/orders/admin', serveStatic('admin-orders'));
 
 // 제품 리스트
 viewsRouter.use('/product', serveStatic('product'));
@@ -51,13 +53,3 @@ viewsRouter.use('/product-socks', serveStatic('product-socks'));
 viewsRouter.use('/', serveStatic(''));
 
 export { viewsRouter };
-
-
-
-
-
-
-
-
-
-

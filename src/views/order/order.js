@@ -52,6 +52,7 @@ async function deliveryInfo() {
   try {
     await Api.post('/api/orders/', data);
     alert('결제 및 주문이 정상적으로 완료되었습니다.');
+    window.localStorage.clear();
     window.location.href = '/order/complete';
   } catch (err) {
     alert('문제발생' + err);

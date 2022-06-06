@@ -1,0 +1,25 @@
+.navbar-menu .is-info:focus {
+  box-shadow: none;
+  outline: none;
+}
+.account-header {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  padding-bottom: 0.7rem;
+}
+.orders-container {
+  margin: 5rem auto 2rem;
+  max-width: 1600px !important;
+}
+.orders-top {
+  border-bottom: 1px solid #aaa;
+  padding: 0;
+  text-align: center;
+}
+.orders-item {
+  align-items: center;
+  text-align: center;
+}
+.orders-item:not(:last-child) {
+  border-bottom: 1px solid #bbb;
+}

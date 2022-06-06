@@ -2,13 +2,14 @@ import * as Api from '/api.js';
 import { navRender } from '/components/header.js';
 
 navRender();
+
 const ordersContainer = document.querySelector('#ordersContainer');
 
 // get으로 데이터를 가져온 후 필요한 정보를 출력
 async function orderHistory() {
   // 주문이 완료된 현재 날짜를 가져옴
   let todayResult = todayDate();
-  const ordersList = await Api.get('/api/orders/');
+  const ordersList = await Api.get('/api/orders');
   const data = ordersList.data;
   // get으로 가져온 데이터에 products(상품명,수량)를 담음
   const purchaseInfo = data.map((item) => {
@@ -20,10 +21,10 @@ async function orderHistory() {
     ordersContainer.insertAdjacentHTML(
       'beforeend',
       `<div class="columns orders-item" >
-  <div class="column is-2">${todayResult}</div>
-  <div class="column is-6">${purchaseInfo[i]}<br></div>
-  <div class="column is-2">상품 준비중</div>
-  <div class="column is-2"><button class="orderCancel" id="${data[i]._id}">주문 취소</button></div>
+          <div class="column is-2">${todayResult}</div>
+          <div class="column is-6">${purchaseInfo[i]}<br></div>
+          <div class="column is-2">상품 준비중</div>
+          <div class="column is-2"><button class="orderCancel" id="${data[i]._id}">주문 취소</button></div>
         </div> `
     );
   }
