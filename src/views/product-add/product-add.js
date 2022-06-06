@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import { navRender } from '../components/header.js';
+import { navRender } from '../../components/header.js';
 
 const productName1 = document.getElementById('productName');
 const price1 = document.getElementById('price');

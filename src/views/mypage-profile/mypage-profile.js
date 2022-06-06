@@ -1,6 +1,5 @@
 import * as Api from '/api.js';
-import { validateEmail } from '/useful-functions.js';
-import { navRender } from '../components/header.js';
+import { navRender } from '../../components/header.js';
 
 navRender();
 

@@ -20,19 +20,19 @@ let accArr = [];
 
 // 경로 변수
 const isMain = currentURL === '/product/';
-const isClothing = currentURL === '/product-clothing/';
-const isAcc = currentURL === '/product-accessories/';
-const isTop = currentURL === '/product-top/';
-const isOuter = currentURL === '/product-outer/';
-const isPants = currentURL === '/product-pants/';
-const isOnepiece = currentURL === '/product-onepiece/';
-const isSkirt = currentURL === '/product-skirt/';
-const isBag = currentURL === '/product-bag/';
-const isSneakers = currentURL === '/product-sneakers/';
-const isShoes = currentURL === '/product-shoes/';
-const isWatch = currentURL === '/product-watch/';
-const isHat = currentURL === '/product-hat/';
-const isSocks = currentURL === '/product-socks/';
+const isClothing = currentURL === '/product/clothing/';
+const isAcc = currentURL === '/product/accessories/';
+const isTop = currentURL === '/product/top/';
+const isOuter = currentURL === '/product/outer/';
+const isPants = currentURL === '/product/pants/';
+const isOnepiece = currentURL === '/product/onepiece/';
+const isSkirt = currentURL === '/product/skirt/';
+const isBag = currentURL === '/product/bag/';
+const isSneakers = currentURL === '/product/sneakers/';
+const isShoes = currentURL === '/product/shoes/';
+const isWatch = currentURL === '/product/watch/';
+const isHat = currentURL === '/product/hat/';
+const isSocks = currentURL === '/product/socks/';
 
 clothingProductList();
 accProductList();
@@ -183,29 +183,29 @@ function renderProductCategory() {
     <a href="/product" ${isMain ? `class="focus"` : ''}>전체상품</a>
   </ul>
   <ul>
-    <a href="/product-clothing" ${isClothing ? `class="focus"` : ''}>의류</a>
-    <li><a href="/product-top" ${isTop ? `class="focus"` : ''}>상의</a></li>
-    <li><a href="/product-outer" ${
+    <a href="/product/clothing" ${isClothing ? `class="focus"` : ''}>의류</a>
+    <li><a href="/product/top" ${isTop ? `class="focus"` : ''}>상의</a></li>
+    <li><a href="/product/outer" ${
       isOuter ? `class="focus"` : ''
     }>아우터</a></li>
-    <li><a href="/product-pants" ${isPants ? `class="focus"` : ''}>바지</a></li>
-    <li><a href="/product-onepiece" ${
+    <li><a href="/product/pants" ${isPants ? `class="focus"` : ''}>바지</a></li>
+    <li><a href="/product/onepiece" ${
       isOnepiece ? `class="focus"` : ''
     }>원피스</a></li>
-    <li><a href="/product-skirt" ${
+    <li><a href="/product/skirt" ${
       isSkirt ? `class="focus"` : ''
     }>스커트</a></li>
   </ul>
   <ul>
-    <a href="/product-accessories" ${isAcc ? `class="focus"` : ''}>악세사리</a>
-    <li><a href="/product-bag" ${isBag ? `class="focus"` : ''}>가방</a></li>
-    <li><a href="/product-sneakers" ${
+    <a href="/product/accessories" ${isAcc ? `class="focus"` : ''}>악세사리</a>
+    <li><a href="/product/bag" ${isBag ? `class="focus"` : ''}>가방</a></li>
+    <li><a href="/product/sneakers" ${
       isSneakers ? `class="focus"` : ''
     }>스니커즈</a></li>
-    <li><a href="/product-shoes" ${isShoes ? `class="focus"` : ''}>신발</a></li>
-    <li><a href="/product-watch" ${isWatch ? `class="focus"` : ''}>시계</a></li>
-    <li><a href="/product-hat" ${isHat ? `class="focus"` : ''}>모자</a></li>
-    <li><a href="/product-socks" ${isSocks ? `class="focus"` : ''}>양말</a></li>
+    <li><a href="/product/shoes" ${isShoes ? `class="focus"` : ''}>신발</a></li>
+    <li><a href="/product/watch" ${isWatch ? `class="focus"` : ''}>시계</a></li>
+    <li><a href="/product/hat" ${isHat ? `class="focus"` : ''}>모자</a></li>
+    <li><a href="/product/socks" ${isSocks ? `class="focus"` : ''}>양말</a></li>
   </ul>
   </div>
   `;
