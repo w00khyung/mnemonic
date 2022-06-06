@@ -32,7 +32,7 @@ viewsRouter.use('/mypage/profile', serveStatic('mypage-profile'));
 viewsRouter.use('/product', serveStatic('product'));
 
 // 제품 상세페이지
-viewsRouter.use('/product-detail', serveStatic('product-detail'));
+viewsRouter.use('/product/detail', serveStatic('product-detail'));
 
 // 제품 카테고리 분류
 viewsRouter.use('/product/clothing', serveStatic('product-clothing'));

@@ -223,7 +223,7 @@ function renderProductAll() {
 
     const productTemplate = `
   <li class="product-list-box">
-    <a href="/product-detail">
+    <a href="/product/detail/">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
       <p class="product-list-box-name text-eliellipsis">${productName}</p>
@@ -253,7 +253,7 @@ function renderProductClothing() {
 
     const productTemplate = `
   <li class="product-list-box">
-    <a href="/product-detail">
+    <a href="/product/detail/">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
       <p class="product-list-box-name text-eliellipsis">${productName}</p>
@@ -284,7 +284,7 @@ function renderProductAccessories() {
 
     const productTemplate = `
   <li class="product-list-box">
-    <a href="/product-detail">
+    <a href="/product/detail/">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
       <p class="product-list-box-name text-eliellipsis">${productName}</p>
@@ -320,7 +320,7 @@ function renderProductIndividual() {
 
     const productTemplate = `
   <li class="product-list-box">
-    <a href="/product-detail">
+    <a href="/product/detail/">
       <img class="product-list-box-img" src="${productImagePath}" alt="의상" />
       <p class="product-list-box-brand">${productBrand}</p>
       <p class="product-list-box-name text-eliellipsis">${productName}</p>
