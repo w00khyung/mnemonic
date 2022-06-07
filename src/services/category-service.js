@@ -18,7 +18,7 @@ class CategoryService {
         '이 제품의 이름은 현재 카테고리 리스트에 있습니다. 새로 업데이트 해주세요.'
       );
     }
-    const categoryCode = await this.categoryModel.findByCodeName(name);
+    const categoryCode = await this.categoryModel.findByCodeName(code);
     if (categoryCode) {
       throw new Error(
         '이 제품의 코드는 현재 카테고리 리스트에 있습니다. 새로 업데이트 해주세요.'

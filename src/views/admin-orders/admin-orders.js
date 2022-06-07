@@ -16,12 +16,12 @@ async function orderHistory() {
   // 주문이 완료된 현재 날짜를 가져옴
 
   const ordersList = await Api.get('/api/orders/admin');
-  console.log(ordersList);
   // get으로 가져온 데이터에 products(상품명,수량)를 담음
   const purchaseInfo = ordersList.map((item) => {
     const orderNumber = item._id;
     const orderItemName = item.purchaseOrderInfo.products[0];
-    const orderUserID = item.orderer;
+    const orderUserID = item.orderer.email;
+    const orderUserName = item.orderer.fullName;
     const orderDate = item.updatedAt;
 
     // 주문된 상품 리스트를 만들어줌
@@ -31,7 +31,7 @@ async function orderHistory() {
         <div class="column is-2">
         ${orderDate.slice(0, 10)}<br> 
         ${orderDate.slice(11, 19)}</div>
-        <div class="column is-2">${orderUserID}</div>
+        <div class="column is-2">${orderUserID}<br>${orderUserName}</div>
         <div class="column is-4">${orderItemName}<br></div>
         <div class="column is-2">상품 준비중</div>
         <div class="column is-2"><button class="orderCancel" id="${orderNumber}">주문 취소</button></div>
