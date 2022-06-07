@@ -25,16 +25,12 @@ viewsRouter.use('/order/complete', serveStatic('complete'));
 // 마이 페이지
 viewsRouter.use('/mypage', serveStatic('mypage'));
 viewsRouter.use('/mypage/orders', serveStatic('mypage-orders'));
-<<<<<<< src/routers/views-router.js
 viewsRouter.use('/admin', serveStatic('admin'));
 viewsRouter.use('/orders/admin', serveStatic('admin-orders'));
 viewsRouter.use('/admin-category', serveStatic('admin-category'));
 viewsRouter.use('/mypage/sale', serveStatic('mypage-sale'));
 viewsRouter.use('/mypage/profile', serveStatic('mypage-profile'));
-=======
 
-
->>>>>>> src/routers/views-router.js
 // 제품 리스트
 viewsRouter.use('/product', serveStatic('product'));
 
