@@ -27,7 +27,7 @@ viewsRouter.use('/order/complete', serveStatic('complete'));
 viewsRouter.use('/mypage/orders', serveStatic('mypage-orders'));
 viewsRouter.use('/admin', serveStatic('admin'));
 viewsRouter.use('/orders/admin', serveStatic('admin-orders'));
-
+viewsRouter.use('/admin-category', serveStatic('admin-category'));
 // 제품 리스트
 viewsRouter.use('/product', serveStatic('product'));
 
