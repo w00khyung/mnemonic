@@ -1,7 +1,8 @@
-import { userModel } from '../db';
-
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { userModel } from '../db';
+
+const { OAuth2Client } = require('google-auth-library');
 
 class UserService {
   // 본 파일의 맨 아래에서, new UserService(userModel) 하면, 이 함수의 인자로 전달됨
@@ -12,7 +13,7 @@ class UserService {
   // 회원가입
   async addUser(userInfo) {
     // 객체 destructuring
-    const { email, fullName, password } = userInfo;
+    const { email, fullName, password, phoneNumber, address } = userInfo;
 
     // 이메일 중복 확인
     const user = await this.userModel.findByEmail(email);
@@ -27,7 +28,13 @@ class UserService {
     // 우선 비밀번호 해쉬화(암호화)
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUserInfo = { fullName, email, password: hashedPassword };
+    const newUserInfo = {
+      fullName,
+      email,
+      password: hashedPassword,
+      phoneNumber,
+      address,
+    };
 
     // db에 저장
     const createdNewUser = await this.userModel.create(newUserInfo);
@@ -66,12 +73,38 @@ class UserService {
     }
 
     // 로그인 성공 -> JWT 웹 토큰 생성
-    const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
+    const aceessTokenSecretKey =
+      process.env.ACCESS_TOKEN_SECRET_KEY || 'secret-key';
 
     // 2개 프로퍼티를 jwt 토큰에 담음
-    const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
+    // jwt 발급 시 access token(세션), refresh token(세션, DB) 2개를 발급함. => 보안을 위해서
+    // refresh가 만료되지 않고, 발급된 적이 있으면 => 기존 토큰 사용, refresh가 없다 => 재발급
+    const accessToken = jwt.sign(
+      { userId: user._id, role: user.role },
+      aceessTokenSecretKey,
+      { expiresIn: '2h' }
+    );
 
-    return { token };
+    // refresh token이 처음 로그인 했거나 만료되서 없으면 생성하고, DB에 저장함.
+    let { refreshToken } = user;
+    if (!refreshToken) {
+      refreshToken = await this.userModel.generateRefreshToken(user._id);
+    }
+
+    return { accessToken, refreshToken };
+  }
+
+  // 소셜 로그인 (구글)
+  async verify(credential) {
+    const client = new OAuth2Client(process.env.GOOGLE_ClIENT_ID);
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_ClIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    const { email, name } = payload;
+    const isRegister = await this.userModel.findByEmail(email);
+    return { isRegister, email, fullName: name };
   }
 
   // 사용자 목록을 받음.
@@ -125,6 +158,42 @@ class UserService {
     });
 
     return user;
+  }
+
+  // 사용자 정보 삭제
+  async deleteUser(userId) {
+    return userModel.delete(userId);
+  }
+
+  async getUser(userId) {
+    // 우선 해당 id의 유저가 db에 있는지 확인
+    const user = await this.userModel.findById(userId, {
+      select: { password: 0 },
+    });
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!user) {
+      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+    }
+    return user;
+  }
+
+  async getUserMail(email) {
+    const checkUserMail = await this.userModel.findByEmail(email);
+    let checkUserMailResult = [];
+
+    if (checkUserMail) {
+      checkUserMailResult = {
+        status: 200,
+        result: 'fail',
+      };
+    } else {
+      checkUserMailResult = {
+        status: 200,
+        result: 'success',
+      };
+    }
+    return checkUserMailResult;
   }
 }
 

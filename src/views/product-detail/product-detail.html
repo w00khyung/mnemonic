@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>제품 상세 페이지</title>
+
+    <!-- 아이콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/elice-rabbit-favicon.png"
+    />
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="../../useful-css.css" />
+    <link rel="stylesheet" href="product-detail.css" />
+    <script src="product-detail.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <div class="shopping-mall-header"></div>
+
+    <!-- 제품상세 -->
+    <section class="product-detail-wrap"></section>
+
+    <!-- 모달 -->
+  <section class="product-success-modal">
+    <div class="product-success-modal-wrap">
+      <p>장바구니에 성공적으로 담겼습니다.</p>
+        <div class="product-success-modal-btns">
+          <button class="button is-light product-list-btn">
+            <a href="/product">구경하기</a>
+          </button>
+          </button>
+          <button class="button is-black product-update-btn">
+            <a href="/cart">장바구니</a>
+          </button>
+        </div>
+    </div>
+  </section>
+  </body>
+</html>

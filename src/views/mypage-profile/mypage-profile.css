@@ -1,0 +1,114 @@
+@import "../../useful-css.css";
+
+/* reset CSS */
+a {
+  color: var(--black-color);
+}
+/* clicked class */
+.focus {
+  color: var(--black-color);
+  font-weight: bold;
+}
+body {
+  overflow: visible;
+}
+.mypage-container {
+  width: 100%;
+  height: 90vh;
+}
+.mypage-container-left {
+  width: 13.75rem;
+  height: 43.75rem;
+  padding: 1.25rem;
+}
+.mypage-container-left h2 {
+  margin-bottom: 1.25rem;
+  font-size: 1.87rem;
+  font-weight: bold;
+}
+.mypage-container-left ul {
+  margin-bottom: 3.12rem;
+}
+.mypage-container-left ul h3 {
+  margin: 0.3rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.mypage-container-left ul li a {
+  color: var(--gray-color);
+}
+.mypage-container-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 62.5rem;
+  height: 43.75rem;
+  padding: 1.25rem 3.12rem;
+}
+.mypage-user-profile-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.12rem solid var(--gray-color);
+}
+.mypage-user-profile-top img {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 1.25rem;
+  border-radius: 5rem;
+  background-color: var(--gray-color);
+  filter: grayscale(1);
+}
+.mypage-user-profile-top p {
+  font-weight: bold;
+  font-size: 1.87rem;
+}
+.mypage-user-profile-list form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.profile-user-data-delete {
+  padding: 5rem 0;
+}
+.profile-user-data-delete p {
+  color: var(--gray-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.mypage-confirm-modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.mypage-confirm-modal-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 31.25rem;
+  height: 18.75rem;
+  padding: 3.12rem;
+  border-radius: 0.62rem;
+  background-color: #fff;
+}
+.mypage-confirm-modal-wrap p {
+  font-weight: bold;
+  font-size: 1.56rem;
+  text-align: center;
+}
+.mypage-confirm-modal-btns {
+  display: flex;
+  justify-content: space-between;
+}
+.mypage-confirm-modal-btns button {
+  width: 11.87rem;
+}
