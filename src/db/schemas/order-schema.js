@@ -4,7 +4,7 @@ const OrderSchema = new Schema(
   {
     orderer: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'users',
     },
     recipient: {
       name: String,
