@@ -50,6 +50,10 @@ export class CategoryModel {
   async deleteCategory(CategoryId) {
     await Category.deleteOne({ _id: CategoryId });
   }
+
+  async deleteCode(code) {
+    await Category.deleteOne({ code });
+  }
 }
 
 const categoryModel = new CategoryModel();

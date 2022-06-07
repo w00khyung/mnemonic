@@ -4,3 +4,6 @@ export * from './product-service';
 export * from './category-service';
 export * from './social-login-service';
 export * from './mail-service';
+export * from './s3-service';
+export * from './authMail-service';
+export * from './comment-service';

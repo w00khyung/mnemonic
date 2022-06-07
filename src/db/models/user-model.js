@@ -36,6 +36,10 @@ export class UserModel {
     const user = await User.findOneAndDelete({ _id: userId });
     return user;
   }
+
+  async deleteCode(code) {
+    return await User.findOneAndDelete({ code });
+  }
 }
 
 const userModel = new UserModel();
