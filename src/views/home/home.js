@@ -166,7 +166,7 @@ async function getProductsAndCategory() {
         insertProductsOfCategory += `
       <li class="class-card">
       <div class="productId">${products[j]._id}</div>
-        <a href="/product-detail">
+        <a href="/product/detail">
           <img src="${products[j].imagePath}" alt="" class="class-image" />
        
         <div class="class-container">

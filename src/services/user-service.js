@@ -177,6 +177,24 @@ class UserService {
     }
     return user;
   }
+
+  async getUserMail(email) {
+    const checkUserMail = await this.userModel.findByEmail(email);
+    let checkUserMailResult = [];
+
+    if (checkUserMail) {
+      checkUserMailResult = {
+        status: 200,
+        result: 'fail',
+      };
+    } else {
+      checkUserMailResult = {
+        status: 200,
+        result: 'success',
+      };
+    }
+    return checkUserMailResult;
+  }
 }
 
 const userService = new UserService(userModel);
