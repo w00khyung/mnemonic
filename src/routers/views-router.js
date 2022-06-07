@@ -25,6 +25,9 @@ viewsRouter.use('/order/complete', serveStatic('complete'));
 // 마이 페이지
 viewsRouter.use('/mypage', serveStatic('mypage'));
 viewsRouter.use('/mypage/orders', serveStatic('mypage-orders'));
+viewsRouter.use('/admin', serveStatic('admin'));
+viewsRouter.use('/orders/admin', serveStatic('admin-orders'));
+viewsRouter.use('/admin-category', serveStatic('admin-category'));
 viewsRouter.use('/mypage/sale', serveStatic('mypage-sale'));
 viewsRouter.use('/mypage/profile', serveStatic('mypage-profile'));
 
@@ -56,13 +59,3 @@ viewsRouter.use('/product/add', serveStatic('product-add'));
 viewsRouter.use('/', serveStatic(''));
 
 export { viewsRouter };
-
-
-
-
-
-
-
-
-
-

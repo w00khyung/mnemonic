@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import { userModel } from '../db';
+import { generate } from '../utils/jwt';
 
 const { OAuth2Client } = require('google-auth-library');
 
@@ -73,22 +73,21 @@ class UserService {
     }
 
     // 로그인 성공 -> JWT 웹 토큰 생성
-    const aceessTokenSecretKey =
-      process.env.ACCESS_TOKEN_SECRET_KEY || 'secret-key';
 
     // 2개 프로퍼티를 jwt 토큰에 담음
     // jwt 발급 시 access token(세션), refresh token(세션, DB) 2개를 발급함. => 보안을 위해서
     // refresh가 만료되지 않고, 발급된 적이 있으면 => 기존 토큰 사용, refresh가 없다 => 재발급
-    const accessToken = jwt.sign(
-      { userId: user._id, role: user.role },
-      aceessTokenSecretKey,
-      { expiresIn: '2h' }
-    );
+    const accessToken = await generate(user._id, 'access');
 
     // refresh token이 처음 로그인 했거나 만료되서 없으면 생성하고, DB에 저장함.
+    // 자동 로그인을 시켜주고 로그인 시 마다 새로운 refresh token을 만드는게 맞는지?
     let { refreshToken } = user;
     if (!refreshToken) {
-      refreshToken = await this.userModel.generateRefreshToken(user._id);
+      refreshToken = await generate(user._id, 'refresh');
+      await this.userModel.update({
+        userId: user._id,
+        update: { refreshToken },
+      });
     }
 
     return { accessToken, refreshToken };

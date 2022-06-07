@@ -15,7 +15,10 @@ export class OrderModel {
   }
 
   async findAll() {
-    const orders = await Order.find({ deletedAt: null });
+    const orders = await Order.find({ deletedAt: null }).populate(
+      'orderer',
+      'fullName email phoneNumber'
+    );
     return orders;
   }
 
