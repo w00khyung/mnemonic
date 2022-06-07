@@ -109,32 +109,31 @@ async function getProductsAndCategory() {
     })
   );
   const categoryofProdcuts = [
-    '/product-top',
-    '/product-outer',
-    '/product-pants',
-    '/product-onepiece',
-    '/product-skirt',
-    '/product-accessories',
-    '/product-bag',
-    '/product-sneakers',
-    '/product-shoes',
-    '/product-watch',
-    '/product-hat',
-    '/product-socks',
+    'product/top/',
+    '/product/outer/',
+    '/product/pants/',
+    '/product/onepiece/',
+    '/product/skirt/',
+    '/product/accessories',
+    '/product/bag/',
+    '/product/sneakers/',
+    '/product/shoes/',
+    '/product/watch/',
+    '/product/hat/',
+    '/product/socks/',
   ];
   let categoryNumber = 0;
   let insertProductsOfCategory = '';
   try {
     for (let i = 0; i < getProducts.length; i += 1) {
       const productLen = getProducts[i].length;
-      if (productLen === 0) {
+      if (productLen < 5) {
         continue;
       }
 
       const products = getProducts[i];
       categoryNumber = i;
       // 제폼 목록 페이지 구현하기 a herf="#"에 추가하기
-      console.log(products);
       insertProductsOfCategory += `
   <section>
       <div class="inner">
