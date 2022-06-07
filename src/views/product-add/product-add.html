@@ -25,177 +25,117 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- include libraries(jQuery, bootstrap) -->
-    <script
-    src="https://code.jquery.com/jquery-3.5.1.min.js"
-    text="text/javascript"
-    ></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    />
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-    <!-- include summernote css/js-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="product-add.css">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <link rel="stylesheet" href="../../useful-functions.js" />
+    <link rel="stylesheet" href="product-add.css" />
     <script src="product-add.js" type="module" defer></script>
   </head>
-  <script>
-        
-    async function imageUp(e) {
-      const formData = new FormData();
-      const photos = document.querySelector('input[type="file"]');
-      formData.append(`photo`, photos.files[0]);
-      
-      for (var pair of formData.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]); 
-    }
-      await fetch('/api/upload/imageUpload', {
-        method: 'POST',
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          document.getElementById('imgId').src =result['imageUrl'];
-      //document.getElementById('imgId').src = `/${result['imagePath']}`;
-          document.getElementsByClassName('custom-file-label')[0].value = result['originalName'];
-          console.log('성공:', result);
-        })
-        .catch((error) => {
-          console.error('실패:', error);
-        });
-    }
-            $(document).ready(function () {
-              $('#summernote').summernote({
-                placeholder: '최대 2048자까지 쓸 수 있습니다.',
-                tabsize: 2,
-                height: 300,
-                lang: 'ko-KR',
-                callbacks: {
-                  onImageUpload: function (image) {
-                    for (let i = 0; i < image.length; i++) {
-                      uploadImage(image[i]);
-                    }
-                  },
-                },
-              });
-            });
-    
-          </script>
-    
   <body>
+    <!-- 헤더 -->
     <div class="shopping-mall-header"></div>
-    <div class="container">
-      <form
-        class="form"
-        name="form"
-        action=""
-        method="post"
-        onsubmit=""
-        enctype="multipart/form-data"
-      >
-        <div class="form-group">
-          <label for="name" class="name">작성자</label>
-          <input
-            class="form-control"
-            id="name"
-            type="text"
-            name="name"
-            class="setName"
-            value=""
-            readonly
-          />
-        </div>
 
-        <div class="form-group">
-          <label for="title" class="title">상품이름</label>
-          <input
-            class="form-control"
-            type="text"
-            name="title"
-            id="productName"
-            placeholder="상품을 입력하세요."
-          />
-        </div>
-        
-        <div class="form-group">
-        <label for="title" class="title">가격</label>
-          <input
-            class="form-control"
-            type="text"
-            name="title"
-            id="price"
-            placeholder="가격을 입력하세요.(숫자로)"
-          />
-        </div>
-        
-        <div class="form-group">
-        <label for="title" class="title">브랜드</label>
-          <input
-            class="form-control"
-            type="text"
-            name="title"
-            id="brand"
-            placeholder="브랜드명을 입력하세요."
-          />
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">카테고리</label>
-            </div>
-            <select class="custom-select" id="selectbox">
-                <option selected>선택하세요.</option>
-            </select>
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">업로드</span>
-            </div>
-            <div class="custom-file">
-              <input
-                type="file"
-                class="custom-file-input"
-                id="inputGroupFile01"
-                name="attachfile"
-                accept="image/*,.img,.jpg"
-                required
-                onchange="imageUp()"
-              />
-              <label class="custom-file-label" for="inputGroupFile01"
-                >이미지</label
-              >
-            </div>
-          </div>
-    
+    <!-- 상품등록 -->
+    <div class="product-add-wrap">
+      <div class="product-add-content">
+        <div class="product-add-content-left">
           <div>
-            <img id="imgId" src="
-            " alt="">
+            <img id="imgId" src="../../../uploads/basic-thumnail.png" alt="" />
           </div>
-        <div class="form-group">
-          <label for="contents" class="contents">내용</label>
-          <textarea
-            class="form-control"
-            type="text"
-            name="contents"
-            rows="10"
-            id="summernote"
-          ></textarea>
         </div>
-        <div id="summernote"></div>
-       
+        <div class="product-add-content-right">
+          <form
+            class="form"
+            name="form"
+            action=""
+            method="post"
+            onsubmit=""
+            enctype="multipart/form-data"
+          >
+            <div class="field">
+              <label for="user-name">작성자</label>
+              <input
+                class="input setName"
+                id="user-name"
+                type="text"
+                readonly
+              />
+            </div>
 
-        <div class="text-center">
-          <input class="btn btn-primary" id="submit" type="submit" value="작성하기" />
+            <div class="field">
+              <label for="product-name">상품이름</label>
+              <input
+                class="input"
+                type="text"
+                id="product-name"
+                placeholder="상품을 입력하세요."
+              />
+            </div>
+
+            <div class="field">
+              <label for="product-price">가격</label>
+              <input
+                class="input"
+                type="text"
+                id="product-price"
+                placeholder="가격을 입력하세요.(숫자로)"
+              />
+            </div>
+
+            <div class="field">
+              <label for="product-brand">브랜드</label>
+              <input
+                class="input"
+                type="text"
+                id="product-brand"
+                placeholder="브랜드명을 입력하세요."
+              />
+            </div>
+
+            <div class="product-img">
+              <label>이미지 업로드</label>
+              <div class="upload-zone">
+                <div class="field">
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      id="inputGroupFile01"
+                      name="attachfile"
+                      accept="image/*,.img,.jpg"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="select product-category">
+                  <select id="product-category-select">
+                    <option selected>선택하세요.</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="product-note" class="product-add-contents"
+                >내용</label
+              >
+              <textarea
+                class="textarea is-small"
+                id="product-note"
+                type="text"
+                placeholder="간단한 상품 설명을 작성 해주세요"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <div class="field product-add-sumit">
+              <button class="button is-black product-add-sumit-btn" id="submit">
+                작성하기
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      </div>
     </div>
   </body>
 </html>

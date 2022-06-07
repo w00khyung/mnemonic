@@ -1,6 +1,6 @@
 const UserLogOut = () => {
   if (
-    !sessionStorage.getItem('accessToken') &&
+    !sessionStorage.getItem('accessToken') ||
     !sessionStorage.getItem('refreshToken')
   ) {
     window.location.href = '/login';
@@ -21,7 +21,7 @@ const onOffLoginOut = () => {
 
 const navSection = () => {
   const isLoggedIn =
-    sessionStorage.getItem('accessToken') ||
+    sessionStorage.getItem('accessToken') &&
     sessionStorage.getItem('refreshToken');
   const shoppingMallHeader = document.querySelector('.shopping-mall-header');
   const header = `

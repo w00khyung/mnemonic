@@ -1,20 +1,21 @@
 import * as Api from '/api.js';
 import { navRender } from '../../components/header.js';
 
-const productName1 = document.getElementById('productName');
-const price1 = document.getElementById('price');
-const barnd1 = document.getElementById('brand');
-const select1 = document.getElementById('selectbox');
-const contents1 = document.getElementById('summernote');
-const img1 = document.getElementById('imgId');
-const submitButton = document.getElementById('submit');
+const productName = document.querySelector('#product-name');
+const productPrice = document.querySelector('#product-price');
+const productBrand = document.querySelector('#product-brand');
+const categotySelect = document.querySelector('#product-category-select');
+const productContent = document.querySelector('#product-note');
+const imgId = document.querySelector('#imgId');
+const submitButton = document.querySelector('#submit');
 
 navRender();
 start();
 addAllEvents();
+
 async function start() {
   const user = await Api.get('/api/my');
-  document.getElementById('name').value = user.fullName;
+  document.querySelector('#user-name').value = user.fullName;
 
   const getCategory = await Api.get('/api/category/categorylist');
   const min = 0;
@@ -24,21 +25,47 @@ async function start() {
     const opt = document.createElement('option');
     opt.value = getCategory[i]._id;
     opt.innerHTML = getCategory[i].name;
-    select1.appendChild(opt);
+    categotySelect.appendChild(opt);
   }
 }
+
+async function imageUp(e) {
+  const formData = new FormData();
+  const photos = document.querySelector('input[type="file"]');
+  formData.append(`photo`, photos.files[0]);
+
+  for (var pair of formData.entries()) {
+    console.log(pair[0] + ', ' + pair[1]);
+  }
+  await fetch('/api/upload/imageUpload', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      document.querySelector('#imgId').src = result['imageUrl'];
+      console.log('성공:', result);
+    })
+    .catch((error) => {
+      console.error('실패:', error);
+    });
+}
+
+const inputGroupFile01 = document.querySelector('#inputGroupFile01');
+
+inputGroupFile01.addEventListener('change', imageUp);
 
 async function handleSubmit(e) {
   e.preventDefault();
 
   // 상품 추가 요청
   try {
-    const name = productName1.value;
-    const price = price1.value;
-    const brand = barnd1.value;
-    const content = contents1.value;
-    const imagePath = img1.src;
-    const category = select1.value;
+    const name = productName.value;
+    const price = productPrice.value;
+    const brand = productBrand.value;
+    const content = productContent.value;
+    const imagePath = imgId.src;
+    const category = categotySelect.value;
     const data = { name, price, brand, content, imagePath, category };
 
     await Api.post('/api/product/register', data);

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>쇼핑-데모</title>
+    <title>회원가입</title>
     <!-- 아이콘 -->
     <link
       rel="icon"
@@ -44,7 +44,10 @@
         <div class="register-user-form-left-input">
           <!-- name -->
           <div class="field">
-            <label class="label" for="fullNameInput">이름</label>
+            <div class="label-container">
+              <label class="label" for="fullNameInput">이름</label>
+              <label class="label" for="" id="nameLabel"></label>
+            </div>
             <input
               class="input success"
               id="fullNameInput"
@@ -55,8 +58,14 @@
           </div>
 
           <!-- email -->
-          <div class="field">
-            <label class="label" for="emailInput">이메일</label>
+          <div class="field email-container">
+            <div class="label-container">
+              <label class="label" for="emailInput">이메일</label>
+
+              <button class="sendMail button is-primary" id="sendMail">
+                이메일 인증
+              </button>
+            </div>
             <input
               class="input error"
               id="emailInput"
@@ -64,11 +73,32 @@
               placeholder="abc@example.com"
               autocomplete="on"
             />
+            <div class="label-container">
+              <label class="label hidden" for="" id="checkMailLabel"
+                >코드를 입력하세요.</label
+              >
+              <button
+                class="checkMail hidden button is-primary"
+                id="checkMailBtn"
+              >
+                이메일 확인
+              </button>
+            </div>
+            <input
+              class="input hidden"
+              id="checkMailInput"
+              type="text"
+              placeholder="이메일을 확인하세요."
+              autocomplete="on"
+            />
           </div>
 
           <!-- password -->
           <div class="field">
-            <label class="label" for="passwordInput">비밀번호</label>
+            <div class="label-container">
+              <label class="label" for="passwordInput">비밀번호</label>
+              <label class="label" for="" id="passwordLabel"></label>
+            </div>
             <input
               class="input"
               id="passwordInput"
@@ -80,9 +110,13 @@
 
           <!-- passwordConfirm -->
           <div class="field mb-5">
-            <label class="label" for="passwordConfirmInput"
-              >비밀번호 확인</label
-            >
+            <div class="label-container">
+              <label class="label" for="passwordConfirmInput"
+                >비밀번호 확인</label
+              >
+              <label class="label" for="" id="passwordConfirmLabel"></label>
+            </div>
+
             <input
               class="input"
               id="passwordConfirmInput"
@@ -96,7 +130,10 @@
         <div class="register-user-form-right-input">
           <!-- phoneNumber -->
           <div class="field mb-5">
-            <label class="label" for="receiverPhoneNumber">연락처</label>
+            <div class="label-container">
+              <label class="label" for="receiverPhoneNumber">연락처</label>
+              <label class="label" for="" id="phoneLabel"></label>
+            </div>
             <input
               class="input"
               id="receiverPhoneNumber"
@@ -108,7 +145,10 @@
 
           <!-- postalCode -->
           <div class="field">
-            <label class="label" for="address2">주소</label>
+            <div class="label-container">
+              <label class="label" for="address2">주소</label>
+              <label class="label" for="" id="addressLabel"></label>
+            </div>
             <div class="field-body search">
               <input
                 class="input"
@@ -132,7 +172,7 @@
             />
           </div>
 
-          <!-- address2 -->
+          <!--  -->
           <div class="field mb-5">
             <input
               class="input"
