@@ -5,6 +5,13 @@
 import * as Api from '/api.js';
 import { randomId } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
+import { adminnavRender } from '/components/admin-header.js';
+
+if (sessionStorage.getItem('email') === 'manager@gmail.com') {
+  adminnavRender();
+} else {
+  navRender();
+}
 
 // 요소(element), input 혹은 상수
 const backtoTop = document.getElementById('backtotop');
@@ -17,7 +24,11 @@ const slides = document.querySelector('.slides');
 const slide = document.querySelector('.slide');
 const AutoBtn1 = document.querySelector('.auth-btn1');
 const AutoBtn4 = document.querySelector('.auth-btn4');
-navRender();
+if (sessionStorage.getItem('email') === 'manager@gmail.com') {
+  adminnavRender();
+} else {
+  navRender();
+}
 
 addAllElements();
 addAllEvents();
@@ -155,7 +166,7 @@ async function getProductsAndCategory() {
         insertProductsOfCategory += `
       <li class="class-card">
       <div class="productId">${products[j]._id}</div>
-        <a href="/product-detail">
+        <a href="/product/detail">
           <img src="${products[j].imagePath}" alt="" class="class-image" />
        
         <div class="class-container">
