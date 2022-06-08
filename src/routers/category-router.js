@@ -71,4 +71,20 @@ categoryRouter.delete('/:categoryId', adminRequired, async (req, res, next) => {
   }
 });
 
+// 카테고리 코드 삭제
+categoryRouter.delete('/code/:code', adminRequired, async (req, res, next) => {
+  try {
+    const { code } = req.params;
+
+    await categoryService.deleteCategoryCode(code);
+
+    const success = {
+      status: 200,
+      message: '카테고리가 정상적으로 삭제했습니다.',
+    };
+    res.status(200).json(success);
+  } catch (error) {
+    next(error);
+  }
+});
 export { categoryRouter };

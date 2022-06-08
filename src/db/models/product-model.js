@@ -62,6 +62,20 @@ export class ProductModel {
       return undefined;
     }
   }
+
+  async findByProductsOfSeller(sellerId) {
+    try {
+      const productsOfSeller = await Product.find({ sellerId })
+        .populate({ path: 'sellerId', select: { password: 0, address: 0 } })
+        .populate({ path: 'category' })
+        .sort({ _id: -1 });
+
+      return productsOfSeller;
+    } catch {
+      // 값이 없을 경우 undefined를 통해 프론트엔드 단에 0을 출력하게 된다.
+      return undefined;
+    }
+  }
 }
 
 const productModel = new ProductModel();

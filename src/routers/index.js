@@ -10,3 +10,4 @@ export * from './category-router';
 export * from './upload-router';
 export * from './social-login-router';
 export * from './mail-rotuer';
+export * from './comment-router';

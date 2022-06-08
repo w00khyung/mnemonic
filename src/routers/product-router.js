@@ -67,12 +67,20 @@ productRouter.post('/category/:categoryId', async (req, res, next) => {
       Number(start),
       Number(end)
     );
-    // 특점 범위값을 얻음
-    const result = {
-      categoryId,
-      start,
-      end,
-    };
+
+    // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
+    res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// 사용자의 판매 상품 목록들을 가져옴 (배열 형태임)
+productRouter.post('/seller', async (req, res, next) => {
+  try {
+    const { userId } = req.body;
+
+    const products = await productService.getSellerProducts(userId);
 
     // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
     res.status(200).json(products);
@@ -150,8 +158,11 @@ productRouter.delete(
     try {
       const { productId } = req.params;
       await productService.deleteProduct(productId);
-      const ok = { success: 'success' };
-      res.status(200).json(ok);
+      const success = {
+        status: 200,
+        message: '상품이 정상적으로 삭제했습니다.',
+      };
+      res.status(200).json(success);
     } catch (error) {
       next(error);
     }

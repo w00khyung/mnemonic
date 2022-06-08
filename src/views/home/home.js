@@ -5,6 +5,13 @@
 import * as Api from '/api.js';
 import { randomId } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
+import { adminnavRender } from '/components/admin-header.js';
+
+if (sessionStorage.getItem('email') === 'manager@gmail.com') {
+  adminnavRender();
+} else {
+  navRender();
+}
 
 // 요소(element), input 혹은 상수
 const backtoTop = document.getElementById('backtotop');
@@ -17,7 +24,11 @@ const slides = document.querySelector('.slides');
 const slide = document.querySelector('.slide');
 const AutoBtn1 = document.querySelector('.auth-btn1');
 const AutoBtn4 = document.querySelector('.auth-btn4');
-navRender();
+if (sessionStorage.getItem('email') === 'manager@gmail.com') {
+  adminnavRender();
+} else {
+  navRender();
+}
 
 addAllElements();
 addAllEvents();
@@ -109,32 +120,31 @@ async function getProductsAndCategory() {
     })
   );
   const categoryofProdcuts = [
-    '/product-top',
-    '/product-outer',
-    '/product-pants',
-    '/product-onepiece',
-    '/product-skirt',
-    '/product-accessories',
-    '/product-bag',
-    '/product-sneakers',
-    '/product-shoes',
-    '/product-watch',
-    '/product-hat',
-    '/product-socks',
+    'product/top/',
+    '/product/outer/',
+    '/product/pants/',
+    '/product/onepiece/',
+    '/product/skirt/',
+    '/product/accessories',
+    '/product/bag/',
+    '/product/sneakers/',
+    '/product/shoes/',
+    '/product/watch/',
+    '/product/hat/',
+    '/product/socks/',
   ];
   let categoryNumber = 0;
   let insertProductsOfCategory = '';
   try {
     for (let i = 0; i < getProducts.length; i += 1) {
       const productLen = getProducts[i].length;
-      if (productLen === 0) {
+      if (productLen < 5) {
         continue;
       }
 
       const products = getProducts[i];
       categoryNumber = i;
       // 제폼 목록 페이지 구현하기 a herf="#"에 추가하기
-      console.log(products);
       insertProductsOfCategory += `
   <section>
       <div class="inner">

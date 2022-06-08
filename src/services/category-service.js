@@ -12,13 +12,18 @@ class CategoryService {
     const { name, code, codeRef } = categoryInfo;
 
     // 카테고리 중복 확인
-    const category = await this.categoryModel.findByCategory(name);
-    if (category) {
+    const categoryName = await this.categoryModel.findByCategory(name);
+    if (categoryName) {
       throw new Error(
-        '이 제품은 현재 카테고리 리스트에 있습니다. 새로 업데이트 해주세요.'
+        '이 제품의 이름은 현재 카테고리 리스트에 있습니다. 새로 업데이트 해주세요.'
       );
     }
-
+    const categoryCode = await this.categoryModel.findByCodeName(code);
+    if (categoryCode) {
+      throw new Error(
+        '이 제품의 코드는 현재 카테고리 리스트에 있습니다. 새로 업데이트 해주세요.'
+      );
+    }
     // 제품 중복은 이제 아니므로, 제품을 추가함
 
     const newCategoryInfo = {
@@ -78,6 +83,11 @@ class CategoryService {
   // 카테고리 삭제
   async deleteCategory(categoryId) {
     await this.categoryModel.deleteCategory(categoryId);
+  }
+
+  // 카테고리 코드 삭제
+  async deleteCategoryCode(code) {
+    await this.categoryModel.deleteCode(code);
   }
 }
 

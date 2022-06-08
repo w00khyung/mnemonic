@@ -44,7 +44,7 @@ class ProductService {
     return products;
   }
 
-  // 제품정보 수정, 현재 비밀번호가 있어야 수정 가능함.
+  // 제품정보 수정
   async setProduct(productInfoRequierd, toUpdate, curretUserId) {
     const productId = productInfoRequierd;
 
@@ -85,12 +85,23 @@ class ProductService {
     await this.productModel.deleteUser(productId);
   }
 
+  // 카테고리별 제품들 가져오기 크키만큼!
   async getCategoryProducts(categoryId, start, end) {
     const products = await this.productModel.findByProductsOfCategory(
       categoryId,
       start,
       end - start
     );
+    if (!products) {
+      const stuckProduct = 0;
+      return stuckProduct;
+    }
+    return products;
+  }
+
+  // 판매자 별 제품들 모두 가져오기
+  async getSellerProducts(sellerId) {
+    const products = await this.productModel.findByProductsOfSeller(sellerId);
     if (!products) {
       const stuckProduct = 0;
       return stuckProduct;
