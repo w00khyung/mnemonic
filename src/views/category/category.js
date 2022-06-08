@@ -1,9 +1,11 @@
 import { adminnavRender } from '../components/admin-header.js';
 import * as Api from '../api.js';
 
-// 메뉴에 있는 카테고리 추가,생성,관리
+// 메뉴에 있는 카테고리 추가,생성,관리 버튼
 const addCategoryBtn = document.querySelector('.handleAddCategory');
-const handledeleteCategory = document.querySelector('.handledeleteCategory');
+const handleChangeCategory = document.querySelector('.handleChangeCategory');
+const handleDeleteCategory = document.querySelector('.handleDeleteCategory');
+
 // 카테고리 생성하는 입력
 const createCategoryBtn = document.querySelector('#createCategory');
 const receiverName = document.querySelector('#receiverName');
@@ -12,6 +14,8 @@ const receiverCode = document.querySelector('#receiverCode');
 // 카테고리 삭제하는 입력
 const deleteCategoryBtn = document.querySelector('#deleteCategory');
 const deleteCode = document.querySelector('#deleteCode');
+// 카테고리 수정
+
 if (sessionStorage.getItem('email') === 'manager@gmail.com') {
   adminnavRender();
   handleProductCategory();
@@ -28,11 +32,14 @@ async function handleProductCategory() {
     productCategory.insertAdjacentHTML(
       'beforeend',
       `<div class="columns orders-item" id="${item.code}">
-          <div class="">${item.name}</div>
-        </div> `
+          <div class="basic_item"><span class="txt_name">${item.name}</span></div>
+          <input type="text" class="tf_blog" maxlength="10" >
+          <button class="changeCategoryBtn">수정</button>
+       </div> `
     );
   });
 }
+
 async function addCategoryList() {
   // if (!receiverName || !receiverCode) {
   //   alert('입력해주세요');
@@ -58,7 +65,8 @@ async function addCategoryList() {
     }
   });
 }
-function deleteCategoryList() {
+
+async function deleteCategoryList() {
   deleteCode.style.display = 'block';
   deleteCategoryBtn.style.display = 'block';
 
@@ -72,30 +80,22 @@ function deleteCategoryList() {
     }
   });
 }
+
+function changeCategoryList() {
+  const changeCategoryBtn = document.querySelectorAll('.changeCategoryBtn');
+  changeCategoryBtn.forEach((item) => {
+    item.style.display = 'block';
+    item.addEventListener('click', (event) => {
+      console.log(event.target.firstChild);
+      const resultDiv = event.target.nextSibling;
+      resultDiv.innerHTML =
+        "<input type='text' class='tf_blog' maxlength='10' ></input>";
+      //<input type="text" class="tf_blog" maxlength="10" >;
+      console.log(event.target.nextSibling);
+    });
+  });
+}
+
 addCategoryBtn.addEventListener('click', addCategoryList);
-handledeleteCategory.addEventListener('click', deleteCategoryList);
-
-// async function orderHistory() {
-//   const ordersList = await Api.get('/api/orders/admin');
-//   // get으로 가져온 데이터에 products(상품명,수량)를 담음
-//   const purchaseInfo = ordersList.map((item) => {
-//     const orderNumber = item._id;
-//     const orderItemName = item.purchaseOrderInfo.products[0];
-//     const orderUserID = item.orderer.email;
-//     const orderUserName = item.orderer.fullName;
-//     const orderDate = item.updatedAt;
-
-//     // 주문된 상품 리스트를 만들어줌
-//     ordersContainer.insertAdjacentHTML(
-//       'beforeend',
-//       `<div class="columns orders-item" >
-//         <div class="column is-2">
-//         ${orderDate.slice(0, 10)}<br>
-//         ${orderDate.slice(11, 19)}</div>
-//         <div class="column is-2">${orderUserID}<br>${orderUserName}</div>
-//         <div class="column is-4">${orderItemName}<br></div>
-//         <div class="column is-2">상품 준비중</div>
-//         <div class="column is-2"><button class="orderCancel" id="${orderNumber}">주문 취소</button></div>
-//         </div> `
-//     );
-//   });
+handleChangeCategory?.addEventListener('click', changeCategoryList);
+handleDeleteCategory.addEventListener('click', deleteCategoryList);

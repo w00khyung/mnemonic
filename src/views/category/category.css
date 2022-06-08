@@ -50,7 +50,18 @@ aside{
   width : 20%;
   justify-content: center;
   margin: 5px;
+  justify-content: space-between;
 }
 .input {
+  display:none;
+}
+
+.tf_category {
+  display:none;
+}
+.changeCategoryBtn {
+  display:none;
+}
+.tf_blog {
   display:none;
 }
