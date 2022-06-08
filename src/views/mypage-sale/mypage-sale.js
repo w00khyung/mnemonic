@@ -4,6 +4,17 @@ import { navRender } from '/components/header.js';
 import { mypageNavigation } from '/components/mypage.js';
 import { adminnavRender } from '/components/admin-header.js';
 
+const saleBody = document.querySelector('body');
+const saleLists = document.querySelector('.mypage-sale-lists');
+const saleModal = document.querySelector('.mypage-sale-modal');
+const productName = document.querySelector('#product-name');
+const productPrice = document.querySelector('#product-price');
+const productBrand = document.querySelector('#product-brand');
+const categotySelect = document.querySelector('#product-category-select');
+const productContent = document.querySelector('#product-note');
+const imgId = document.querySelector('#imgId');
+const submitButton = document.querySelector('#submit');
+
 if (sessionStorage.getItem('email') === 'manager@gmail.com') {
   adminnavRender();
 } else {
@@ -11,10 +22,7 @@ if (sessionStorage.getItem('email') === 'manager@gmail.com') {
 }
 
 mypageNavigation();
-
-const saleBody = document.querySelector('body');
-const saleLists = document.querySelector('.mypage-sale-lists');
-const saleModal = document.querySelector('.mypage-sale-modal');
+categoryList();
 
 const userList = await Api.get(`/api/userlist`);
 const productList = await Api.get(`/api/product/productlist`);
@@ -63,142 +71,148 @@ const saleListsBtnEdit = document.querySelectorAll('.mypage-sale-btn-edit');
 const saleListsBtnRemove = document.querySelectorAll('.mypage-sale-btn-remove');
 
 function handleEdit(e) {
-  const closeBtn = document.querySelector(".fa-xmark");
+  const closeBtn = document.querySelector('.fa-xmark');
   const productId = e.target.id;
-  saleBody.style.overflow = "hidden";
-  saleModal.style.display = "flex";
+  
+  sessionStorage.setItem('currentId', productId);
+  saleBody.style.overflow = 'hidden';
+  saleModal.style.display = 'flex';
 
-  closeBtn.addEventListener("click", () => {
-    saleBody.style.overflow = "visible";
-    saleModal.style.display = "none";
+
+
+  closeBtn.addEventListener('click', () => {
+    saleBody.style.overflow = 'visible';
+    saleModal.style.display = 'none';
+  });
+
+  productList.map((list) => {
+    if (list._id === productId) {
+      const currentImg = list.imagePath;
+      const currentName = list.name;
+      const currentBrand = list.brand;
+      const currentContent = list.content;
+      const currnetPrice = list.price;
+      
+      imgId.src = currentImg;
+      productName.value = currentName;
+      productBrand.value = currentBrand;
+      productContent.innerHTML = currentContent;
+      productPrice.value = currnetPrice;
+    }
   });
 }
 
 
 
+async function handleDelete(e) {
+  e.preventDefault();
+  const productId = e.target.id;
+  const confirm = window.confirm('정말 삭제하시겠습니까?');
+  if (!confirm) return;
 
+  // 제품 삭제 api 요청
+  try {
+    await Api.delete(`/api/product/delete/${productId}`);
+    alert('정상적으로 삭제되었습니다.');
 
-
-  async function handleDelete(e) {
-    e.preventDefault();
-    const productId = e.target.id;
-    const confirm = window.confirm('정말 삭제하시겠습니까?');
-    if (!confirm) return;
-  
-    // 제품 삭제 api 요청
-    try {
-      await Api.delete(`/api/product/delete/${productId}`);
-      alert('정상적으로 삭제되었습니다.');
-
-      window.location.reload();
-    } catch (err) {
-      console.error(err.stack);
-      alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
-    }
+    window.location.reload();
+  } catch (err) {
+    console.error(err.stack);
+    alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
   }
+}
 
+async function categoryList() {
+  const user = await Api.get('/api/my');
+  document.querySelector('#user-name').value = user.fullName;
 
+  const categoryList = await Api.get('/api/category/categorylist');
+  const categoryCode = categoryList.map((el) => el.code);
+  const min = 0;
+  const max = categoryList.length;
 
+  // 카테고리 code 순으로 정렬
+  const categoryCodeSort = categoryCode.sort((a, b) => {
+    if (a > b) return 1;
+    if (a === b) return 0;
+    if (a < b) return -1;
+  });
 
+  let sortedCategoryName = [];
+  let sortedCategoryId = [];
 
-
-  async function categoryList() {
-    const user = await Api.get('/api/my');
-    document.querySelector('#user-name').value = user.fullName;
-  
-    const categoryList = await Api.get('/api/category/categorylist');
-    const categoryCode = categoryList.map((el) => el.code);
-    const min = 0;
-    const max = categoryList.length;
-  
-    // 카테고리 code 순으로 정렬
-    const categoryCodeSort = categoryCode.sort((a, b) => {
-      if (a > b) return 1;
-      if (a === b) return 0;
-      if (a < b) return -1;
-    });
-  
-    let sortedCategoryName = [];
-    let sortedCategoryId = [];
-  
-    // category code순서대로 카테고리 이름 정렬
-    for (let i = min; i < max; i++) {
-      for (let n = min; n < max; n++) {
-        if (categoryList[n].code === categoryCodeSort[i]) {
-          sortedCategoryName.push(categoryList[n].name);
-          sortedCategoryId.push(categoryList[n]._id);
-        }
+  // category code순서대로 카테고리 이름 정렬
+  for (let i = min; i < max; i++) {
+    for (let n = min; n < max; n++) {
+      if (categoryList[n].code === categoryCodeSort[i]) {
+        sortedCategoryName.push(categoryList[n].name);
+        sortedCategoryId.push(categoryList[n]._id);
       }
     }
-  console.log(sortedCategoryName, sortedCategoryId)
-    for (let i = min; i < max; i++) {
-      const opt = document.createElement('option');
-      opt.value = sortedCategoryId[i];
-      opt.innerHTML = sortedCategoryName[i];
-      categotySelect.appendChild(opt);
-    }
-  }
-  
-  async function imageUp(e) {
-    const formData = new FormData();
-    const photos = document.querySelector('input[type="file"]');
-    formData.append(`photo`, photos.files[0]);
-  
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
-    await fetch('/api/upload/imageUpload', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        document.querySelector('#imgId').src = result['imageUrl'];
-        console.log('성공:', result);
-      })
-      .catch((error) => {
-        console.error('실패:', error);
-      });
-  }
-  
-  const inputGroupFile01 = document.querySelector('#inputGroupFile01');
-  
-  inputGroupFile01.addEventListener('change', imageUp);
-  
-/*   async function handleSubmit(e) {
-    e.preventDefault();
-  
-    // 상품 추가 요청
-    try {
-      const name = productName.value;
-      const price = productPrice.value;
-      const brand = productBrand.value;
-      const content = productContent.value;
-      const imagePath = imgId.src;
-      const category = categotySelect.value;
-      const data = { name, price, brand, content, imagePath, category };
-  
-      await Api.post('/api/product/register', data);
-  
-      // 기본 페이지로 이동
-      window.location.href = '/';
-    } catch (err) {
-      console.error(err.stack);
-      alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
-    }
-  } */
-
-
-
-
-
-
-
-
-  for(let i = 0; i < saleListsBtnRemove.length; i++) {
-    saleListsBtnRemove[i].addEventListener("click", handleDelete)
   }
 
-for(let i = 0; i < saleListsBtnEdit.length; i++) {
-  saleListsBtnEdit[i].addEventListener("click", handleEdit)
+  for (let i = min; i < max; i++) {
+    const opt = document.createElement('option');
+    opt.value = sortedCategoryId[i];
+    opt.innerHTML = sortedCategoryName[i];
+    categotySelect.appendChild(opt);
+  }
 }
+
+async function imageUp(e) {
+  const formData = new FormData();
+  const photos = document.querySelector('input[type="file"]');
+  formData.append(`photo`, photos.files[0]);
+
+  for (var pair of formData.entries()) {
+    console.log(pair[0] + ', ' + pair[1]);
+  }
+  await fetch('/api/upload/imageUpload', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      document.querySelector('#imgId').src = result['imageUrl'];
+      console.log('성공:', result);
+    })
+    .catch((error) => {
+      console.error('실패:', error);
+    });
+}
+const inputGroupFile01 = document.querySelector('#inputGroupFile01');
+
+inputGroupFile01.addEventListener('change', imageUp);
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const productId = sessionStorage.getItem('currentId');
+ 
+  // 상품 수정 요청
+  try {
+    const name = productName.value;
+    const price = productPrice.value;
+    const brand = productBrand.value;
+    const content = productContent.value;
+    const imagePath = imgId.src;
+    const category = categotySelect.value;
+    
+    const data = { name, price, brand, content, imagePath, category };
+  
+    await Api.patch(`/api/product/products`, productId, data);
+    window.location.reload();
+  } catch (err) {
+    console.error(err.stack);
+    alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
+  }
+}
+
+for (let i = 0; i < saleListsBtnRemove.length; i++) {
+  saleListsBtnRemove[i].addEventListener('click', handleDelete);
+}
+
+for (let i = 0; i < saleListsBtnEdit.length; i++) {
+  saleListsBtnEdit[i].addEventListener('click', handleEdit);
+}
+
+submitButton.addEventListener("click", handleSubmit);

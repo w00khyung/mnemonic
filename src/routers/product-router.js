@@ -127,7 +127,6 @@ productRouter.patch(
       const updatedProductInfo = await productService.setProduct(
         productInfoRequired,
         toUpdate,
-        curretUserId
       );
 
       // 업데이트 이후의 제품 데이터를 프론트에 보내 줌
