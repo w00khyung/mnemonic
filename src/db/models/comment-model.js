@@ -57,7 +57,7 @@ export class CommentModel {
   }
 
   // deltecomment 추가
-  async deletecomment(commentId) {
+  async deleteComment(commentId) {
     await Comment.deleteOne({ _id: commentId });
   }
 }
