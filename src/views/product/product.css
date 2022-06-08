@@ -90,7 +90,6 @@ a {
 .product-list-box-img {
   width: 100%;
   height: 14.3rem;
-  background-color: var(--gray-color);
   border-radius: 0.6rem;
   overflow: hidden;
 }
