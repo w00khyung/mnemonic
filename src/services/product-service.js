@@ -82,7 +82,7 @@ class ProductService {
 
   // 제품 삭제
   async deleteProduct(productId) {
-    await this.productModel.deleteUser(productId);
+    await this.productModel.deleteproduct(productId);
   }
 
   // 카테고리별 제품들 가져오기 크키만큼!

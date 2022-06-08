@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>프로필 정보</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>프로필 정보</title>
     <!-- 아이콘 -->
     <link
       rel="icon"
@@ -25,61 +25,141 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="../../useful-css.css" />
-  <link rel="stylesheet" href="mypage-sale.css" />
-  <script src="mypage-sale.js" type="module" defer></script>
-</head>
-<body>
-<!-- 헤더 -->
-<div class="shopping-mall-header"></div>
-<section class="mypage-container display-center">
-  <section class="mypage-container-left"></section>
-  <section class="mypage-container-right">
-    <a href="/mypage/profile">
-      <div class="mypage-user-profile">
-        <div class="mypage-user-profile-img">
-          <img src="../../elice-rabbit.png" alt="프로필">
-        </div>
-        <div class="mypage-user-profile-list">
-          <ul>
-            <li>엘리스</li>
-            <li>abc@naver.com</li>
-            <li>010-0000-0000</li>
-          </ul>
-        </div>
-        <div class="mypage-user-profile-author">
-          <p>일반회원</p>
-        </div>
+    <link rel="stylesheet" href="../mypage.css" />
+    <link rel="stylesheet" href="mypage-sale.css" />
+    <script src="mypage-sale.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <div class="shopping-mall-header"></div>
+
+    <!-- 판매 내역 -->
+    <section class="mypage-container display-center">
+      <section class="mypage-container-left"></section>
+      <section class="mypage-container-right">
+        <section class="mypage-sale-container-right">
+          <h2>판매 내역</h2>
+          <div class="mypage-sale-lists"></div>
+        </section>
+      </section>
+    </section>
+   
+    <!-- 모달 -->
+  <section class="mypage-sale-modal">
+    <section class="mypage-sale-modal-wrap">
+      <div class="mypage-sale-modal-title-wrap">
+        <h2 class="mypage-sale-modal-title">제품정보 수정</h2>
+        <i class="fa-solid fa-xmark"></i>
       </div>
-    </a>
-    <div class="mypage-user-shopping">
-      <div class="mypage-user-shopping-order">
-        <p><a href="/mypage/orders/">구매 내역</a></p>
-        <span><a href="/mypage/orders/">더보기 ></a></span>
-        <ul>
-          <li>구매 목록입니다.</li>
-          <li>구매 목록입니다.</li>
-          <li>구매 목록입니다.</li>
-          <li>구매 목록입니다.</li>
-          <li>구매 목록입니다.</li>
-          <li>구매 목록입니다.</li>
-        </ul>
+        <div class="product-add-content">
+          <div class="product-add-content-left">
+              <img id="imgId" src="../../../uploads/basic-thumnail.png" alt="" />
+              <form
+              class="form"
+              name="form"
+              action=""
+              method="post"
+              onsubmit=""
+              enctype="multipart/form-data"
+            >
+
+            
+              <div class="field">
+                <label for="user-name">작성자</label>
+                <input
+                  class="input setName"
+                  id="user-name"
+                  type="text"
+                  readonly
+                />
+              </div>
+  
+              <div class="field">
+                <label for="product-name">상품이름</label>
+                <input
+                  class="input"
+                  type="text"
+                  id="product-name"
+                />
+              </div>
+  
+              <div class="field">
+                <label for="product-price">가격</label>
+                <input
+                  class="input"
+                  type="text"
+                  id="product-price"
+                />
+              </div>
+  
+              <div class="field">
+                <label for="product-brand">브랜드</label>
+                <input
+                  class="input"
+                  type="text"
+                  id="product-brand"
+                />
+              </div>
+              </form>
+          </div>
+          <div class="product-add-content-right">
+            <form
+              class="form"
+              name="form"
+              action=""
+              method="post"
+              onsubmit=""
+              enctype="multipart/form-data"
+            >
+  
+              <div class="product-img">
+                <label>이미지 업로드</label>
+                <div class="upload-zone">
+                  <div class="field">
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        id="inputGroupFile01"
+                        name="attachfile"
+                        accept="image/*,.img,.jpg"
+                        required
+                      />
+                    </div>
+                  </div>
+  
+                  <div class="select product-category">
+                    <select id="product-category-select">
+                      <option selected>선택하세요.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="field">
+                <label for="product-note" class="product-add-contents"
+                  >내용</label
+                >
+                <textarea
+                  class="textarea is-small"
+                  id="product-note"
+                  type="text"
+                  rows="3"
+                ></textarea>
+              </div>
+  
+              <div class="field product-add-sumit">
+                <button class="button is-black product-add-sumit-btn" id="submit">
+                  수정하기
+                </button>
+              </div>
+            </form>
+          </div>
       </div>
-      <div class="mypage-user-shopping-sell">
-        <p>판매 내역</p>
-        <span>더보기 ></span>
-        <ul>
-          <li>판매 목록입니다.</li>
-          <li>판매 목록입니다.</li>
-          <li>판매 목록입니다.</li>
-          <li>판매 목록입니다.</li>
-          <li>판매 목록입니다.</li>
-          <li>판매 목록입니다.</li>
-        </ul>
-      </div>
-    </div>
+    </section>
   </section>
-</section>
-</body>
+  </body>
 </html>

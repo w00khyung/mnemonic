@@ -1,1 +1,170 @@
 @import "../../useful-css.css";
+
+body {
+  position: relative;
+  overflow: visible;
+}
+
+.mypage-sale-container-right {
+  width: 100%;
+  height: 90vh;
+}
+
+.mypage-sale-container-right h2 {
+  width: 100%;
+  padding-bottom: 1rem;
+  font-weight: bold;
+  font-size: 2rem;
+  border-bottom: 2px solid var(--black-color);
+}
+
+.mypage-sale-lists {
+  width: 100%;
+  height: 90vh;
+}
+
+.mypage-sale-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  border-bottom: 1px solid var(--gray-color);
+}
+
+.mypage-sale-list-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 30%;
+}
+
+.mypage-sale-list-brand {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.mypage-sale-list-content {
+  font-size: 0.9rem;
+  color: var(--gray-color);
+}
+
+.mypage-sale-list-price {
+  width: 30%;
+  font-weight: bold;
+  border-left: 1px solid var(--gray-color);
+  border-right: 1px solid var(--gray-color);
+}
+
+.mypage-sale-btns{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 10%;
+}
+
+.mypage-sale-btns button {
+  margin: 0.5rem 0;
+}
+
+.mypage-sale-modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 30;
+}
+
+.mypage-sale-modal-wrap {
+  width: 35rem;
+  height: 43rem;
+  padding: 2rem;
+  background-color: var(--white-color);
+}
+
+.mypage-sale-modal-title-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid var(--gray-color);
+}
+
+.mypage-sale-modal-wrap .fa-xmark {
+  cursor: pointer;
+}
+
+.mypage-sale-modal-title-wrap h2 {
+  font-weight: bold;
+}
+
+.product-add-content {
+  width: 100%;
+  height: 90%;
+  padding-top: 2rem;
+}
+
+.product-add-content-left {
+  display: flex;
+  justify-content: space-between;
+  height: 50%;
+}
+
+.product-add-content-left img {
+  width: 50%;
+  height: 90%;
+  border: 1px solid var(--gray-color);
+}
+
+.product-add-content-left form {
+  width: 45%;
+}
+
+.product-add-content-left .field {
+  height: 18%;
+}
+
+.product-add-content-left .field input {
+  height: 70%;
+}
+
+.product-add-content-right {
+  height: 50%;
+}
+
+.product-add-content-right form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.upload-zone {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 2.6rem;
+}
+
+.custom-file-input {
+  width: 21.5rem;
+  height: 2.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+}
+
+input[type=file]::file-selector-button {
+  width: 10rem;
+  height: 2.6rem;
+  margin-right: 1rem;
+  border: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.product-add-sumit {
+  display: flex;
+  justify-content: center;
+}
