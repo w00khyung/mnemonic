@@ -70,5 +70,4 @@ categoryRouter.delete('/:categoryId', adminRequired, async (req, res, next) => {
     next(error);
   }
 });
-
 export { categoryRouter };
