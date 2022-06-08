@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import {
   viewsRouter,
   userRouter,
@@ -14,6 +15,8 @@ import {
 import { errorHandler, loginRequired } from './middlewares';
 
 const app = express();
+
+app.use(cookieParser());
 
 // CORS 에러 방지
 app.use(cors());
