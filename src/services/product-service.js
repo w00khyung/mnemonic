@@ -45,7 +45,31 @@ class ProductService {
   }
 
   // 제품정보 수정
-  async setProduct(productInfoRequierd, toUpdate) {
+  async setProduct(productInfoRequierd, toUpdate, curretUserId) {
+    const productId = productInfoRequierd;
+
+    // 우선 해당 id의 상품이 db에 있는지 확인
+    let product = await this.productModel.findById(productId);
+    if (product.sellerId._id !== curretUserId) {
+      throw new Error(
+        '판매자와 사용자의 ID가 틀립니다. 다시 한번 확인해주세요'
+      );
+    }
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!product) {
+      throw new Error('제품이 없습니다. 다시 한 번 확인해 주세요.');
+    }
+
+    product = await this.productModel.update({
+      productId,
+      update: toUpdate,
+    });
+
+    return product;
+  }
+
+  // 사용자 제품정보 수정
+  async setUserProduct(productInfoRequierd, toUpdate) {
     const productId = productInfoRequierd;
 
     // 우선 해당 id의 상품이 db에 있는지 확인

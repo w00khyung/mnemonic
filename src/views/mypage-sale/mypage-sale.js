@@ -199,7 +199,8 @@ async function handleSubmit(e) {
     
     const data = { name, price, brand, content, imagePath, category };
   
-    await Api.patch(`/api/product/products`, productId, data);
+    await Api.patch(`/api/product/products/user`, productId, data);
+    alert("성공적으로 수정을 완료했습니다.")
     window.location.reload();
   } catch (err) {
     console.error(err.stack);
