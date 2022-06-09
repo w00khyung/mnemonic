@@ -1,4 +1,5 @@
 import * as Api from '/api.js';
+import { isAuth, deleteCookie } from '../../useful-functions.js';
 import { navRender } from '../../components/header.js';
 import { pageScroll } from '../../components/pagescroll.js';
 import { mypageNavigation } from '../../components/mypage.js';
@@ -210,8 +211,8 @@ async function handleDelete(e) {
   try {
     await Api.delete('/api/users', '', {}, true);
     sessionStorage.removeItem('email');
-    sessionStorage.removeItem('accessToken');
-    sessionStorage.removeItem('refreshToken');
+    deleteCookie('accessToken');
+    deleteCookie('refreshToken');
 
     alert('정상적으로 삭제되었습니다.');
 
