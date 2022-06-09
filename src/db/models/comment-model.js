@@ -23,24 +23,13 @@ export class CommentModel {
     return comment;
   }
 
-  // 댓글 수를 10개로 제한하고 page가 2일경우 10개를 스킵하고 11개부터 출력
-  async findByPost(postId, page, limit) {
+  async findByPost(postId) {
     const comment = await Comment.find({ post: postId })
       .populate({
         path: 'writer',
         select: { password: 0, address: 0 },
       })
-      .sort({ _id: -1 })
-      .skip((page - 1) * limit)
-      .limit(limit);
-
-    return comment;
-  }
-
-  // 댓글 수전체 출력
-  async findByAllPostCount(postId, page, limit) {
-    const comment = await Comment.find({ post: postId }).count();
-
+      .sort({ _id: -1 });
     return comment;
   }
 
@@ -68,7 +57,7 @@ export class CommentModel {
   }
 
   // deltecomment 추가
-  async deleteComment(commentId) {
+  async deletecomment(commentId) {
     await Comment.deleteOne({ _id: commentId });
   }
 }

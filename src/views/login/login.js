@@ -36,11 +36,16 @@ async function handleSubmit(e) {
   try {
     const data = { email, password };
 
-    await Api.post('/api/login', data);
+    const result = await Api.post('/api/login', data);
+    const { accessToken, refreshToken } = result;
 
-    // 로그인 성공, 토큰을 쿠키에 저장
+    // 로그인 성공, 토큰을 세션 스토리지에 저장
+    // 물론 다른 스토리지여도 됨
     sessionStorage.setItem('email', email);
+    sessionStorage.setItem('accessToken', accessToken);
+    sessionStorage.setItem('refreshToken', refreshToken);
     alert(`정상적으로 로그인되었습니다.`);
+
     // 로그인 성공
 
     // 기본 페이지로 이동
