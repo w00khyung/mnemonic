@@ -18,7 +18,7 @@ async function sendEmail(email, mailHashedCode) {
   const mailOptions = {
     from: 'shoppingmal@elice.com',
     to: email,
-    subject: '쇼핑몰 6팀입니다.',
+    subject: 'Mnemonic입니다.',
     text: `${email}님 안녕하세요? 해당 코드를 이메일 인증란에 인증해주세요!\n${mailHashedCode}`,
   };
 

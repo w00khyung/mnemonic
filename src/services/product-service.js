@@ -44,7 +44,7 @@ class ProductService {
     return products;
   }
 
-  // 제품정보 수정, 현재 비밀번호가 있어야 수정 가능함.
+  // 제품정보 수정
   async setProduct(productInfoRequierd, toUpdate, curretUserId) {
     const productId = productInfoRequierd;
 
@@ -55,6 +55,26 @@ class ProductService {
         '판매자와 사용자의 ID가 틀립니다. 다시 한번 확인해주세요'
       );
     }
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!product) {
+      throw new Error('제품이 없습니다. 다시 한 번 확인해 주세요.');
+    }
+
+    product = await this.productModel.update({
+      productId,
+      update: toUpdate,
+    });
+
+    return product;
+  }
+
+  // 사용자 제품정보 수정
+  async setUserProduct(productInfoRequierd, toUpdate) {
+    const productId = productInfoRequierd;
+
+    // 우선 해당 id의 상품이 db에 있는지 확인
+    let product = await this.productModel.findById(productId);
+
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!product) {
       throw new Error('제품이 없습니다. 다시 한 번 확인해 주세요.');
@@ -82,15 +102,26 @@ class ProductService {
 
   // 제품 삭제
   async deleteProduct(productId) {
-    await this.productModel.deleteUser(productId);
+    await this.productModel.deleteproduct(productId);
   }
 
+  // 카테고리별 제품들 가져오기 크키만큼!
   async getCategoryProducts(categoryId, start, end) {
     const products = await this.productModel.findByProductsOfCategory(
       categoryId,
       start,
       end - start
     );
+    if (!products) {
+      const stuckProduct = 0;
+      return stuckProduct;
+    }
+    return products;
+  }
+
+  // 판매자 별 제품들 모두 가져오기
+  async getSellerProducts(sellerId) {
+    const products = await this.productModel.findByProductsOfSeller(sellerId);
     if (!products) {
       const stuckProduct = 0;
       return stuckProduct;

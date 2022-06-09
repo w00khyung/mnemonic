@@ -179,7 +179,7 @@ async function handleEmail(e) {
     try {
       // 데이터베이스에 이메일이 있는지 확인합니다.
       const checkUseMailResult = await Api.post('/api/checkUserMail', mail);
-      if (checkUseMailResult.result === 'fail') {
+      if (checkUseMailResult.result === 'valid') {
         // 이메일이 있으면 종료합니다.
         checkMailLabel.classList.remove('hidden');
         checkMailLabel.textContent = '이메일이 사용중입니다.';

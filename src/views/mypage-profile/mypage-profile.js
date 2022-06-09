@@ -1,10 +1,18 @@
 import * as Api from '/api.js';
-import { navRender } from '../../components/header.js';
+import { navRender } from '/components/header.js';
+import { mypageNavigation } from '/components/mypage.js';
+import { adminnavRender } from '/components/admin-header.js';
 
-navRender();
+if (sessionStorage.getItem('email') === 'manager@gmail.com') {
+  adminnavRender();
+} else {
+  navRender();
+}
+
+mypageNavigation();
 
 // get userInfo
-const userList = await Api.get(`/api/userlist`);
+const userList = await Api.get('/api', 'userlist', true);
 const email = sessionStorage.getItem('email');
 let userId = '';
 let userName = '';
@@ -184,7 +192,7 @@ async function handleSubmit(e) {
       currentPassword,
     };
 
-    await Api.patch(`/api/users`, userId, data);
+    await Api.patch(`/api/users`, userId, data, true);
 
     alert('정상적으로 수정되었습니다.');
 
@@ -204,7 +212,7 @@ async function handleDelete(e) {
 
   // 회원정보 수정 api 요청
   try {
-    await Api.delete('/api/users');
+    await Api.delete('/api/users', '', {}, true);
     sessionStorage.removeItem('email');
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('refreshToken');
