@@ -1,7 +1,9 @@
 import * as Api from '/api.js';
 import { navRender } from '../components/header.js';
+import { pageScroll } from '../components/pagescroll.js';
 
 navRender();
+pageScroll();
 
 const cartProductsContainer = document.querySelector('#cartProductsContainer');
 const checkboxAll = document.querySelector('.checkboxAll');

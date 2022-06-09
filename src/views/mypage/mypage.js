@@ -1,14 +1,16 @@
 import * as Api from '/api.js';
 import { addHyphen } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
+import { pageScroll } from '../components/pagescroll.js';
 import { mypageNavigation } from '../components/mypage.js';
 
-const proFileName = document.querySelector(".mypage-user-profile-name");
-const proFileEmail = document.querySelector(".mypage-user-profile-email");
-const proFilePhone = document.querySelector(".mypage-user-profile-phone");
-const proFileRole = document.querySelector(".mypage-user-profile-role");
+const proFileName = document.querySelector('.mypage-user-profile-name');
+const proFileEmail = document.querySelector('.mypage-user-profile-email');
+const proFilePhone = document.querySelector('.mypage-user-profile-phone');
+const proFileRole = document.querySelector('.mypage-user-profile-role');
 
 navRender();
+pageScroll();
 mypageNavigation();
 
 // get userInfo
@@ -25,6 +27,6 @@ userList.map((list) => {
     proFileName.innerHTML = userName;
     proFileEmail.innerHTML = userEmail;
     proFilePhone.innerHTML = addHyphen(`0${userPhone}`);
-    proFileRole.innerHTML = (userRole === "basic-user" ? "일반회원" : "관리자");
+    proFileRole.innerHTML = userRole === 'basic-user' ? '일반회원' : '관리자';
   }
 });

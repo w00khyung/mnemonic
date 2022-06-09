@@ -1,3 +1,18 @@
+@import "../../useful-css.css";
+
+.site-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shopping-mall-header {
+  position: fixed;
+  z-index: 30;
+}
+.order-section {
+  width: 100%;
+  margin-top: 7rem;
+}
 .navbar-menu .is-info:focus {
   box-shadow: none;
   outline: none;

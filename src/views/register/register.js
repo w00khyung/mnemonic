@@ -1,6 +1,10 @@
 import * as Api from '/api.js';
 import { validateEmail } from '../useful-functions.js';
 import { navRender } from '../components/header.js';
+import { pageScroll } from '../components/pagescroll.js';
+
+navRender();
+pageScroll();
 
 // 요소(element), input 혹은 상수
 const fullNameInput = document.querySelector('#fullNameInput');
@@ -29,14 +33,13 @@ const addressLabel = document.querySelector('#addressLabel');
 const phoneLabel = document.querySelector('#phoneLabel');
 const passwordConfirmLabel = document.querySelector('#passwordConfirmLabel');
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {
+async function addAllEvents() {
   submitButton.addEventListener('click', handleSubmit);
   postalCodeInput.addEventListener('click', findAddr);
   sendMail.addEventListener('click', handleEmail);
   checkMailBtn.addEventListener('click', handleCheckMail);
 }
 
-navRender();
 addAllEvents();
 
 // Daum api

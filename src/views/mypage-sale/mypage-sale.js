@@ -69,12 +69,10 @@ const saleListsBtnRemove = document.querySelectorAll('.mypage-sale-btn-remove');
 function handleEdit(e) {
   const closeBtn = document.querySelector('.fa-xmark');
   const productId = e.target.id;
-  
+
   sessionStorage.setItem('currentId', productId);
   saleBody.style.overflow = 'hidden';
   saleModal.style.display = 'flex';
-
-
 
   closeBtn.addEventListener('click', () => {
     saleBody.style.overflow = 'visible';
@@ -88,7 +86,7 @@ function handleEdit(e) {
       const currentBrand = list.brand;
       const currentContent = list.content;
       const currnetPrice = list.price;
-      
+
       imgId.src = currentImg;
       productName.value = currentName;
       productBrand.value = currentBrand;
@@ -97,8 +95,6 @@ function handleEdit(e) {
     }
   });
 }
-
-
 
 async function handleDelete(e) {
   e.preventDefault();
@@ -183,7 +179,7 @@ inputGroupFile01.addEventListener('change', imageUp);
 async function handleSubmit(e) {
   e.preventDefault();
   const productId = sessionStorage.getItem('currentId');
- 
+
   // 상품 수정 요청
   try {
     const name = productName.value;
@@ -192,11 +188,11 @@ async function handleSubmit(e) {
     const content = productContent.value;
     const imagePath = imgId.src;
     const category = categotySelect.value;
-    
+
     const data = { name, price, brand, content, imagePath, category };
-  
+
     await Api.patch(`/api/product/products/user`, productId, data);
-    alert("성공적으로 수정을 완료했습니다.")
+    alert('성공적으로 수정을 완료했습니다.');
     window.location.reload();
   } catch (err) {
     console.error(err.stack);
@@ -212,4 +208,4 @@ for (let i = 0; i < saleListsBtnEdit.length; i++) {
   saleListsBtnEdit[i].addEventListener('click', handleEdit);
 }
 
-submitButton.addEventListener("click", handleSubmit);
+submitButton.addEventListener('click', handleSubmit);

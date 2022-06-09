@@ -1,4 +1,4 @@
-@import "../useful-css.css";
+@import '../useful-css.css';
 
 a {
   color: var(--black-color);
@@ -14,12 +14,15 @@ a {
   opacity: 1 !important;
   transform: translateY(-13rem);
 }
-
+.site-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .shopping-mall-header {
   position: fixed;
   z-index: 30;
 }
-
 .product-list-warp {
   display: flex;
   justify-content: center;
@@ -123,13 +126,11 @@ a {
   color: var(--white-color);
   cursor: pointer;
 }
-
 .product-list-box-text {
   width: 100%;
   background-color: var(--white-color);
   z-index: 10;
 }
-
 .product-list-box-brand {
   margin-top: 0.6rem;
   font-weight: bold;

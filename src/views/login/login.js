@@ -1,8 +1,10 @@
 import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
+import { pageScroll } from '../components/pagescroll.js';
 
 navRender();
+pageScroll();
 
 // 요소(element), input 혹은 상수
 const emailInput = document.querySelector('#emailInput');
