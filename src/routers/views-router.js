@@ -22,7 +22,7 @@ viewsRouter.use('/login/findpassword', serveStatic('findpassword'));
 viewsRouter.use('/cart', serveStatic('cart'));
 viewsRouter.use('/order', serveStatic('order'));
 viewsRouter.use('/order/complete', serveStatic('complete'));
-viewsRouter.use('/change-password', serveStatic('change-password'));
+
 
 // 마이 페이지
 viewsRouter.use('/mypage', serveStatic('mypage'));
