@@ -24,7 +24,7 @@ if (sessionStorage.getItem('email') === 'manager@gmail.com') {
 mypageNavigation();
 categoryList();
 
-const userList = await Api.get(`/api/userlist`);
+const userList = await Api.get('/api', 'userlist', true);
 const productList = await Api.get(`/api/product/productlist`);
 
 const userEmail = userList.map((list) => list.email);
@@ -73,12 +73,10 @@ const saleListsBtnRemove = document.querySelectorAll('.mypage-sale-btn-remove');
 function handleEdit(e) {
   const closeBtn = document.querySelector('.fa-xmark');
   const productId = e.target.id;
-  
+
   sessionStorage.setItem('currentId', productId);
   saleBody.style.overflow = 'hidden';
   saleModal.style.display = 'flex';
-
-
 
   closeBtn.addEventListener('click', () => {
     saleBody.style.overflow = 'visible';
@@ -92,7 +90,7 @@ function handleEdit(e) {
       const currentBrand = list.brand;
       const currentContent = list.content;
       const currnetPrice = list.price;
-      
+
       imgId.src = currentImg;
       productName.value = currentName;
       productBrand.value = currentBrand;
@@ -102,8 +100,6 @@ function handleEdit(e) {
   });
 }
 
-
-
 async function handleDelete(e) {
   e.preventDefault();
   const productId = e.target.id;
@@ -112,7 +108,7 @@ async function handleDelete(e) {
 
   // 제품 삭제 api 요청
   try {
-    await Api.delete(`/api/product/delete/${productId}`);
+    await Api.delete(`/api/product/delete/${productId}`, '', {}, true);
     alert('정상적으로 삭제되었습니다.');
 
     window.location.reload();
@@ -123,7 +119,7 @@ async function handleDelete(e) {
 }
 
 async function categoryList() {
-  const user = await Api.get('/api/my');
+  const user = await Api.get('/api', 'my', true);
   document.querySelector('#user-name').value = user.fullName;
 
   const categoryList = await Api.get('/api/category/categorylist');
@@ -138,8 +134,8 @@ async function categoryList() {
     if (a < b) return -1;
   });
 
-  let sortedCategoryName = [];
-  let sortedCategoryId = [];
+  const sortedCategoryName = [];
+  const sortedCategoryId = [];
 
   // category code순서대로 카테고리 이름 정렬
   for (let i = min; i < max; i++) {
@@ -164,8 +160,8 @@ async function imageUp(e) {
   const photos = document.querySelector('input[type="file"]');
   formData.append(`photo`, photos.files[0]);
 
-  for (var pair of formData.entries()) {
-    console.log(pair[0] + ', ' + pair[1]);
+  for (const pair of formData.entries()) {
+    console.log(`${pair[0]}, ${pair[1]}`);
   }
   await fetch('/api/upload/imageUpload', {
     method: 'POST',
@@ -173,7 +169,7 @@ async function imageUp(e) {
   })
     .then((response) => response.json())
     .then((result) => {
-      document.querySelector('#imgId').src = result['imageUrl'];
+      document.querySelector('#imgId').src = result.imageUrl;
       console.log('성공:', result);
     })
     .catch((error) => {
@@ -187,7 +183,7 @@ inputGroupFile01.addEventListener('change', imageUp);
 async function handleSubmit(e) {
   e.preventDefault();
   const productId = sessionStorage.getItem('currentId');
- 
+
   // 상품 수정 요청
   try {
     const name = productName.value;
@@ -196,11 +192,11 @@ async function handleSubmit(e) {
     const content = productContent.value;
     const imagePath = imgId.src;
     const category = categotySelect.value;
-    
+
     const data = { name, price, brand, content, imagePath, category };
-  
-    await Api.patch(`/api/product/products/user`, productId, data);
-    alert("성공적으로 수정을 완료했습니다.")
+
+    await Api.patch(`/api/product/products/user`, productId, data, true);
+    alert('성공적으로 수정을 완료했습니다.');
     window.location.reload();
   } catch (err) {
     console.error(err.stack);
@@ -216,4 +212,4 @@ for (let i = 0; i < saleListsBtnEdit.length; i++) {
   saleListsBtnEdit[i].addEventListener('click', handleEdit);
 }
 
-submitButton.addEventListener("click", handleSubmit);
+submitButton.addEventListener('click', handleSubmit);

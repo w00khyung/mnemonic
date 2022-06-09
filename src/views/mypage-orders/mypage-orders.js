@@ -13,13 +13,11 @@ const ordersContainer = document.querySelector('#ordersContainer');
 // get으로 데이터를 가져온 후 필요한 정보를 출력
 async function orderHistory() {
   // 주문이 완료된 현재 날짜를 가져옴
-  let todayResult = todayDate();
-  const ordersList = await Api.get('/api/orders');
-  const data = ordersList.data;
+  const todayResult = todayDate();
+  const ordersList = await Api.get('/api/orders', '', true);
+  const { data } = ordersList;
   // get으로 가져온 데이터에 products(상품명,수량)를 담음
-  const purchaseInfo = data.map((item) => {
-    return item.purchaseOrderInfo.products[0];
-  });
+  const purchaseInfo = data.map((item) => item.purchaseOrderInfo.products[0]);
 
   // 주문된 상품 리스트를 만들어줌
   for (let i = 0; i < data.length; i += 1) {
@@ -37,13 +35,12 @@ async function orderHistory() {
   // 취소 버튼이 클릭되면 주문을 취소
   const orderCancelBtn = document.querySelectorAll('.orderCancel');
   for (const btn of orderCancelBtn) {
-    btn.addEventListener('click', async function (event) {
+    btn.addEventListener('click', async (event) => {
       const orderId = event.target.id;
       if (window.confirm('삭제하시겠습니까?')) {
-        await Api.patch(`/api/orders/${orderId}`);
+        await Api.patch(`/api/orders/${orderId}`, '', {}, true);
         location.reload();
       } else {
-        return;
       }
     });
   }
@@ -51,11 +48,11 @@ async function orderHistory() {
 
 // 주문 완료됐을 때 배송 조회에 오늘 날짜 출력
 function todayDate() {
-  let today = new Date();
-  let year = today.getFullYear();
-  let month = ('0' + (today.getMonth() + 1)).slice(-2);
-  let date = ('0' + today.getDate()).slice(-2);
-  let result = `${year}-${month}-${date}`;
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = `0${today.getMonth() + 1}`.slice(-2);
+  const date = `0${today.getDate()}`.slice(-2);
+  const result = `${year}-${month}-${date}`;
   return result;
 }
 

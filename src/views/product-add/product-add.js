@@ -14,7 +14,7 @@ categoryList();
 addAllEvents();
 
 async function categoryList() {
-  const user = await Api.get('/api/my');
+  const user = await Api.get('/api', 'my', true);
   document.querySelector('#user-name').value = user.fullName;
 
   const categoryList = await Api.get('/api/category/categorylist');
@@ -29,8 +29,8 @@ async function categoryList() {
     if (a < b) return -1;
   });
 
-  let sortedCategoryName = [];
-  let sortedCategoryId = [];
+  const sortedCategoryName = [];
+  const sortedCategoryId = [];
 
   // category code순서대로 카테고리 이름 정렬
   for (let i = min; i < max; i++) {
@@ -54,8 +54,8 @@ async function imageUp(e) {
   const photos = document.querySelector('input[type="file"]');
   formData.append(`photo`, photos.files[0]);
 
-  for (var pair of formData.entries()) {
-    console.log(pair[0] + ', ' + pair[1]);
+  for (const pair of formData.entries()) {
+    console.log(`${pair[0]}, ${pair[1]}`);
   }
   await fetch('/api/upload/imageUpload', {
     method: 'POST',
@@ -63,7 +63,7 @@ async function imageUp(e) {
   })
     .then((response) => response.json())
     .then((result) => {
-      document.querySelector('#imgId').src = result['imageUrl'];
+      document.querySelector('#imgId').src = result.imageUrl;
       console.log('성공:', result);
     })
     .catch((error) => {
@@ -88,7 +88,7 @@ async function handleSubmit(e) {
     const category = categotySelect.value;
     const data = { name, price, brand, content, imagePath, category };
 
-    await Api.post('/api/product/register', data);
+    await Api.post('/api/product/register', data, true);
     alert('상품 추가가 완료되었습니다.');
 
     // 기본 페이지로 이동

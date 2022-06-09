@@ -1,6 +1,7 @@
 import * as Api from '../api.js';
 import { navRender } from '../components/header.js';
 import { adminnavRender } from '/components/admin-header.js';
+
 if (sessionStorage.getItem('email') === 'manager@gmail.com') {
   adminnavRender();
 } else {
@@ -51,16 +52,16 @@ async function deliveryInfo() {
     },
     purchaseOrderInfo: {
       products: [cartItemInfo],
-      totalAmount: totalAmount,
+      totalAmount,
     },
   };
   try {
-    await Api.post('/api/orders/', data);
+    await Api.post('/api/orders/', data, true);
     alert('결제 및 주문이 정상적으로 완료되었습니다.');
     window.localStorage.clear();
     window.location.href = '/order/complete';
   } catch (err) {
-    alert('문제발생' + err);
+    alert(`문제발생 ${err}`);
   }
   // 주문 완료 페이지로 이동
 }
@@ -68,7 +69,7 @@ async function deliveryInfo() {
 // 주소 api 이용해서 주소 찾기
 function searchAddress() {
   new daum.Postcode({
-    oncomplete: function (data) {
+    oncomplete(data) {
       let addr = '';
       let extraAddr = '';
 
@@ -84,10 +85,10 @@ function searchAddress() {
         }
         if (data.buildingName !== '' && data.apartment === 'Y') {
           extraAddr +=
-            extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+            extraAddr !== '' ? `, ${data.buildingName}` : data.buildingName;
         }
         if (extraAddr !== '') {
-          extraAddr = ' (' + extraAddr + ')';
+          extraAddr = ` (${extraAddr})`;
         }
       }
 

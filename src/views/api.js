@@ -73,7 +73,7 @@ async function post(endpoint, data, loginRequired = false) {
 }
 
 // api 로 PATCH 요청 (/endpoint/params 로, JSON 데이터 형태로 요청함)
-async function patch(endpoint, params = '', data, loginRequired = false) {
+async function patch(endpoint, params = '', data = {}, loginRequired = false) {
   if (loginRequired) {
     const isAuth = await checkToken();
     if (!isAuth) {

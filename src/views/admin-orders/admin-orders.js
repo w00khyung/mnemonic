@@ -15,7 +15,7 @@ const ordersContainer = document.querySelector('#ordersContainer');
 async function orderHistory() {
   // 주문이 완료된 현재 날짜를 가져옴
 
-  const ordersList = await Api.get('/api/orders/admin');
+  const ordersList = await Api.get('/api/orders/admin', '', true);
   console.log(ordersList);
   // get으로 가져온 데이터에 products(상품명,수량)를 담음
   const purchaseInfo = ordersList.map((item) => {
@@ -42,13 +42,12 @@ async function orderHistory() {
   // 취소 버튼이 클릭되면 주문을 취소
   const orderCancelBtn = document.querySelectorAll('.orderCancel');
   for (const btn of orderCancelBtn) {
-    btn.addEventListener('click', async function (event) {
+    btn.addEventListener('click', async (event) => {
       const orderId = event.target.id;
       if (window.confirm('삭제하시겠습니까?')) {
         await Api.patch(`/api/orders/${orderId}`);
         location.reload();
       } else {
-        return;
       }
     });
   }

@@ -85,7 +85,7 @@ async function handleSendComment(e) {
       post,
       comment,
     };
-    await Api.post('/api/comment', data);
+    await Api.post('/api/comment', data, true);
 
     timerComment = false;
     sendCommentText.value = '';
@@ -110,7 +110,11 @@ async function commentList(page = 1) {
     limit,
     productId: sessionStorage.getItem('productId'),
   };
-  const commentListData = await Api.post('/api/comment/products', sendPageInfo);
+  const commentListData = await Api.post(
+    '/api/comment/products',
+    sendPageInfo,
+    true
+  );
 
   // 총 댓글 갯수
   const totCount = commentListData.allCommentsLength;
@@ -337,7 +341,7 @@ async function deleteComment(e) {
     const data = {
       commentId,
     };
-    const result = await Api.delete('/api/comment', commentId, data);
+    const result = await Api.delete('/api/comment', commentId, data, true);
 
     // 다시 보여주기
     await commentList();
@@ -368,7 +372,7 @@ async function sendModifyComment(e, modifyCommentText, i) {
     const data = {
       comment,
     };
-    await Api.patch('/api/comment', sendCommentWriter, data);
+    await Api.patch('/api/comment', sendCommentWriter, data, true);
 
     // 다시 보여주기
     await commentList();
