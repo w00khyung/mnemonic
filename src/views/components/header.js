@@ -1,15 +1,16 @@
-import { isAuth, deleteCookie } from '../useful-functions.js';
-
 const UserLogOut = () => {
-  if (!isAuth()) {
+  if (
+    !sessionStorage.getItem('accessToken') ||
+    !sessionStorage.getItem('refreshToken')
+  ) {
     window.location.href = '/login';
     return;
   }
   const logout = window.confirm('로그아웃 하시겠습니까?');
-  if (!logout) return;
+  if(!logout) return;
   sessionStorage.removeItem('email');
-  deleteCookie('accessToken');
-  deleteCookie('refreshToken');
+  sessionStorage.removeItem('accessToken');
+  sessionStorage.removeItem('refreshToken');
   window.location.href = '/';
 };
 
@@ -19,7 +20,9 @@ const onOffLoginOut = () => {
 };
 
 const navSection = () => {
-  const isLoggedIn = isAuth();
+  const isLoggedIn =
+    sessionStorage.getItem('accessToken') &&
+    sessionStorage.getItem('refreshToken');
   const shoppingMallHeader = document.querySelector('.shopping-mall-header');
   const header = `
   <nav class="navbar" role="navigation" aria-label="main navigation">

@@ -98,6 +98,3 @@ body {
 .product-list-btn a {
   color: var(--black-color);
 }
-.cancel:hover {
-  background-color: black;
-}

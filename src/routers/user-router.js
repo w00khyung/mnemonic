@@ -1,11 +1,9 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
-import jwt from 'jsonwebtoken';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import { loginRequired } from '../middlewares';
 import { userService } from '../services';
 import { validateToken } from '../middlewares/validate-token';
-import { convertExpToMaxAge } from '../utils/jwt';
 
 const userRouter = Router();
 
@@ -64,57 +62,45 @@ userRouter.post('/login', async (req, res, next) => {
       password,
     });
 
-    const accessExp = jwt.decode(accessToken).exp;
-    const accessMaxAge = convertExpToMaxAge(accessExp);
-    const refreshMaxAge = convertExpToMaxAge(jwt.decode(refreshToken).exp);
-
-    // jwt 토큰을 쿠키에 저장함.
-    res.cookie('accessToken', accessToken, {
-      maxAge: accessMaxAge,
-    });
-    res.cookie('refreshToken', refreshToken, {
-      maxAge: refreshMaxAge,
-    });
-
     // jwt 토큰을 프론트에 보냄 (jwt 토큰은, 문자열임)
-    res.status(200).json({ accessToken, refreshToken, accessExp });
+    res.status(200).json({ accessToken, refreshToken });
   } catch (error) {
     next(error);
   }
 });
 
 // 소셜 로그인 (구글)
-// userRouter.post('/google/login', async (req, res, next) => {
-//   try {
-//     // 구글에서 발급받은 토큰을 전달받아 verify 함수를 통해 검증함. (Client ID 필요)
-//     const { credential } = req.body;
-//     const userData = await userService.verify(credential);
+userRouter.post('/google/login', async (req, res, next) => {
+  try {
+    // 구글에서 발급받은 토큰을 전달받아 verify 함수를 통해 검증함. (Client ID 필요)
+    const { credential } = req.body;
+    const userData = await userService.verify(credential);
 
-//     // 검증이 끝나면 받아온 데이터에서 email, fullName만 꺼내서 새로운 유저 생성 (비밀번호는 'google'로 고정)
-//     // 비밀번호를 'google'로 해두면 이메일만 알면 계정에 쉽게 접근할 수 있는 것 아닌가?
-//     const { isRegister, email, fullName } = userData;
+    // 검증이 끝나면 받아온 데이터에서 email, fullName만 꺼내서 새로운 유저 생성 (비밀번호는 'google'로 고정)
+    // 비밀번호를 'google'로 해두면 이메일만 알면 계정에 쉽게 접근할 수 있는 것 아닌가?
+    const { isRegister, email, fullName } = userData;
 
-//     // 이전에 구글로 로그인을 하지 않았다면 ?
-//     // 로그인했던 적이 있으면 바로 로그인을 시켜주고 회원가입 절차는 생략!
-//     if (!isRegister) {
-//       await userService.addUser({
-//         email,
-//         fullName,
-//         password: 'google',
-//       });
-//     }
+    // 이전에 구글로 로그인을 하지 않았다면 ?
+    // 로그인했던 적이 있으면 바로 로그인을 시켜주고 회원가입 절차는 생략!
+    if (!isRegister) {
+      await userService.addUser({
+        email,
+        fullName,
+        password: 'google',
+      });
+    }
 
-//     const userToken = await userService.getUserToken({
-//       email,
-//       password: 'google',
-//     });
+    const userToken = await userService.getUserToken({
+      email,
+      password: 'google',
+    });
 
-//     // 프론트 단에는 최종적으로 userToken을 넘겨줘야함.
-//     res.status(200).json(userToken);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+    // 프론트 단에는 최종적으로 userToken을 넘겨줘야함.
+    res.status(200).json(userToken);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // 전체 유저 목록을 가져옴 (배열 형태임)
 // 미들웨어로 loginRequired 를 썼음 (이로써, jwt 토큰이 없으면 사용 불가한 라우팅이 됨)

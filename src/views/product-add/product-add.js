@@ -10,41 +10,21 @@ const imgId = document.querySelector('#imgId');
 const submitButton = document.querySelector('#submit');
 
 navRender();
-categoryList();
+start();
 addAllEvents();
 
-async function categoryList() {
+async function start() {
   const user = await Api.get('/api/my');
   document.querySelector('#user-name').value = user.fullName;
 
-  const categoryList = await Api.get('/api/category/categorylist');
-  const categoryCode = categoryList.map((el) => el.code);
+  const getCategory = await Api.get('/api/category/categorylist');
   const min = 0;
-  const max = categoryList.length;
+  const max = getCategory.length;
 
-  // 카테고리 code 순으로 정렬
-  const categoryCodeSort = categoryCode.sort((a, b) => {
-    if (a > b) return 1;
-    if (a === b) return 0;
-    if (a < b) return -1;
-  });
-
-  let sortedCategoryName = [];
-  let sortedCategoryId = [];
-
-  // category code순서대로 카테고리 이름 정렬
-  for (let i = min; i < max; i++) {
-    for (let n = min; n < max; n++) {
-      if (categoryList[n].code === categoryCodeSort[i]) {
-        sortedCategoryName.push(categoryList[n].name);
-        sortedCategoryId.push(categoryList[n]._id);
-      }
-    }
-  }
   for (let i = min; i < max; i++) {
     const opt = document.createElement('option');
-    opt.value = sortedCategoryId[i];
-    opt.innerHTML = sortedCategoryName[i];
+    opt.value = getCategory[i]._id;
+    opt.innerHTML = getCategory[i].name;
     categotySelect.appendChild(opt);
   }
 }
@@ -89,10 +69,9 @@ async function handleSubmit(e) {
     const data = { name, price, brand, content, imagePath, category };
 
     await Api.post('/api/product/register', data);
-    alert('상품 추가가 완료되었습니다.');
 
     // 기본 페이지로 이동
-    window.location.reload();
+    window.location.href = '/';
   } catch (err) {
     console.error(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);

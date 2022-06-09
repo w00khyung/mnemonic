@@ -40,6 +40,9 @@ a {
 .mypage-container-right img {
   width: 7.5rem;
   height: 7.5rem;
+  border-radius: 7.5rem;
+  background-color: var(--gray-color);
+  filter: grayscale(1);
 }
 .mypage-user-profile {
   display: flex;
