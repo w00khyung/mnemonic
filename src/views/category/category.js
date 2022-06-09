@@ -1,6 +1,7 @@
 import { adminnavRender } from '../components/admin-header.js';
 import * as Api from '../api.js';
 
+const productCategory = document.querySelector('.productCategory');
 // 메뉴에 있는 카테고리 추가,생성,관리 버튼
 const addCategoryBtn = document.querySelector('.handleAddCategory');
 const handleChangeCategory = document.querySelector('.handleChangeCategory');
@@ -25,15 +26,15 @@ if (sessionStorage.getItem('email') === 'manager@gmail.com') {
 }
 
 async function handleProductCategory() {
-  const productCategory = document.querySelector('.productCategory');
   const categoryList = await Api.get(`/api/category/categorylist`);
   console.log(categoryList);
   categoryList.forEach((item) => {
     productCategory.insertAdjacentHTML(
       'beforeend',
-      `<div class="columns orders-item" id="${item.code}">
-          <div class="basic_item"><span class="txt_name">${item.name}</span></div>
-          <input type="text" class="tf_blog" maxlength="10" >
+      `<div class="columns orders-item" id="${item._id}">
+          <div class="basic_item" id="${item.code}"><span class="txt_name">${item.name}</span></div>
+          
+          
           <button class="changeCategoryBtn">수정</button>
        </div> `
     );
@@ -81,17 +82,43 @@ async function deleteCategoryList() {
   });
 }
 
-function changeCategoryList() {
+async function changeCategoryList() {
   const changeCategoryBtn = document.querySelectorAll('.changeCategoryBtn');
   changeCategoryBtn.forEach((item) => {
     item.style.display = 'block';
+
     item.addEventListener('click', (event) => {
-      console.log(event.target.firstChild);
-      const resultDiv = event.target.nextSibling;
-      resultDiv.innerHTML =
-        "<input type='text' class='tf_blog' maxlength='10' ></input>";
-      //<input type="text" class="tf_blog" maxlength="10" >;
-      console.log(event.target.nextSibling);
+      // const result = event.target.querySelector('.tf_blog');
+
+      const result = item.parentElement.querySelector('.basic_item');
+      const categoryID = result.parentElement.id;
+      const categoryCode = result.id;
+      result.innerHTML = `<input type="text" class="submitValue" value="">
+      <button class='textSubmit'>변경</button>`;
+      
+      const submitValue = document.querySelector('.submitValue');
+      const submitBtn = document.querySelector('.textSubmit');
+      submitBtn.addEventListener('click', () => {
+        if (!submitValue.value) {
+          alert('변경될 이름을 입력하세요');
+        }
+
+        const data = {
+          name: submitValue.value,
+          code: categoryCode,
+        };
+        try{
+          if(window.confirm('카테고리를 변경하시겠습니까?')){
+            await Api.patch(`api/categiry/${categoryID}`);
+            location.reload();
+          }else {
+            return;
+          }
+          
+        } catch(err){
+          throw new Error(err);
+        }
+      });
     });
   });
 }
