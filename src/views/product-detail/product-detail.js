@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import { addCommas } from '/useful-functions.js';
+import { addCommas, isAuth } from '/useful-functions.js';
 import { navRender } from '../../components/header.js';
 
 navRender();
@@ -72,10 +72,7 @@ const dataString = JSON.stringify(data);
 addCartBtn.addEventListener('click', handleSubmit);
 
 function handleSubmit() {
-  if (
-    !sessionStorage.getItem('accessToken') ||
-    !sessionStorage.getItem('refreshToken')
-  ) {
+  if (!isAuth()) {
     alert('로그인이 필요합니다.');
     return (window.location.href = '/login');
   }
