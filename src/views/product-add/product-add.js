@@ -41,7 +41,6 @@ async function categoryList() {
       }
     }
   }
-console.log(sortedCategoryName, sortedCategoryId)
   for (let i = min; i < max; i++) {
     const opt = document.createElement('option');
     opt.value = sortedCategoryId[i];
@@ -90,9 +89,10 @@ async function handleSubmit(e) {
     const data = { name, price, brand, content, imagePath, category };
 
     await Api.post('/api/product/register', data);
+    alert('상품 추가가 완료되었습니다.');
 
     // 기본 페이지로 이동
-    window.location.href = '/';
+    window.location.reload();
   } catch (err) {
     console.error(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);

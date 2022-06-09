@@ -4,6 +4,7 @@ import { navRender } from '../components/header.js';
 
 const productListUl = document.querySelector('.product-list-ul');
 const titleArea = document.querySelector('.product-list-area-top');
+let directCartBtn = [];
 
 const productList = await Api.get(`/api/product/productlist`);
 const categoryList = await Api.get(`/api/category/categorylist`);
@@ -61,6 +62,7 @@ function mainCategoryProductList() {
 // product li 템플릿
 function productTemp(
   i,
+  targetProductId,
   targetProductImagePath,
   targetProductBrand,
   targetProductName,
@@ -72,15 +74,19 @@ function productTemp(
         <a href="/product/detail/">
           <div class="product-list-box-img">
            <img src="${targetProductImagePath}" alt="의상" />
-           <div class="product-list-box-img-btn display-center">
-            <button class="product-list-box-img-btn-order">ADD CART</button>
-           </div>
           </div>
+          </a>
+          <div class="product-list-box-img-btn display-center">
+            <button id="${targetProductId}" class="product-list-box-img-btn-order">ADD CART</button>
+        </div>
+        <div class="product-list-box-text">
+        <a href="/product/detail/">
           <p class="product-list-box-brand">${targetProductBrand}</p>
           <p class="product-list-box-name text-eliellipsis">${targetProductName}</p>
           <p class="product-list-box-content text-eliellipsis">${targetProductContent}</p>
           <p class="product-list-box-price">${targetProductPrice}원</p>
-        </a>
+          </a>
+        </div>
       </li>
     `;
   productListUl.insertAdjacentHTML('afterbegin', productTemplate);
@@ -96,7 +102,7 @@ function productTemp(
     sessionStorage.setItem('productId', productList[i]._id);
   });
 
-  // 바로 주문하기 버튼 나타냄
+  // 바로 장바구니 담기 버튼 나타냄
   productListBox.addEventListener('mouseenter', () => {
     productImgBtn.classList.add('go-top');
   });
@@ -122,6 +128,7 @@ function renderProductMainPage() {
 
   for (let i = 0; i < productList.length; i++) {
     const targetProduct = productList[i];
+    const targetProductId = targetProduct._id;
     const targetProductImagePath = targetProduct.imagePath;
     const targetProductBrand = targetProduct.brand;
     const targetProductName = targetProduct.name;
@@ -130,6 +137,7 @@ function renderProductMainPage() {
 
     productTemp(
       i,
+      targetProductId,
       targetProductImagePath,
       targetProductBrand,
       targetProductName,
@@ -137,8 +145,14 @@ function renderProductMainPage() {
       targetProductPrice
     );
   }
+  const productImgBtnAll = document.querySelectorAll(
+    '.product-list-box-img-btn'
+  );
+  directCartBtn = productImgBtnAll;
+  for (let i = 0; i < directCartBtn.length; i++) {
+    directCartBtn[i].addEventListener('click', addProductCart);
+  }
 }
-
 // 상단 타이틀, 상품 수 렌더
 function renderProductTitle(e, currentTargetLength) {
   const titleArea = document.querySelector('.product-list-area-top');
@@ -214,6 +228,7 @@ function renderProductListTemplate(e) {
   for (let i = 0; i < productList.length; i++) {
     if (productList[i].category._id === e.target.id) {
       const targetProduct = productList[i];
+      const targetProductId = targetProduct._id;
       const targetProductImagePath = targetProduct.imagePath;
       const targetProductBrand = targetProduct.brand;
       const targetProductName = targetProduct.name;
@@ -222,6 +237,7 @@ function renderProductListTemplate(e) {
 
       productTemp(
         i,
+        targetProductId,
         targetProductImagePath,
         targetProductBrand,
         targetProductName,
@@ -230,6 +246,13 @@ function renderProductListTemplate(e) {
       );
     }
   }
+  const productImgBtnAll = document.querySelectorAll(
+    '.product-list-box-img-btn'
+  );
+  directCartBtn = productImgBtnAll;
+  for (let i = 0; i < directCartBtn.length; i++) {
+    directCartBtn[i].addEventListener('click', addProductCart);
+  }
 }
 
 // 우측 제품목록 메인 카테고리 렌더
@@ -237,6 +260,7 @@ function renderProductListMain(e) {
   if (e.target.text === '의류') {
     for (let i = 0; i < productClothList.length; i++) {
       const targetProduct = productClothList[i];
+      const targetProductId = targetProduct._id;
       const targetProductImagePath = targetProduct.imagePath;
       const targetProductBrand = targetProduct.brand;
       const targetProductName = targetProduct.name;
@@ -245,24 +269,33 @@ function renderProductListMain(e) {
 
       productTemp(
         i,
+        targetProductId,
         targetProductImagePath,
         targetProductBrand,
         targetProductName,
         targetProductContent,
         targetProductPrice
       );
+    }
+    const productImgBtnAll = document.querySelectorAll(
+      '.product-list-box-img-btn'
+    );
+    directCartBtn = productImgBtnAll;
+    for (let i = 0; i < directCartBtn.length; i++) {
+      directCartBtn[i].addEventListener('click', addProductCart);
     }
   } else if (e.target.text === '악세사리') {
     for (let i = 0; i < productAccList.length; i++) {
       const targetProduct = productAccList[i];
+      const targetProductId = targetProduct._id;
       const targetProductImagePath = targetProduct.imagePath;
       const targetProductBrand = targetProduct.brand;
       const targetProductName = targetProduct.name;
       const targetProductContent = targetProduct.content;
       const targetProductPrice = addCommas(targetProduct.price);
-
       productTemp(
         i,
+        targetProductId,
         targetProductImagePath,
         targetProductBrand,
         targetProductName,
@@ -270,9 +303,17 @@ function renderProductListMain(e) {
         targetProductPrice
       );
     }
+    const productImgBtnAll = document.querySelectorAll(
+      '.product-list-box-img-btn'
+    );
+    directCartBtn = productImgBtnAll;
+    for (let i = 0; i < directCartBtn.length; i++) {
+      directCartBtn[i].addEventListener('click', addProductCart);
+    }
   } else if (e.target.text === '이너웨어') {
     for (let i = 0; i < productInnerList.length; i++) {
       const targetProduct = productInnerList[i];
+      const targetProductId = targetProduct._id;
       const targetProductImagePath = targetProduct.imagePath;
       const targetProductBrand = targetProduct.brand;
       const targetProductName = targetProduct.name;
@@ -281,12 +322,20 @@ function renderProductListMain(e) {
 
       productTemp(
         i,
+        targetProductId,
         targetProductImagePath,
         targetProductBrand,
         targetProductName,
         targetProductContent,
         targetProductPrice
       );
+    }
+    const productImgBtnAll = document.querySelectorAll(
+      '.product-list-box-img-btn'
+    );
+    directCartBtn = productImgBtnAll;
+    for (let i = 0; i < directCartBtn.length; i++) {
+      directCartBtn[i].addEventListener('click', addProductCart);
     }
   }
 }
@@ -321,6 +370,52 @@ function renderProductList(e) {
   renderProductTitle(e, currentTargetLength);
   renderProductListTemplate(e);
   renderProductListMain(e);
+}
+
+// 상품 장바구니 담기
+async function addProductCart(e) {
+  const productId = await e.target.id;
+  sessionStorage.setItem('productId', productId);
+
+  let productImagePath = '';
+  let productBrand = '';
+  let productName = '';
+  let productContent = '';
+  let productPrice = '';
+  const productQuantity = 1;
+  const currentProductId = sessionStorage.getItem('productId');
+
+  for (let i = 0; i < productList.length; i++) {
+    if (currentProductId === productList[i]._id) {
+      productImagePath = productList[i].imagePath;
+      productBrand = productList[i].brand;
+      productName = productList[i].name;
+      productContent = productList[i].content;
+      productPrice = addCommas(productList[i].price);
+    }
+  }
+
+  const data = {
+    productId: currentProductId,
+    imagePath: productImagePath,
+    brand: productBrand,
+    name: productName,
+    content: productContent,
+    price: productPrice,
+    quantity: productQuantity,
+  };
+
+  const dataString = JSON.stringify(data);
+  if (
+    !sessionStorage.getItem('accessToken') ||
+    !sessionStorage.getItem('refreshToken')
+  ) {
+    alert('로그인이 필요합니다.');
+    return (window.location.href = '/login');
+  }
+
+  localStorage.setItem(currentProductId, dataString);
+  alert('상품이 장바구니에 담겼습니다.');
 }
 
 function currentTargetCategoryClick() {
