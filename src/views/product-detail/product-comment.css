@@ -38,3 +38,28 @@ small a {
   display: flex;
   justify-content: center;
 }
+.pagination-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.pagination-link.is-current {
+  background-color: black;
+  border-color: black;
+}
+.media-left {
+  text-align: center;
+}
+.image.is-64x64 {
+  height: 0.01rem;
+  font-size: 2rem;
+  margin-top: 15%;
+}
+.margin-footer {
+  margin-top: 10%;
+}
+small a {
+  color: white;
+  background-color: black;
+  border-radius: 15%;
+}

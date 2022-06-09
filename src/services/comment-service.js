@@ -87,8 +87,18 @@ class CommentService {
   }
 
   //  포스터별 댓글들 가져오기 크키만큼!
-  async getPostComments(postId) {
-    const comments = await this.commentModel.findByPost(postId);
+  async getPostComments(postId, page = 1, limit = 10) {
+    const comments = await this.commentModel.findByPost(postId, page, limit);
+    if (!comments) {
+      const stuckComments = 0;
+      return stuckComments;
+    }
+    return comments;
+  }
+
+  //  포스터별 댓글들 가져오기 크키만큼!
+  async getAllPostComments(postId) {
+    const comments = await this.commentModel.findByAllPostCount(postId);
     if (!comments) {
       const stuckComments = 0;
       return stuckComments;

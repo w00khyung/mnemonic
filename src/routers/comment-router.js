@@ -53,13 +53,25 @@ commentRouter.get('/', async (req, res, next) => {
 });
 
 //  포스터별 댓글들 가져오기!
-commentRouter.get('/products/:productId', async (req, res, next) => {
+commentRouter.post('/products', async (req, res, next) => {
   try {
-    const { productId } = req.params;
-    const products = await commentService.getPostComments(productId);
+    // const { productId } = req.params;
+    const { page, limit, productId } = req.body;
 
-    // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
-    res.status(200).json(products);
+    const comments = await commentService.getPostComments(
+      productId,
+      page,
+      limit
+    );
+    const allCommentsLength = await commentService.getAllPostComments(
+      productId
+    );
+
+    const sendCommentInfo = {
+      comments,
+      allCommentsLength,
+    };
+    res.status(200).json(sendCommentInfo);
   } catch (error) {
     next(error);
   }
@@ -70,10 +82,9 @@ commentRouter.post('/writer', async (req, res, next) => {
   try {
     const { userId } = req.body;
 
-    const products = await commentService.getWriterComments(userId);
+    const comments = await commentService.getWriterComments(userId);
 
-    // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
-    res.status(200).json(products);
+    res.status(200).json(comments);
   } catch (error) {
     next(error);
   }
@@ -106,7 +117,6 @@ commentRouter.patch('/:commentId', loginRequired, async (req, res, next) => {
       ...(parentComment && { parentComment }),
       ...(comment && { comment }),
     };
-    console.log(toUpdate);
     const updatedCommentInfo = await commentService.setComment(
       commentIdInfo,
       toUpdate,
