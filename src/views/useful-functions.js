@@ -16,9 +16,8 @@ export const addCommas = (n) =>
   n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 // 휴대폰 번호 하이픈 추가
-export const addHyphen = (n) => {
-  return n.toString().replace(/\B(?=(\d{4})+(?!\d))/g, '-');
-};
+export const addHyphen = (n) =>
+  n.toString().replace(/\B(?=(\d{4})+(?!\d))/g, '-');
 
 // 13,000원, 2개 등의 문자열에서 쉼표, 글자 등 제외 후 숫자만 뺴냄
 // 예시: 13,000원 -> 13000, 20,000개 -> 20000
