@@ -212,4 +212,22 @@ userRouter.post('/checkUserMail', async (req, res, next) => {
 
 userRouter.get('/validateToken', validateToken);
 
+userRouter.get('/isAdmin', async (req, res, next) => {
+  const { accessToken } = req.cookies;
+  try {
+    const { role } = jwt.verify(
+      accessToken,
+      process.env.ACCESS_TOKEN_SECRET_KEY
+    );
+    if (role === 'admin') {
+      return res.status(200).json({
+        message: '어드민 검증에 성공하였습니다.',
+      });
+    }
+    return res.status(401);
+  } catch (err) {
+    next(err);
+  }
+});
+
 export { userRouter };
