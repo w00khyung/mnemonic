@@ -2,6 +2,8 @@ import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
 
+navRender();
+
 // 요소(element), input 혹은 상수
 const emailInput = document.querySelector('#emailInput');
 const passwordInput = document.querySelector('#passwordInput');

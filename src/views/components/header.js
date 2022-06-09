@@ -23,6 +23,9 @@ const navSection = () => {
   const isLoggedIn =
     sessionStorage.getItem('accessToken') &&
     sessionStorage.getItem('refreshToken');
+
+  const isAdmin = sessionStorage.getItem('email') === 'manager@gmail.com';
+  
   const shoppingMallHeader = document.querySelector('.shopping-mall-header');
   const header = `<nav class="header-navbar display-center">
   <div class="header-navbar-container">
@@ -35,6 +38,7 @@ const navSection = () => {
         <li><a href="/product">Product</a></li>
         ${isLoggedIn ? '' : `<li><a href="/register">Sign up</a></li>`}
           <li><a class="logout">${isLoggedIn ? `Logout` : `Login`}</a></li>
+          ${isAdmin ? `<li><a href="/admin">Admin</a></li>` : ''}
           ${
             isLoggedIn
               ? `<li><a href="/mypage"><i class="fa-solid fa-user-large"></i></a></li>`

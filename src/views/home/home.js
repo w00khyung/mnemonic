@@ -2,21 +2,8 @@ import * as Api from '/api.js';
 import { randomId } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
 import { pageScroll } from '../components/pagescroll.js';
-import { adminnavRender } from '/components/admin-header.js';
 
-if (sessionStorage.getItem('email') === 'manager@gmail.com') {
-  adminnavRender();
-} else {
-  navRender();
-}
-
-
-
-
-
-
-
-
+navRender();
 pageScroll();
 
 // 요소(element), input 혹은 상수
@@ -30,11 +17,6 @@ const slides = document.querySelector('.slides');
 const slide = document.querySelector('.slide');
 const AutoBtn1 = document.querySelector('.auth-btn1');
 const AutoBtn4 = document.querySelector('.auth-btn4');
-if (sessionStorage.getItem('email') === 'manager@gmail.com') {
-  adminnavRender();
-} else {
-  navRender();
-}
 
 addAllElements();
 addAllEvents();
