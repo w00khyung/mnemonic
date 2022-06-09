@@ -89,6 +89,24 @@ class CategoryService {
   async deleteCategoryCode(code) {
     await this.categoryModel.deleteCode(code);
   }
+
+  async setCategory(categoryInfoRequired, toUpdate) {
+    const categoryId = categoryInfoRequired;
+
+    let category = await this.categoryModel.findById(categoryId);
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!category) {
+      throw new Error('카테고리가 없습니다. 다시 한 번 확인해 주세요.');
+    }
+
+    category = await this.categoryModel.update({
+      categoryId,
+      update: toUpdate,
+    });
+
+    return category;
+  }
 }
 
 const categoryService = new CategoryService(categoryModel);
