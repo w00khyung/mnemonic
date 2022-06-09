@@ -180,9 +180,16 @@ class UserService {
     let checkUserMailResult = [];
 
     if (checkUserMail) {
+      const sendVerifyEmail = {
+        email: checkUserMail.email,
+        fullName: checkUserMail.fullName,
+        _id: checkUserMail._id,
+      };
+
       checkUserMailResult = {
         status: 200,
-        result: 'fail',
+        user: sendVerifyEmail,
+        result: 'valid',
       };
     } else {
       checkUserMailResult = {
