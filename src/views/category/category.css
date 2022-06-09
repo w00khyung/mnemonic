@@ -55,12 +55,12 @@ aside{
 .input {
   display:none;
 }
-.tf_category {
-  display:none;
-}
 .changeCategoryBtn {
   display:none;
 }
-.tf_blog {
+.basic_item {
+  display:flex;
+}
+.txt_code {
   display:none;
 }
