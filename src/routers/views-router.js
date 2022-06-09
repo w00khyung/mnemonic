@@ -18,16 +18,18 @@ function serveStatic(resource) {
 viewsRouter.use('/', serveStatic('home'));
 viewsRouter.use('/register', serveStatic('register'));
 viewsRouter.use('/login', serveStatic('login'));
+viewsRouter.use('/login/findpassword', serveStatic('findpassword'));
 viewsRouter.use('/cart', serveStatic('cart'));
 viewsRouter.use('/order', serveStatic('order'));
 viewsRouter.use('/order/complete', serveStatic('complete'));
+
 
 // 마이 페이지
 viewsRouter.use('/mypage', serveStatic('mypage'));
 viewsRouter.use('/mypage/orders', serveStatic('mypage-orders'));
 viewsRouter.use('/admin', serveStatic('admin'));
 viewsRouter.use('/orders/admin', serveStatic('admin-orders'));
-viewsRouter.use('/admin-category', serveStatic('admin-category'));
+viewsRouter.use('/category', serveStatic('category'));
 viewsRouter.use('/mypage/sale', serveStatic('mypage-sale'));
 viewsRouter.use('/mypage/profile', serveStatic('mypage-profile'));
 

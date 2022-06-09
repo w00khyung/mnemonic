@@ -38,26 +38,30 @@ aside{
   padding: 1em;
 }
 
-.product-list-area-left {
-  width: 20%;
-  height: 100vh;
-  list-style:none;
+.productCategory{
+  display:flex;
+  flex-direction: column;
+  
+  justify-content: center;
 }
-.product-list-category {
-  margin: 0 1.2rem;
+
+.columns {
+  display: flex;
+  width : 20%;
+  justify-content: center;
+  margin: 5px;
+  justify-content: space-between;
 }
-.product-list-category p {
-  font-size: 1.5rem;
-  font-weight: bold;
+.input {
+  display:none;
 }
-.product-list-category ul {
-  margin: 1.2rem 0;
-  font-weight: bold;
+
+.tf_category {
+  display:none;
 }
-.product-list-category ul li {
-  margin: 0.3rem 0;
-  font-weight: normal;
+.changeCategoryBtn {
+  display:none;
 }
-.product-list-category ul li a {
-  color: var(--gray-color);
+.tf_blog {
+  display:none;
 }

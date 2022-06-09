@@ -23,8 +23,8 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="admin-category.css" />
-    <script src="admin-category.js" type="module" defer></script>
+    <link rel="stylesheet" href="category.css" />
+    <script src="category.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -36,7 +36,6 @@
           <li><a>회원 관리</a></li>
           <li><a href="/orders/admin">주문 관리</a></li>
           <li><a>배송 관리</a></li>
-          
         </ul>
         <p class="menu-label">판매자</p>
         <ul class="menu-list">
@@ -47,17 +46,24 @@
         </ul>
         <p class="menu-label">카테고리</p>
         <ul class="menu-list">
-          <li><a href="/admin-category">카테고리 추가</a></li>
-          <li><a>카테고리 수정</a></li>
-          <li><a>카테고리 삭제</a></li>
+          <li class="handleAddCategory"><a href="#">카테고리 추가</a></li>
+          <li><input class="input" id="receiverName" type="text" /></li>
+          <li><input class="input" id="receiverCode" type="text" /></li>
+          <li>
+            <button class="input" id="createCategory">카테고리 생성</button>
+          </li>
+          <li class="handleChangeCategory"><a>카테고리 수정</a></li>
+          <li class="handleDeleteCategory"><a>카테고리 삭제</a></li>
+          <li><input class="input" id="deleteCode" type="text" /></li>
+          <li>
+            <button class="input" id="deleteCategory">카테고리 삭제</button>
+          </li>
         </ul>
       </aside>
       <div class="content">
-        <h1>관리자 페이지입니다.</h1>
-        <div class="product-list-area-left"></div>
-
-        </p>
-        
+        <h1>카테고리 관리</h1>
+        <div class="productCategory"></div>
+      </div>
     </div>
   </body>
 </html>
