@@ -1,10 +1,7 @@
-// 아래는 현재 home.html 페이지에서 쓰이는 코드는 아닙니다.
-// 다만, 앞으로 ~.js 파일을 작성할 때 아래의 코드 구조를 참조할 수 있도록,
-// 코드 예시를 남겨 두었습니다.
-
 import * as Api from '/api.js';
 import { randomId } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
+import { pageScroll } from '../components/pagescroll.js';
 import { adminnavRender } from '/components/admin-header.js';
 
 if (sessionStorage.getItem('email') === 'manager@gmail.com') {
@@ -12,6 +9,15 @@ if (sessionStorage.getItem('email') === 'manager@gmail.com') {
 } else {
   navRender();
 }
+
+
+
+
+
+
+
+
+pageScroll();
 
 // 요소(element), input 혹은 상수
 const backtoTop = document.getElementById('backtotop');
@@ -49,8 +55,6 @@ async function addAllElements() {
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  backtoTop.addEventListener('click', moveBacktoTop);
-  window.addEventListener('scroll', checkScroll);
   setCategoryProducts.addEventListener('click', goToProductDetail);
   getArrowLeft.addEventListener('click', previousSlide);
   getArrowRight.addEventListener('click', nextSlide);
@@ -204,24 +208,6 @@ function alertLandingText() {
 
 function alertGreetingText() {
   alert('n팀 쇼핑몰에 오신 것을 환영합니다');
-}
-function moveBacktoTop() {
-  /* smooth하게 스크롤 하기
-     https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo */
-  if (window.pageYOffset > 0) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}
-function checkScroll() {
-  /* 웹페이지가 수직으로 얼마나 스크롤되었는지를 확인하는 값(픽셀 단위로 반환)
-    https://developer.mozilla.org/ko/docs/Web/API/Window/pageYOffset  */
-
-  const { pageYOffset } = window;
-  if (pageYOffset !== 0) {
-    backtotop.classList.add('show');
-  } else {
-    backtotop.classList.remove('show');
-  }
 }
 
 function goToProductDetail(e) {
