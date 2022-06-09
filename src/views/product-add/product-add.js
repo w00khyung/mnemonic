@@ -1,5 +1,6 @@
 import * as Api from '/api.js';
 import { navRender } from '../../components/header.js';
+import { pageScroll } from '../../components/pagescroll.js';
 
 const productName = document.querySelector('#product-name');
 const productPrice = document.querySelector('#product-price');
@@ -10,6 +11,7 @@ const imgId = document.querySelector('#imgId');
 const submitButton = document.querySelector('#submit');
 
 navRender();
+pageScroll();
 categoryList();
 addAllEvents();
 

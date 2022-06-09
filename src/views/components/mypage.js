@@ -4,6 +4,7 @@ function mypageNavigation() {
   const mypageNav = `<h2><a href="/mypage">마이페이지</a></h2>
   <ul>
     <h3>쇼핑 정보</h3>
+    <li><a class="mypage-li-list" href="/product/add">상품등록</a></li>
     <li><a class="mypage-li-list" href="/mypage/orders/">구매 내역</a></li>
     <li><a class="mypage-li-list" href="/mypage/sale">판매 내역</a></li>
   </ul>

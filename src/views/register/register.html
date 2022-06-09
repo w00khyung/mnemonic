@@ -30,164 +30,170 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="../useful-css.css" />
+    <link rel="stylesheet" href="../components/css/header.css" />
+    <link rel="stylesheet" href="../components/css/scroll-top.css" />
     <link rel="stylesheet" href="register.css" />
     <script src="register.js" type="module" defer></script>
   </head>
   <body>
-    <!-- 헤더 -->
-    <div class="shopping-mall-header"></div>
+    <div class="site-wrap">
+      <!-- 헤더 -->
+      <div class="shopping-mall-header"></div>
 
-    <!-- 회원가입 폼(Form) -->
-    <div class="register-user-form-container display-center">
-      <p class="title">회원가입</p>
-      <form class="box register-user-form-box" id="registerUserForm">
-        <div class="register-user-form-left-input">
-          <!-- name -->
-          <div class="field">
-            <div class="label-container">
-              <label class="label" for="fullNameInput">이름</label>
-              <label class="label" for="" id="nameLabel"></label>
-            </div>
-            <input
-              class="input success"
-              id="fullNameInput"
-              type="text"
-              placeholder="홍길동"
-              autocomplete="on"
-            />
-          </div>
-
-          <!-- email -->
-          <div class="field email-container">
-            <div class="label-container">
-              <label class="label" for="emailInput">이메일</label>
-
-              <button class="sendMail button is-primary" id="sendMail">
-                이메일 인증
-              </button>
-            </div>
-            <input
-              class="input error"
-              id="emailInput"
-              type="email"
-              placeholder="abc@example.com"
-              autocomplete="on"
-            />
-            <div class="label-container">
-              <label class="label hidden" for="" id="checkMailLabel"
-                >코드를 입력하세요.</label
-              >
-              <button
-                class="checkMail hidden button is-primary"
-                id="checkMailBtn"
-              >
-                이메일 확인
-              </button>
-            </div>
-            <input
-              class="input hidden"
-              id="checkMailInput"
-              type="text"
-              placeholder="이메일을 확인하세요."
-              autocomplete="on"
-            />
-          </div>
-
-          <!-- password -->
-          <div class="field">
-            <div class="label-container">
-              <label class="label" for="passwordInput">비밀번호</label>
-              <label class="label" for="" id="passwordLabel"></label>
-            </div>
-            <input
-              class="input"
-              id="passwordInput"
-              type="password"
-              placeholder="****"
-              autocomplete="off"
-            />
-          </div>
-
-          <!-- passwordConfirm -->
-          <div class="field mb-5">
-            <div class="label-container">
-              <label class="label" for="passwordConfirmInput"
-                >비밀번호 확인</label
-              >
-              <label class="label" for="" id="passwordConfirmLabel"></label>
+      <!-- 회원가입 폼(Form) -->
+      <div class="register-user-form-container display-center">
+        <p class="title">회원가입</p>
+        <form class="box register-user-form-box" id="registerUserForm">
+          <div class="register-user-form-left-input">
+            <!-- name -->
+            <div class="field">
+              <div class="label-container">
+                <label class="label" for="fullNameInput">이름</label>
+                <label class="label" for="" id="nameLabel"></label>
+              </div>
+              <input
+                class="input success"
+                id="fullNameInput"
+                type="text"
+                placeholder="홍길동"
+                autocomplete="on"
+              />
             </div>
 
-            <input
-              class="input"
-              id="passwordConfirmInput"
-              type="password"
-              placeholder="****"
-              autocomplete="off"
-            />
-          </div>
-        </div>
+            <!-- email -->
+            <div class="field email-container">
+              <div class="label-container">
+                <label class="label" for="emailInput">이메일</label>
 
-        <div class="register-user-form-right-input">
-          <!-- phoneNumber -->
-          <div class="field mb-5">
-            <div class="label-container">
-              <label class="label" for="receiverPhoneNumber">연락처</label>
-              <label class="label" for="" id="phoneLabel"></label>
+                <button class="sendMail button is-primary" id="sendMail">
+                  이메일 인증
+                </button>
+              </div>
+              <input
+                class="input error"
+                id="emailInput"
+                type="email"
+                placeholder="abc@example.com"
+                autocomplete="on"
+              />
+              <div class="label-container">
+                <label class="label hidden" for="" id="checkMailLabel"
+                  >코드를 입력하세요.</label
+                >
+                <button
+                  class="checkMail hidden button is-primary"
+                  id="checkMailBtn"
+                >
+                  이메일 확인
+                </button>
+              </div>
+              <input
+                class="input hidden"
+                id="checkMailInput"
+                type="text"
+                placeholder="이메일을 확인하세요."
+                autocomplete="on"
+              />
             </div>
-            <input
-              class="input"
-              id="receiverPhoneNumber"
-              type="number"
-              placeholder="01012345678"
-              autocomplete="on"
-            />
-          </div>
 
-          <!-- postalCode -->
-          <div class="field">
-            <div class="label-container">
-              <label class="label" for="address2">주소</label>
-              <label class="label" for="" id="addressLabel"></label>
-            </div>
-            <div class="field-body search">
+            <!-- password -->
+            <div class="field">
+              <div class="label-container">
+                <label class="label" for="passwordInput">비밀번호</label>
+                <label class="label" for="" id="passwordLabel"></label>
+              </div>
               <input
                 class="input"
-                id="postalCode"
-                type="text"
-                placeholder="우편번호 찾기"
-                readonly
+                id="passwordInput"
+                type="password"
+                placeholder="****"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- passwordConfirm -->
+            <div class="field mb-5">
+              <div class="label-container">
+                <label class="label" for="passwordConfirmInput"
+                  >비밀번호 확인</label
+                >
+                <label class="label" for="" id="passwordConfirmLabel"></label>
+              </div>
+
+              <input
+                class="input"
+                id="passwordConfirmInput"
+                type="password"
+                placeholder="****"
+                autocomplete="off"
               />
             </div>
           </div>
 
-          <!-- address1 -->
-          <div class="field">
-            <input
-              class="input"
-              id="address1"
-              type="text"
-              placeholder=""
-              autocomplete="on"
-              readonly
-            />
-          </div>
+          <div class="register-user-form-right-input">
+            <!-- phoneNumber -->
+            <div class="field mb-5">
+              <div class="label-container">
+                <label class="label" for="receiverPhoneNumber">연락처</label>
+                <label class="label" for="" id="phoneLabel"></label>
+              </div>
+              <input
+                class="input"
+                id="receiverPhoneNumber"
+                type="number"
+                placeholder="01012345678"
+                autocomplete="on"
+              />
+            </div>
 
-          <!--  -->
-          <div class="field mb-5">
-            <input
-              class="input"
-              id="address2"
-              type="text"
-              placeholder="상세주소를 입력해주세요"
-              autocomplete="on"
-            />
-          </div>
+            <!-- postalCode -->
+            <div class="field">
+              <div class="label-container">
+                <label class="label" for="address2">주소</label>
+                <label class="label" for="" id="addressLabel"></label>
+              </div>
+              <div class="field-body search">
+                <input
+                  class="input"
+                  id="postalCode"
+                  type="text"
+                  placeholder="우편번호 찾기"
+                  readonly
+                />
+              </div>
+            </div>
 
-          <button class="button is-primary is-fullwidth" id="submitButton">
-            회원가입하기
-          </button>
-        </div>
-      </form>
+            <!-- address1 -->
+            <div class="field">
+              <input
+                class="input"
+                id="address1"
+                type="text"
+                placeholder=""
+                autocomplete="on"
+                readonly
+              />
+            </div>
+
+            <!--  -->
+            <div class="field mb-5">
+              <input
+                class="input"
+                id="address2"
+                type="text"
+                placeholder="상세주소를 입력해주세요"
+                autocomplete="on"
+              />
+            </div>
+
+            <button class="button is-primary is-fullwidth" id="submitButton">
+              회원가입하기
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- top btn -->
+      <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
     </div>
   </body>
 </html>

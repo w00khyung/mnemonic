@@ -6,6 +6,15 @@ a {
 body {
   overflow: visible;
 }
+.site-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shopping-mall-header {
+  position: fixed;
+  z-index: 30;
+}
 .product-detail-wrap {
   display: flex;
   justify-content: center;

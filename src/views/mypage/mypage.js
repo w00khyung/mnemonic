@@ -1,20 +1,16 @@
 import * as Api from '/api.js';
 import { addHyphen } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
+import { pageScroll } from '../components/pagescroll.js';
 import { mypageNavigation } from '../components/mypage.js';
-import { adminnavRender } from '/components/admin-header.js';
 
 const proFileName = document.querySelector('.mypage-user-profile-name');
 const proFileEmail = document.querySelector('.mypage-user-profile-email');
 const proFilePhone = document.querySelector('.mypage-user-profile-phone');
 const proFileRole = document.querySelector('.mypage-user-profile-role');
 
-if (sessionStorage.getItem('email') === 'manager@gmail.com') {
-  adminnavRender();
-} else {
-  navRender();
-}
-
+navRender();
+pageScroll();
 mypageNavigation();
 
 // get userInfo
