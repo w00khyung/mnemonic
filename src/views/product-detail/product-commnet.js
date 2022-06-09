@@ -1,4 +1,5 @@
 import * as Api from '/api.js';
+import { timeForToday } from '/useful-functions.js';
 
 let timerComment = true;
 await addAllElements();
@@ -367,7 +368,7 @@ async function sendModifyComment(e, modifyCommentText, i) {
     const data = {
       comment,
     };
-    const result = await Api.patch('/api/comment', sendCommentWriter, data);
+    await Api.patch('/api/comment', sendCommentWriter, data);
 
     // 다시 보여주기
     await commentList();
@@ -388,29 +389,4 @@ async function paginationNext() {
   const paginationNextBtn = document.querySelector('.pagination-next');
   const page = paginationNextBtn.dataset.value;
   await commentList(page);
-}
-
-function timeForToday(value) {
-  const today = new Date();
-  const timeValue = new Date(value);
-
-  const betweenTime = Math.floor(
-    (today.getTime() - timeValue.getTime()) / 1000 / 60
-  );
-  if (betweenTime < 1) return '방금전';
-  if (betweenTime < 60) {
-    return `${betweenTime}분전`;
-  }
-
-  const betweenTimeHour = Math.floor(betweenTime / 60);
-  if (betweenTimeHour < 24) {
-    return `${betweenTimeHour}시간전`;
-  }
-
-  const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-  if (betweenTimeDay < 365) {
-    return `${betweenTimeDay}일전`;
-  }
-
-  return `${Math.floor(betweenTimeDay / 365)}년전`;
 }

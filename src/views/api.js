@@ -91,7 +91,7 @@ async function patch(endpoint, params = '', data, loginRequired = false) {
   const res = await fetch(apiUrl, {
     method: 'PATCH',
     headers: {
-      // 'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
       // Authorization: `Bearer ${sessionStorage.getItem(
       //   'accessToken'
       // )} ${sessionStorage.getItem('refreshToken')}`,
