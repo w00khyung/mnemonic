@@ -52,3 +52,7 @@
 .hidden {
   visibility: hidden;
 }
+
+.button.is-primary {
+  background-color: black;
+}

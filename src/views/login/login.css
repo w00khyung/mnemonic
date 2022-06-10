@@ -22,3 +22,14 @@
 .login-form-box .button {
   font-weight: bold;
 }
+
+#submitButton {
+  background-color: black;
+}
+#title {
+  color: black;
+}
+.lable-container {
+  display: flex;
+  justify-content: space-between;
+}
