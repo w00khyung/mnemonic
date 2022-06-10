@@ -98,3 +98,12 @@ body {
 .product-list-btn a {
   color: var(--black-color);
 }
+.cancel:hover {
+  background-color: black;
+}
+.comment-write-wrap {
+  width: 100%;
+}
+.comment-list-wrap {
+  width: 100%;
+}

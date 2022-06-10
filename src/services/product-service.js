@@ -68,6 +68,26 @@ class ProductService {
     return product;
   }
 
+  // 사용자 제품정보 수정
+  async setUserProduct(productInfoRequierd, toUpdate) {
+    const productId = productInfoRequierd;
+
+    // 우선 해당 id의 상품이 db에 있는지 확인
+    let product = await this.productModel.findById(productId);
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!product) {
+      throw new Error('제품이 없습니다. 다시 한 번 확인해 주세요.');
+    }
+
+    product = await this.productModel.update({
+      productId,
+      update: toUpdate,
+    });
+
+    return product;
+  }
+
   // 해당 아이디 제품 가져오기
   async getProduct(productId) {
     // 우선 해당 id의 제품이 db에 있는지 확인
@@ -82,7 +102,7 @@ class ProductService {
 
   // 제품 삭제
   async deleteProduct(productId) {
-    await this.productModel.deleteUser(productId);
+    await this.productModel.deleteproduct(productId);
   }
 
   // 카테고리별 제품들 가져오기 크키만큼!
