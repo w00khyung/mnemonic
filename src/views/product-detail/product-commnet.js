@@ -1,6 +1,5 @@
 import * as Api from '/api.js';
-import { isAuth, deleteCookie } from '../useful-functions.js';
-import { timeForToday } from '/useful-functions.js';
+import { isAuth, deleteCookie, timeForToday } from '../../useful-functions.js';
 
 let timerComment = true;
 await addAllElements();
