@@ -33,30 +33,49 @@
   </head>
   <body>
     <div class="site-wrap">
-    <!-- 헤더 -->
-    <div class="shopping-mall-header"></div>
+      <!-- 헤더 -->
+      <div class="shopping-mall-header"></div>
 
-    <!-- 주문조회 -->
-    <section class="order-section">
-      <div class="container">
-        <div class="block account-header">
-          <h1 class="subtitle is-4">관리자 주문조회</h1>
-        </div>
-        <div class="container orders-container" id="ordersContainer">
-          <div
-            class="columns notification is-info is-light is-mobile orders-top"
-          >
-            <div class="column is-2">주문일자<br>[주문번호]</div>
-            <div class="column is-2">아이디</div>
-            <div class="column is-4">주문정보</div>
-            <div class="column is-2">상태</div>
-            <div class="column is-2">신청</div>
+      <!-- 주문조회 -->
+      <section class="order-section">
+        <aside class="menu">
+          <p class="menu-label">회원</p>
+          <ul class="menu-list">
+            <li><a>회원 관리</a></li>
+            <li><a href="/orders/admin">주문 관리</a></li>
+            <li><a>배송 관리</a></li>
+          </ul>
+          <p class="menu-label">판매자</p>
+          <ul class="menu-list">
+            <li><a>판매자 관리</a></li>
+            <li><a>상품 관리</a></li>
+            <li><a>상품 문의 관리</a></li>
+            <li><a>리뷰 관리</a></li>
+          </ul>
+          <p class="menu-label">카테고리</p>
+          <ul class="menu-list">
+            <li><a href="/category">카테고리 관리</a></li>
+          </ul>
+        </aside>
+        <div class="container">
+          <div class="block account-header">
+            <h1 class="subtitle is-4">관리자 주문조회</h1>
+          </div>
+          <div class="container orders-container" id="ordersContainer">
+            <div
+              class="columns notification is-info is-light is-mobile orders-top"
+            >
+              <div class="column is-2">주문일자<br />[주문번호]</div>
+              <div class="column is-2">아이디</div>
+              <div class="column is-4">주문정보</div>
+              <div class="column is-2">상태</div>
+              <div class="column is-2">신청</div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!-- top btn -->
-    <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
-  </div>
+      </section>
+      <!-- top btn -->
+      <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
+    </div>
   </body>
 </html>

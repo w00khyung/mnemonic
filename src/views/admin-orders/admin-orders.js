@@ -55,6 +55,7 @@ async function orderHistory() {
         await Api.patch(`/api/orders/${orderId}`);
         location.reload();
       } else {
+        return;
       }
     });
   }

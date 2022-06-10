@@ -81,9 +81,10 @@ const modal = document.querySelector('.mypage-confirm-modal');
 const currentPasswordInput = document.querySelector('#currentPasswordInput');
 const clearBtn = document.querySelector('.clear-btn');
 const updateBtn = document.querySelector('.update-btn');
-
+const changeIconBtn = document.querySelector('.changeIcon');
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
+  changeIconBtn.addEventListener('click', handleIcon);
   postalCodeInput.addEventListener('click', findAddr);
   profileUpdateBtn.addEventListener('click', displayModal);
   clearBtn.addEventListener('click', backToProfile);
@@ -159,6 +160,17 @@ function findAddr() {
       addressTwoInput.focus();
     },
   }).open();
+}
+
+// change profile icon
+function handleIcon() {
+  const iconSelect = document.querySelector('.mypage-profile-icon-change');
+  const selectIconBox = [];
+  selectIconBox.push({ iconFilePath: '../rose.jpg', iconValue: '1' });
+  selectIconBox.push({ iconFilePath: '../rose.jpg', iconValue: '2' });
+  selectIconBox.push({ iconFilePath: '../elice-rabbit.png', iconValue: '3' });
+
+  console.log(selectIconBox);
 }
 
 // update user info

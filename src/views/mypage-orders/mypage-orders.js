@@ -12,6 +12,7 @@ async function orderHistory() {
   // 주문이 완료된 현재 날짜를 가져옴
   const todayResult = todayDate();
   const ordersList = await Api.get('/api/orders', '', true);
+  console.log(ordersList);
   const { data } = ordersList;
   // get으로 가져온 데이터에 products(상품명,수량)를 담음
   const purchaseInfo = data.map((item) => item.purchaseOrderInfo.products[0]);
