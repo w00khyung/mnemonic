@@ -64,19 +64,81 @@
           </div>
         </div>
 
-          <!-- 카카오 로그인 -->
-          <button
-            type="button"
-            class="button is-fullwidth kakaoLoginBtn"
-            onclick="location.href='/auth/kakao';"
-          >
-            <i class="fa-solid fa-comment"></i>
-            <a class="kakaoLoginLable" href="/auth/kakao"> 카카오 로그인 </a>
-          </button>
-        </form>
-      </div>
-      <!-- top btn -->
-      <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
+        <button class="button is-info is-fullwidth" id="submitButton">
+          로그인하기
+        </button>
+
+        <!-- 구글 로그인 버튼 -->
+        <!-- <div
+          id="g_id_onload"
+          data-client_id="712926701732-kulb4bs65d4t7arno34o89skm3e75n3j.apps.googleusercontent.com"
+          data-callback="handleCredentialResponse"
+          data-login_uri="/api/google/login"
+          data-auto_prompt="false"
+          data-auto_select="true"
+        ></div>
+        <!-- 구글 로그인 모달창 -->
+        <!-- <div
+          class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="outline"
+          data-text="sign_in_with"
+          data-shape="rectangular"
+          data-logo_alignment="left"
+        ></div> -->
+
+        <!-- 카카오 로그인 -->
+        <div>
+          <a id="kakao" href="/auth/kakao">카카오 간편 로그인</a>
+        </div>
+        <li onclick="kakaoLogin();">
+          <a href="javascript:void(0)">
+            <span>카카오 로그인</span>
+          </a>
+        </li>
+        <!-- 카카오 스크립트 -->
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+        <script>
+          Kakao.init('c1b1af7b8ea4af897fed56fba0952918'); //발급받은 키 중 javascript키를 사용해준다.
+          console.log(Kakao.isInitialized()); // sdk초기화여부판단
+          //카카오로그인
+          function kakaoLogin() {
+            Kakao.Auth.login({
+              success: function (response) {
+                Kakao.API.request({
+                  url: '/v2/user/me',
+                  success: function (response) {
+                    const { email, profile } = response.kakao_account;
+                    console.log(email, profile.nickname);
+                  },
+                  fail: function (error) {
+                    console.log(error);
+                  },
+                });
+              },
+              fail: function (error) {
+                console.log(error);
+              },
+            });
+          }
+          //카카오로그아웃
+          function kakaoLogout() {
+            if (Kakao.Auth.getAccessToken()) {
+              Kakao.API.request({
+                url: '/v1/user/unlink',
+                success: function (response) {
+                  console.log(response);
+                },
+                fail: function (error) {
+                  console.log(error);
+                },
+              });
+              Kakao.Auth.setAccessToken(undefined);
+            }
+          }
+        </script>
+      </form>
     </div>
   </body>
 </html>

@@ -15,15 +15,16 @@ const generate = async (userId, type) => {
     payload = { userId: user._id, role: user.role };
     key = process.env.ACCESS_TOKEN_SECRET_KEY;
     option = {
-      expiresIn: '2h',
+      expiresIn: '30s',
     };
   } else if (type === 'refresh') {
     payload = { userId: user._id };
     key = process.env.REFRESH_TOKEN_SECRET_KEY;
     option = {
-      expiresIn: '14d',
+      expiresIn: '5m',
     };
   }
+
   return jwt.sign(payload, key, option);
 };
 
@@ -45,10 +46,4 @@ const verify = (token, type) => {
   }
 };
 
-// 만료 기간 변환 (exp -> maxAge)
-const convertExpToMaxAge = (exp) => {
-  const maxAge = (exp - Date.now() / 1000) * 1000;
-  return maxAge;
-};
-
-export { generate, verify, convertExpToMaxAge };
+export { generate, verify };

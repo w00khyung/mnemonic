@@ -1,9 +1,8 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import { userModel } from '../db';
 import { generate } from '../utils/jwt';
 
-// const { OAuth2Client } = require('google-auth-library');
+const { OAuth2Client } = require('google-auth-library');
 
 class UserService {
   // 본 파일의 맨 아래에서, new UserService(userModel) 하면, 이 함수의 인자로 전달됨
@@ -79,30 +78,33 @@ class UserService {
     // jwt 발급 시 access token(세션), refresh token(세션, DB) 2개를 발급함. => 보안을 위해서
     // refresh가 만료되지 않고, 발급된 적이 있으면 => 기존 토큰 사용, refresh가 없다 => 재발급
     const accessToken = await generate(user._id, 'access');
-    const accessExp = jwt.decode(accessToken).exp;
 
     // refresh token이 처음 로그인 했거나 만료되서 없으면 생성하고, DB에 저장함.
     // 자동 로그인을 시켜주고 로그인 시 마다 새로운 refresh token을 만드는게 맞는지?
-    const refreshToken = await generate(user._id, 'refresh');
-    await this.userModel.update({
-      userId: user._id,
-      update: { refreshToken },
-    });
-    return { accessToken, refreshToken, accessExp };
+    let { refreshToken } = user;
+    if (!refreshToken) {
+      refreshToken = await generate(user._id, 'refresh');
+      await this.userModel.update({
+        userId: user._id,
+        update: { refreshToken },
+      });
+    }
+
+    return { accessToken, refreshToken };
   }
 
   // 소셜 로그인 (구글)
-  // async verify(credential) {
-  //   const client = new OAuth2Client(process.env.GOOGLE_ClIENT_ID);
-  //   const ticket = await client.verifyIdToken({
-  //     idToken: credential,
-  //     audience: process.env.GOOGLE_ClIENT_ID,
-  //   });
-  //   const payload = ticket.getPayload();
-  //   const { email, name } = payload;
-  //   const isRegister = await this.userModel.findByEmail(email);
-  //   return { isRegister, email, fullName: name };
-  // }
+  async verify(credential) {
+    const client = new OAuth2Client(process.env.GOOGLE_ClIENT_ID);
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_ClIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    const { email, name } = payload;
+    const isRegister = await this.userModel.findByEmail(email);
+    return { isRegister, email, fullName: name };
+  }
 
   // 사용자 목록을 받음.
   async getUsers() {
@@ -180,16 +182,9 @@ class UserService {
     let checkUserMailResult = [];
 
     if (checkUserMail) {
-      const sendVerifyEmail = {
-        email: checkUserMail.email,
-        fullName: checkUserMail.fullName,
-        _id: checkUserMail._id,
-      };
-
       checkUserMailResult = {
         status: 200,
-        user: sendVerifyEmail,
-        result: 'valid',
+        result: 'fail',
       };
     } else {
       checkUserMailResult = {

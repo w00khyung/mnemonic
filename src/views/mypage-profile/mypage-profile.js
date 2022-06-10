@@ -1,12 +1,7 @@
 import * as Api from '/api.js';
-import { getCookie, deleteCookie } from '../../useful-functions.js';
 import { navRender } from '../../components/header.js';
-import { pageScroll } from '../../components/pagescroll.js';
-import { mypageNavigation } from '../../components/mypage.js';
 
 navRender();
-pageScroll();
-mypageNavigation();
 
 // get userInfo
 const userList = await Api.get(`/api/userlist`);

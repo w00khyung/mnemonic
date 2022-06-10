@@ -171,16 +171,26 @@ async function handleEmail(e) {
     email,
   };
 
-    if (!isEmailValid) {
-      checkMailLabel.textContent = '이메일 형식이 맞지 않습니다.';
-      checkMailLabel.style.color = 'red';
-      checkMailLabel.classList.remove('hidden');
-    } else {
-      try {
-        // 데이터베이스에 이메일이 있는지 확인합니다.
-        const checkUseMailResult = await Api.post('/api/checkUserMail', mail);
-        if (checkUseMailResult.result === 'valid') {
-          // 이메일이 있으면 종료합니다.
+  if (!isEmailValid) {
+    checkMailLabel.textContent = '이메일 형식이 맞지 않습니다.';
+    checkMailLabel.style.color = 'red';
+    checkMailLabel.classList.remove('hidden');
+  } else {
+    try {
+      // 데이터베이스에 이메일이 있는지 확인합니다.
+      const checkUseMailResult = await Api.post('/api/checkUserMail', mail);
+      if (checkUseMailResult.result === 'fail') {
+        // 이메일이 있으면 종료합니다.
+        checkMailLabel.classList.remove('hidden');
+        checkMailLabel.textContent = '이메일이 사용중입니다.';
+        checkMailLabel.style.color = 'red';
+      } else {
+        try {
+          // 이메일 확인-> 디비랑 회원가입할려는 유저 이메일 메일란에 코드가 전달
+          await Api.post('/api/sendMessage', mail);
+          checkMailLabel.textContent = '이메일을 인증하세요.';
+          checkMailLabel.style.color = 'blue';
+          // 이메일을 확인합시다.
           checkMailLabel.classList.remove('hidden');
           checkMailBtn.classList.remove('hidden');
           checkMailInput.classList.remove('hidden');
