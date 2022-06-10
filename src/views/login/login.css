@@ -21,3 +21,12 @@
 .login-form-box .button {
   font-weight: bold;
 }
+
+.kakaoLoginBtn {
+  background-color: #fee500;
+}
+
+.kakaoLoginLable {
+  padding: 0.8rem;
+  color: #191919;
+}
