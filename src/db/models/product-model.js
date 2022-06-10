@@ -30,6 +30,15 @@ export class ProductModel {
     return products;
   }
 
+  async findKeyword(keyword) {
+    const products = await Product.find({})
+      .regex('name', keyword)
+      .populate({ path: 'sellerId', select: { password: 0, address: 0 } })
+      .populate('category');
+
+    return products;
+  }
+
   async update({ productId, update }) {
     const filter = { _id: productId };
     const option = { returnOriginal: false };
