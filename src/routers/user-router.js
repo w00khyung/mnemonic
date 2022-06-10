@@ -76,7 +76,9 @@ userRouter.post('/login', async (req, res, next) => {
       maxAge: refreshMaxAge,
     });
 
-    res.status(200);
+    res.status(200).json({
+      message: '로그인 성공',
+    });
   } catch (error) {
     next(error);
   }
