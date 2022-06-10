@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>쇼핑-데모</title>
+    <title>Mnemonic</title>
     <!-- 아이콘 -->
     <link
-      rel="icon"
+      rel="shortcut icon"
       type="image/png"
       sizes="16x16"
-      href="/elice-rabbit-favicon.png"
+      href="../../../uploads/favicon.png"
     />
     <!-- bulma css -->
     <link
@@ -27,6 +27,7 @@
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="../../useful-css.css" />
     <link rel="stylesheet" href="../../components/css/header.css" />
+    <link rel="stylesheet" href="../../components/css/mypage.css" />
     <link rel="stylesheet" href="../../components/css/scroll-top.css" />
     <link rel="stylesheet" href="mypage-orders.css" />
     <script src="mypage-orders.js" type="module" defer></script>
@@ -35,18 +36,19 @@
     <!-- 헤더 -->
     <div class="shopping-mall-header"></div>
 
-    
+    <section class="mypage-container display-center">
+      <section class="mypage-container-left"></section>
+      <section class="mypage-container-right">
+        <section class="mypage-sale-container-right">
+          <h2>구매 내역</h2>
+          <div class="mypage-sale-lists"></div>
+        </section>
 
-    <!-- 주문조회 -->
-    <section class="section">
+        <!-- 주문조회 -->
       <div class="container">
-        <div class="block account-header">
-          <h1 class="subtitle is-4">주문조회</h1>
-        </div>
         <div class="container orders-container" id="ordersContainer">
           <div
-            class="columns notification is-info is-light is-mobile orders-top"
-          >
+            class="columns notification is-info is-light is-mobile orders-top">
             <div class="column is-2">주문일자<br>[주문번호]</div>
             <div class="column is-6">주문정보</div>
             <div class="column is-2">상태</div>
@@ -55,6 +57,7 @@
         </div>
       </div>
     </section>
+  </section>
     </div>
     <!-- top btn -->
     <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>

@@ -1,4 +1,5 @@
 import { navRender } from '/components/header.js';
+import { getCookie } from '/useful-functions.js';
 import * as Api from '/api.js';
 
 const productCategory = document.querySelector('.productCategory');
@@ -17,7 +18,7 @@ const deleteCategoryBtn = document.querySelector('#deleteCategory');
 const deleteCode = document.querySelector('#deleteCode');
 // 카테고리 수정
 
-if (sessionStorage.getItem('email') === 'manager@gmail.com') {
+if (getCookie('email') === 'manager@gmail.com') {
   navRender();
   handleProductCategory();
 } else {

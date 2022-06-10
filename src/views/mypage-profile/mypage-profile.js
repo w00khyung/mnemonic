@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import { isAuth, deleteCookie } from '../../useful-functions.js';
+import { getCookie, deleteCookie } from '../../useful-functions.js';
 import { navRender } from '../../components/header.js';
 import { pageScroll } from '../../components/pagescroll.js';
 import { mypageNavigation } from '../../components/mypage.js';
@@ -10,7 +10,7 @@ mypageNavigation();
 
 // get userInfo
 const userList = await Api.get('/api', 'userlist', true);
-const email = sessionStorage.getItem('email');
+const email = getCookie('email');
 let userId = '';
 let userName = '';
 let userEmail = '';
@@ -228,7 +228,7 @@ async function handleDelete(e) {
   // 회원정보 수정 api 요청
   try {
     await Api.delete('/api/users', '', {}, true);
-    sessionStorage.removeItem('email');
+    deleteCookie('email');
     deleteCookie('accessToken');
     deleteCookie('refreshToken');
 

@@ -1,4 +1,4 @@
-import { isAuth, deleteCookie } from '../useful-functions.js';
+import { isAuth, getCookie, deleteCookie } from '../useful-functions.js';
 
 const UserLogOut = () => {
   if (!isAuth()) {
@@ -9,6 +9,8 @@ const UserLogOut = () => {
   if (!logout) return;
   sessionStorage.removeItem('email');
   sessionStorage.removeItem('icon');
+
+  deleteCookie('email');
   deleteCookie('accessToken');
   deleteCookie('refreshToken');
   window.location.href = '/';
@@ -21,7 +23,7 @@ const onOffLoginOut = () => {
 
 const navSection = () => {
   const isLoggedIn = isAuth();
-  const isAdmin = sessionStorage.getItem('email') === 'manager@gmail.com';
+  const isAdmin = getCookie('email') === 'manager@gmail.com';
   const shoppingMallHeader = document.querySelector('.shopping-mall-header');
   const header = `<nav class="header-navbar display-center">
   <div class="header-navbar-container">
@@ -32,8 +34,8 @@ const navSection = () => {
     </div>
         <ul class="header-navbar-menu">
         <li><a href="/product">Product</a></li>
+        <li><a class="logout">${isLoggedIn ? `Logout` : `Login`}</a></li>
         ${isLoggedIn ? '' : `<li><a href="/register">Sign up</a></li>`}
-          <li><a class="logout">${isLoggedIn ? `Logout` : `Login`}</a></li>
           ${isAdmin ? `<li><a href="/admin">Admin</a></li>` : ''}
           ${
             isLoggedIn

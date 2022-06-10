@@ -6,6 +6,7 @@
   align-items: center;
 }
 .shopping-mall-header {
+  width: 100%;
   position: fixed;
   z-index: 30;
 }
@@ -20,4 +21,15 @@
 }
 .login-form-box .button {
   font-weight: bold;
+}
+
+#submitButton {
+  background-color: black;
+}
+#title {
+  color: black;
+}
+.lable-container {
+  display: flex;
+  justify-content: space-between;
 }

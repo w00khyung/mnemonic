@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>쇼핑-데모</title>
+    <title>Mnemonic</title>
     <!-- 아이콘 -->
     <link
-      rel="icon"
+      rel="shortcut icon"
       type="image/png"
       sizes="16x16"
-      href="/elice-rabbit-favicon.png"
+      href="../../../uploads/favicon.png"
     />
     <!-- bulma css 관련 -->
     <link
@@ -40,9 +40,12 @@
       <!-- 로그인 폼(Form) -->
       <div class="login-form-container display-center">
         <form class="box login-form-box" id="loginForm">
-          <p class="title is-5 has-text-info">어서오세요!</p>
+          <p class="title is-5" id="title">어서오세요!</p>
           <div class="field">
-            <label class="label" for="emailInput">이메일</label>
+            <div class="lable-container">
+              <label class="label" for="emailInput">이메일</label>
+              <label class="emailLabel"></label>
+            </div>
             <div class="control">
               <input
                 class="input"
@@ -55,7 +58,10 @@
           </div>
 
           <div class="field mb-5">
-            <label class="label" for="passwordInput">비밀번호</label>
+            <div class="lable-container">
+              <label class="label" for="passwordInput">비밀번호</label>
+              <label class="passwordLabel"></label>
+            </div>
             <div class="control">
               <input
                 class="input"
