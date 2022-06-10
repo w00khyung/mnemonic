@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import { addCommas } from '/useful-functions.js';
+import { addCommas, getCookie } from '/useful-functions.js';
 import { navRender } from '../../components/header.js';
 import { pageScroll } from '../../components/pagescroll.js';
 import { mypageNavigation } from '../../components/mypage.js';
@@ -24,12 +24,12 @@ const userList = await Api.get('/api', 'userlist', true);
 const productList = await Api.get(`/api/product/productlist`);
 
 const userEmail = userList.map((list) => list.email);
-const sessionUserEmail = sessionStorage.getItem('email');
+const email = getCookie('email');
 let currentUser = '';
 // let userSaleListId = [];
 
 for (let i = 0; i < userEmail.length; i++) {
-  if (userEmail[i] === sessionUserEmail) {
+  if (userEmail[i] === email) {
     currentUser = userEmail[i];
   }
 }

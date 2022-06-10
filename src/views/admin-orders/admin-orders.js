@@ -1,11 +1,12 @@
 import * as Api from '/api.js';
 import { navRender } from '../../components/header.js';
+import { getCookie } from '/useful-functions.js';
 import { pageScroll } from '../../components/pagescroll.js';
 
 navRender();
 pageScroll();
 
-if (sessionStorage.getItem('email') === 'manager@gmail.com') {
+if (getCookie('email') === 'manager@gmail.com') {
   orderHistory();
 } else {
   alert('관리자만 접근이 가능합니다.');

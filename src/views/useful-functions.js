@@ -49,6 +49,10 @@ export const getCookie = (cookie) => {
   return cookieValue;
 };
 
+export const setCookie = (cookieName, value) => {
+  document.cookie = `${cookieName}=${value}; path=/`;
+}
+
 export const deleteCookie = (cookie) => {
   document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/`;
 };
