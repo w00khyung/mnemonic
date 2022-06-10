@@ -33,3 +33,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.kakaoLoginBtn {
+  background-color: #fee500;
+}
+
+.kakaoLoginLable {
+  padding: 0.8rem;
+  color: #191919;
+}
