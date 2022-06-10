@@ -42,7 +42,7 @@ function renderProductDetail() {
   </div>
   <div class="product-detail-page-btns">
     <button class="button add-cart-btn">장바구니 추가하기</button>
-    <button class="button is-black">바로 구매하기</button>
+    <button class="button is-black" id="buyNow">바로 구매하기</button>
   </div>
 </div>
 </section>
@@ -54,7 +54,7 @@ function renderProductDetail() {
 renderProductDetail();
 
 const addCartBtn = document.querySelector('.add-cart-btn');
-
+const buyNowBtn = document.querySelector('#buyNow');
 // modal DOM
 const body = document.querySelector('body');
 const modal = document.querySelector('.product-success-modal');
@@ -72,6 +72,7 @@ const data = {
 const dataString = JSON.stringify(data);
 
 addCartBtn.addEventListener('click', handleSubmit);
+buyNowBtn.addEventListener('click', handleBuyNow);
 
 function handleSubmit() {
   if (!isAuth()) {
@@ -82,6 +83,14 @@ function handleSubmit() {
   localStorage.setItem(currentProductId, dataString);
 }
 
+function handleBuyNow() {
+  if (!window.confirm('바로 구매하시겠습니까?')) {
+    return;
+  }
+  localStorage.clear();
+  localStorage.setItem(currentProductId, dataString);
+  window.location.href = '/order/';
+}
 // open modal
 function displayModal() {
   body.style.overflow = 'hidden';

@@ -119,3 +119,13 @@ body {
 .mypage-confirm-modal-btns button {
   width: 11.87rem;
 }
+.changeIcon {
+  cursor: pointer;
+  width:7rem;
+  margin-bottom: 1rem;
+}
+.mypage-profile-icon-change .selectBox{
+  display:none;
+  width:3rem;
+
+}

@@ -38,3 +38,12 @@
 .orders-item:not(:last-child) {
   border-bottom: 1px solid #bbb;
 }
+.order-section {
+  display:flex;
+}
+.menu {
+  width  :15vw;
+  padding: 1em;
+  margin : 0 30px;
+  position: fixed;
+}
