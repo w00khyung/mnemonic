@@ -12,6 +12,7 @@ body {
   align-items: center;
 }
 .shopping-mall-header {
+  width: 100%;
   position: fixed;
   z-index: 30;
 }

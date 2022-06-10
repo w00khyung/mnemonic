@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>마이페이지</title>
-
+    <title>Mnemonic</title>
     <!-- 아이콘 -->
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/elice-rabbit-favicon.png"
+      href="../../../uploads/favicon.ico"
     />
     <!-- bulma css -->
     <link
@@ -27,6 +26,7 @@
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="../useful-css.css" />
     <link rel="stylesheet" href="../components/css/header.css" />
+    <link rel="stylesheet" href="../components/css/mypage.css" />
     <link rel="stylesheet" href="../components/css/scroll-top.css" />
     <link rel="stylesheet" href="mypage.css" />
     <script src="mypage.js" type="module" defer></script>
@@ -57,28 +57,14 @@
           </a>
           <div class="mypage-user-shopping">
             <div class="mypage-user-shopping-order">
-              <p><a href="/mypage/orders/">구매 내역</a></p>
+              <p class="mypage-user-shopping-order-list"><a href="/mypage/orders/">구매 내역</a></p>
               <span><a href="/mypage/orders/">더보기 ></a></span>
-              <ul>
-                <li>구매 목록입니다.</li>
-                <li>구매 목록입니다.</li>
-                <li>구매 목록입니다.</li>
-                <li>구매 목록입니다.</li>
-                <li>구매 목록입니다.</li>
-                <li>구매 목록입니다.</li>
-              </ul>
+              <ul class="mypage-order"></ul>
             </div>
             <div class="mypage-user-shopping-sell">
-              <p>판매 내역</p>
-              <span>더보기 ></span>
-              <ul>
-                <li>판매 목록입니다.</li>
-                <li>판매 목록입니다.</li>
-                <li>판매 목록입니다.</li>
-                <li>판매 목록입니다.</li>
-                <li>판매 목록입니다.</li>
-                <li>판매 목록입니다.</li>
-              </ul>
+              <p class="mypage-user-shopping-sale-list">판매 내역</p>
+              <span><a href="/mypage/sale/">더보기 ></a></span>
+              <ul class="mypage-sale"></ul>
             </div>
           </div>
         </section>

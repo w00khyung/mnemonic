@@ -15,66 +15,75 @@ const productContent = document.querySelector('#product-note');
 const imgId = document.querySelector('#imgId');
 const submitButton = document.querySelector('#submit');
 
+const userList = await Api.get('/api', 'userlist', true);
+const productList = await Api.get(`/api/product/productlist`);
+const userEmail = userList.map((list) => list.email);
+const email = getCookie('email');
+let currentUser = '';
+
+
 navRender();
 pageScroll();
 mypageNavigation();
 categoryList();
+userSaleList();
+userSaleListNone();
+allEvents();
 
-const userList = await Api.get('/api', 'userlist', true);
-const productList = await Api.get(`/api/product/productlist`);
 
-const userEmail = userList.map((list) => list.email);
-const email = getCookie('email');
-let currentUser = '';
-// let userSaleListId = [];
+// 유저 판매 목록
+async function userSaleList() {
+  for (let i = 0; i < userEmail.length; i++) {
+    if (userEmail[i] === email) {
+      currentUser = userEmail[i];
+    }
+  }
 
-for (let i = 0; i < userEmail.length; i++) {
-  if (userEmail[i] === email) {
-    currentUser = userEmail[i];
+  for (let i = 0; i < productList.length; i++) {
+    if (productList[i].sellerId.email === currentUser) {
+      const userSaleListId = productList[i]._id;
+      const userSaleListImg = productList[i].imagePath;
+      const userSaleListBrand = productList[i].brand;
+      const userSaleListName = productList[i].name;
+      const userSaleListContent = productList[i].content;
+      const userSaleListPrice = productList[i].price;
+
+      const userSaleListTemp = `<ul class="mypage-sale-list">
+      <li class="mypage-sale-list-img"><img src="${userSaleListImg}" alt=""></li>
+      <div class="mypage-sale-list-text">
+        <li class="mypage-sale-list-brand">${userSaleListBrand}</li>
+        <li class="mypage-sale-list-name text-eliellipsis">${userSaleListName}</li>
+        <li class="mypage-sale-list-content text-eliellipsis">${userSaleListContent}</li>
+      </div>
+      <li class="mypage-sale-list-price display-center">
+        <p class="mypage-sale-list-price-text">${addCommas(
+          userSaleListPrice
+        )}</p>
+      </li>
+      <div class="mypage-sale-btns display-center">
+        <button id="${userSaleListId}" class="button is-light mypage-sale-btn-edit">수정</button>
+        <button id="${userSaleListId}" class="button is-black mypage-sale-btn-remove">삭제</button>
+      </div>
+    </ul>`;
+
+      saleLists.insertAdjacentHTML('beforeend', userSaleListTemp);
+    }
   }
 }
 
-for (let i = 0; i < productList.length; i++) {
-  if (productList[i].sellerId.email === currentUser) {
-    const userSaleListId = productList[i]._id;
-    const userSaleListImg = productList[i].imagePath;
-    const userSaleListBrand = productList[i].brand;
-    const userSaleListName = productList[i].name;
-    const userSaleListContent = productList[i].content;
-    const userSaleListPrice = productList[i].price;
+// 유저 판매 목록이 없을 경우
+async function userSaleListNone() {
+  const listCount = document.querySelectorAll('.mypage-sale-list');
 
-    const userSaleListTemp = `<ul class="mypage-sale-list">
-    <li class="mypage-sale-list-img"><img src="${userSaleListImg}" alt=""></li>
-    <div class="mypage-sale-list-text">
-      <li class="mypage-sale-list-brand">${userSaleListBrand}</li>
-      <li class="mypage-sale-list-name text-eliellipsis">${userSaleListName}</li>
-      <li class="mypage-sale-list-content text-eliellipsis">${userSaleListContent}</li>
+  if (listCount.length === 0) {
+    saleLists.innerHTML = `<div class="mypage-sale-list-none display-center">
+    <p>판매내역이 없습니다.</p>
     </div>
-    <li class="mypage-sale-list-price display-center">
-      <p class="mypage-sale-list-price-text">${addCommas(userSaleListPrice)}</p>
-    </li>
-    <div class="mypage-sale-btns display-center">
-      <button id="${userSaleListId}" class="button is-light mypage-sale-btn-edit">수정</button>
-      <button id="${userSaleListId}" class="button is-black mypage-sale-btn-remove">삭제</button>
-    </div>
-  </ul>`;
-
-    saleLists.insertAdjacentHTML('beforeend', userSaleListTemp);
+    `;
   }
 }
 
-const list = document.querySelectorAll('.mypage-sale-list');
-const saleListsBtnEdit = document.querySelectorAll('.mypage-sale-btn-edit');
-const saleListsBtnRemove = document.querySelectorAll('.mypage-sale-btn-remove');
-
-if (list.length === 0) {
-  saleLists.innerHTML = `<div class="mypage-sale-list-none display-center">
-  <p>판매내역이 없습니다.</p>
-  </div>
-  `;
-}
-
-function handleEdit(e) {
+function saleProductEdit(e) {
   const closeBtn = document.querySelector('.fa-xmark');
   const productId = e.target.id;
 
@@ -104,7 +113,7 @@ function handleEdit(e) {
   });
 }
 
-async function handleDelete(e) {
+async function saleProductDelete(e) {
   e.preventDefault();
   const productId = e.target.id;
   const confirm = window.confirm('정말 삭제하시겠습니까?');
@@ -159,7 +168,7 @@ async function categoryList() {
   }
 }
 
-async function imageUp(e) {
+async function imageUp() {
   const formData = new FormData();
   const photos = document.querySelector('input[type="file"]');
   formData.append(`photo`, photos.files[0]);
@@ -180,9 +189,6 @@ async function imageUp(e) {
       console.error('실패:', error);
     });
 }
-const inputGroupFile01 = document.querySelector('#inputGroupFile01');
-
-inputGroupFile01.addEventListener('change', imageUp);
 
 async function handleSubmit(e) {
   e.preventDefault();
@@ -208,12 +214,17 @@ async function handleSubmit(e) {
   }
 }
 
-for (let i = 0; i < saleListsBtnRemove.length; i++) {
-  saleListsBtnRemove[i].addEventListener('click', handleDelete);
+async function allEvents() {
+  const saleListsBtnEdit = await document.querySelectorAll('.mypage-sale-btn-edit');
+  const saleListsBtnRemove = await document.querySelectorAll('.mypage-sale-btn-remove');
+  const inputGroupFile01 = await document.querySelector('#inputGroupFile01');
+  
+  for (let i = 0; i < saleListsBtnRemove.length; i++) {
+    saleListsBtnRemove[i].addEventListener('click', saleProductDelete);
+  }
+  for (let i = 0; i < saleListsBtnEdit.length; i++) {
+    saleListsBtnEdit[i].addEventListener('click', saleProductEdit);
+  }
+  inputGroupFile01.addEventListener('change', imageUp);
+  submitButton.addEventListener('click', handleSubmit);
 }
-
-for (let i = 0; i < saleListsBtnEdit.length; i++) {
-  saleListsBtnEdit[i].addEventListener('click', handleEdit);
-}
-
-submitButton.addEventListener('click', handleSubmit);
