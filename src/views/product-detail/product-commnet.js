@@ -1,16 +1,29 @@
 import * as Api from '/api.js';
 import { isAuth, getCookie, timeForToday } from '../../useful-functions.js';
 
-let timerComment = true;
-await addAllElements();
+// 요소(element), input 혹은 상수
+const productImagePath = '';
+const productBrand = '';
+const productName = '';
+const productContent = '';
+const productPrice = '';
 
-// 댓글 작성자 리스트
+addAllElements();
+addAllEvents();
+
+// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+function addAllEvents() {
+  backtoTop.addEventListener('click', moveBacktoTop);
+  window.addEventListener('scroll', checkScroll);
+  setCategoryProducts.addEventListener('click', goToProductDetail);
+  getArrowLeft.addEventListener('click', previousSlide);
+  getArrowRight.addEventListener('click', nextSlide);
+  radioController();
+}
 
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
   await renderCommentDetail();
-
-  await commentList();
 }
 
 async function renderCommentDetail() {
@@ -386,8 +399,5 @@ async function paginationPrevious() {
   await commentList(page);
 }
 
-async function paginationNext() {
-  const paginationNextBtn = document.querySelector('.pagination-next');
-  const page = paginationNextBtn.dataset.value;
-  await commentList(page);
+  wrap.innerHTML = productDetailTemplate;
 }

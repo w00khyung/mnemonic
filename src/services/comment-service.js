@@ -9,13 +9,14 @@ class CommentService {
   // 댓글 등록
   async addComment(commentInfo) {
     // 객체 destructuring
-    const { post, writer, comment } = commentInfo;
+    const { postId, userId, comment } = commentInfo;
 
     const newProductInfo = {
-      post,
-      writer,
+      post: postId,
+      writer: userId,
       comment,
     };
+
     // db에 저장
     const createdNewComment = await this.commentModel.create(newProductInfo);
 
@@ -25,11 +26,11 @@ class CommentService {
   // 대댓글 등록
   async addSubComment(commentInfo) {
     // 객체 destructuring
-    const { post, writer, comment } = commentInfo;
+    const { postId, userId, comment } = commentInfo;
 
     const newProductInfo = {
-      post,
-      writer,
+      post: postId,
+      writer: userId,
       parentComment: 1,
       comment,
     };
@@ -51,11 +52,11 @@ class CommentService {
 
     // 우선 해당 id의 상품이 db에 있는지 확인
     let comment = await this.commentModel.findById(commentId);
-    // if (comment.writer._id !== curretUserId) {
-    //   throw new Error(
-    //     '댓글적은자와 사용자의 ID가 틀립니다. 다시 한번 확인해주세요'
-    //   );
-    // }
+    if (comment.writer._id !== curretUserId) {
+      throw new Error(
+        '댓글적은자와 사용자의 ID가 틀립니다. 다시 한번 확인해주세요'
+      );
+    }
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!comment) {
       throw new Error('제품이 없습니다. 다시 한 번 확인해 주세요.');
@@ -87,18 +88,12 @@ class CommentService {
   }
 
   //  포스터별 댓글들 가져오기 크키만큼!
-  async getPostComments(postId, page = 1, limit = 10) {
-    const comments = await this.commentModel.findByPost(postId, page, limit);
-    if (!comments) {
-      const stuckComments = 0;
-      return stuckComments;
-    }
-    return comments;
-  }
-
-  //  포스터별 댓글들 가져오기 크키만큼!
-  async getAllPostComments(postId) {
-    const comments = await this.commentModel.findByAllPostCount(postId);
+  async getPostComments(postId, start, end) {
+    const comments = await this.commentModel.findByPost(
+      postId,
+      start,
+      end - start
+    );
     if (!comments) {
       const stuckComments = 0;
       return stuckComments;

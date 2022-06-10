@@ -39,7 +39,22 @@ viewsRouter.use('/product', serveStatic('product'));
 // 제품 상세페이지
 viewsRouter.use('/product/detail', serveStatic('product-detail'));
 
-// 제품 추가S
+// 제품 카테고리 분류
+viewsRouter.use('/product/clothing', serveStatic('product-clothing'));
+viewsRouter.use('/product/top', serveStatic('product-top'));
+viewsRouter.use('/product/outer', serveStatic('product-outer'));
+viewsRouter.use('/product/pants', serveStatic('product-pants'));
+viewsRouter.use('/product/onepiece', serveStatic('product-onepiece'));
+viewsRouter.use('/product/skirt', serveStatic('product-skirt'));
+viewsRouter.use('/product/accessories', serveStatic('product-accessories'));
+viewsRouter.use('/product/bag', serveStatic('product-bag'));
+viewsRouter.use('/product/sneakers', serveStatic('product-sneakers'));
+viewsRouter.use('/product/shoes', serveStatic('product-shoes'));
+viewsRouter.use('/product/watch', serveStatic('product-watch'));
+viewsRouter.use('/product/hat', serveStatic('product-hat'));
+viewsRouter.use('/product/socks', serveStatic('product-socks'));
+
+// 제품 추가
 viewsRouter.use('/product/add', serveStatic('product-add'));
 
 // views 폴더의 최상단 파일인 rabbit.png, api.js 등을 쓸 수 있게 함

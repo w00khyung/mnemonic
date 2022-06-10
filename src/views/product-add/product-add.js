@@ -21,10 +21,9 @@ async function categoryList() {
   const user = await Api.get('/api', 'my', true);
   document.querySelector('#user-name').value = user.fullName;
 
-  const categoryList = await Api.get('/api/category/categorylist');
-  const categoryCode = categoryList.map((el) => el.code);
+  const getCategory = await Api.get('/api/category/categorylist');
   const min = 0;
-  const max = categoryList.length;
+  const max = getCategory.length;
 
   // 카테고리 code 순으로 정렬
   const categoryCodeSort = categoryCode.sort((a, b) => {
@@ -47,8 +46,8 @@ async function categoryList() {
   }
   for (let i = min; i < max; i++) {
     const opt = document.createElement('option');
-    opt.value = sortedCategoryId[i];
-    opt.innerHTML = sortedCategoryName[i];
+    opt.value = getCategory[i]._id;
+    opt.innerHTML = getCategory[i].name;
     categotySelect.appendChild(opt);
   }
 }
@@ -96,7 +95,7 @@ async function handleSubmit(e) {
     alert('상품 추가가 완료되었습니다.');
 
     // 기본 페이지로 이동
-    window.location.reload();
+    window.location.href = '/';
   } catch (err) {
     console.error(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
