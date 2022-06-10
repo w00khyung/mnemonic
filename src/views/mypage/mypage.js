@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import { addHyphen } from '/useful-functions.js';
+import { addHyphen, getCookie } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
 import { pageScroll } from '../components/pagescroll.js';
 import { mypageNavigation } from '../components/mypage.js';
@@ -15,7 +15,7 @@ mypageNavigation();
 
 // get userInfo
 const userList = await Api.get(`/api/userlist`, '', true);
-const email = sessionStorage.getItem('email');
+const email = getCookie('email');
 
 userList.map((list) => {
   if (list.email === email) {

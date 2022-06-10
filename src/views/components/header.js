@@ -1,4 +1,4 @@
-import { isAuth, deleteCookie } from '../useful-functions.js';
+import { isAuth, getCookie, deleteCookie } from '../useful-functions.js';
 
 const UserLogOut = () => {
   if (!isAuth()) {
@@ -7,7 +7,7 @@ const UserLogOut = () => {
   }
   const logout = window.confirm('로그아웃 하시겠습니까?');
   if (!logout) return;
-  sessionStorage.removeItem('email');
+  deleteCookie('email');
   deleteCookie('accessToken');
   deleteCookie('refreshToken');
   window.location.href = '/';
@@ -20,7 +20,7 @@ const onOffLoginOut = () => {
 
 const navSection = () => {
   const isLoggedIn = isAuth();
-  const isAdmin = sessionStorage.getItem('email') === 'manager@gmail.com';
+  const isAdmin = getCookie('email') === 'manager@gmail.com';
   const shoppingMallHeader = document.querySelector('.shopping-mall-header');
   const header = `<nav class="header-navbar display-center">
   <div class="header-navbar-container">

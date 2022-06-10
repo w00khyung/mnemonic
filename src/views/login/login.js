@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import { validateEmail } from '/useful-functions.js';
+import { validateEmail, setCookie } from '/useful-functions.js';
 import { navRender } from '../components/header.js';
 import { pageScroll } from '../components/pagescroll.js';
 
@@ -43,7 +43,7 @@ async function handleSubmit(e) {
     await Api.post('/api/login', data);
 
     // 로그인 성공, 토큰을 쿠키에 저장
-    sessionStorage.setItem('email', email);
+    setCookie('email', email);
     alert(`정상적으로 로그인되었습니다.`);
     // 로그인 성공
 

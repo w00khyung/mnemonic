@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import { isAuth, deleteCookie, timeForToday } from '../../useful-functions.js';
+import { isAuth, getCookie, timeForToday } from '../../useful-functions.js';
 
 let timerComment = true;
 await addAllElements();
@@ -56,7 +56,7 @@ async function handleSendComment(e) {
     return (window.location.href = '/login');
   }
   const sendCommentText = document.querySelector('#sendCommentText');
-  const email = sessionStorage.getItem('email');
+  const email = getCookie('email');
   const mail = {
     email,
   };
@@ -132,7 +132,7 @@ async function commentList(page = 1) {
   const blockLast = Math.ceil(blockStart + (blockSize - 1));
 
   if (commentListData.comments.length > 0) {
-    const email = sessionStorage.getItem('email');
+    const email = getCookie('email');
     const mail = {
       email,
     };
