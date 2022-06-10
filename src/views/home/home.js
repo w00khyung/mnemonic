@@ -122,7 +122,9 @@ async function getProductsAndCategory() {
     <div class="category-container">
       <div class="category">${products[0].category.name}</div>
         <div class="class-contain">
-        <div class="class-append"><a href="/product"> ${productLen > 4 ? '더보기' : ''}</a></div>
+        <div class="class-append"><a href="/product"> ${
+          productLen > 4 ? '더보기' : ''
+        }</a></div>
       </div>
     </div>
     <ul class="class-list" >
