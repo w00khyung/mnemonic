@@ -106,6 +106,7 @@ async function getProductsAndCategory() {
     })
   );
   const categoryofProdcuts = [
+    '/product/',
     'product/top/',
     '/product/outer/',
     '/product/pants/',
@@ -138,9 +139,9 @@ async function getProductsAndCategory() {
     <div class="category-container">
       <div class="category">${products[0].category.name}</div>
         <div class="class-contain">
-        <div class="class-append"><a href="${
-          categoryofProdcuts[categoryNumber]
-        }"> ${productLen > 4 ? '더보기' : ''}</a></div>
+        <div class="class-append"><a href="${categoryofProdcuts[0]}"> ${
+        productLen > 4 ? '더보기' : ''
+      }</a></div>
       </div>
     </div>
     <ul class="class-list" >
