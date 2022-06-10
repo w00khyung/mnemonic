@@ -34,8 +34,8 @@ export class CategoryModel {
     return categorys;
   }
 
-  async update({ categoryId, update }) {
-    const filter = { _id: categoryId };
+  async update({ CategoryId, update }) {
+    const filter = { _id: CategoryId };
     const option = { returnOriginal: false };
 
     const updatedCategory = await Category.findOneAndUpdate(
@@ -47,8 +47,8 @@ export class CategoryModel {
   }
 
   // delteCategory 추가
-  async deleteCategory(categoryId) {
-    await Category.deleteOne({ _id: categoryId });
+  async deleteCategory(CategoryId) {
+    await Category.deleteOne({ _id: CategoryId });
   }
 
   async deleteCode(code) {

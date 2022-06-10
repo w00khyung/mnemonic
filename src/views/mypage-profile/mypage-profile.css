@@ -1,4 +1,4 @@
-@import '../../useful-css.css';
+@import "../../useful-css.css";
 
 /* reset CSS */
 a {
@@ -12,20 +12,30 @@ a {
 body {
   overflow: visible;
 }
-.site-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.shopping-mall-header {
-  width: 100%;
-  position: fixed;
-  z-index: 30;
-}
 .mypage-container {
   width: 100%;
   height: 90vh;
-  margin-top: 3rem;
+}
+.mypage-container-left {
+  width: 13.75rem;
+  height: 43.75rem;
+  padding: 1.25rem;
+}
+.mypage-container-left h2 {
+  margin-bottom: 1.25rem;
+  font-size: 1.87rem;
+  font-weight: bold;
+}
+.mypage-container-left ul {
+  margin-bottom: 3.12rem;
+}
+.mypage-container-left ul h3 {
+  margin: 0.3rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.mypage-container-left ul li a {
+  color: var(--gray-color);
 }
 .mypage-container-right {
   display: flex;
@@ -33,7 +43,7 @@ body {
   justify-content: space-between;
   width: 62.5rem;
   height: 43.75rem;
-  padding-left: 2rem;
+  padding: 1.25rem 3.12rem;
 }
 .mypage-user-profile-top {
   display: flex;
@@ -101,19 +111,4 @@ body {
 }
 .mypage-confirm-modal-btns button {
   width: 11.87rem;
-}
-.changeIcon {
-  cursor: pointer;
-  width:7rem;
-  margin-bottom: 1rem;
-}
-
-.mypage-profile-icon-change .selectBox{
-  display:none;
-  width:4rem;
-  
-}
-
-.selectBox img , .profileIcon  {
-  border-radius: 50%;
 }

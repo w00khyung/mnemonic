@@ -1,15 +1,3 @@
-@import '../useful-css.css';
-
-.site-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.shopping-mall-header {
-  width: 100%;
-  position: fixed;
-  z-index: 30;
-}
 .login-form-container {
   height: 85vh;
 }
@@ -21,25 +9,4 @@
 }
 .login-form-box .button {
   font-weight: bold;
-}
-
-#submitButton {
-  background-color: black;
-}
-#title {
-  color: black;
-}
-.lable-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.kakaoLoginBtn {
-  margin-top: 0.5rem;
-  background-color: #fee500;
-}
-
-.kakaoLoginLable {
-  padding: 0.8rem;
-  color: #191919;
 }
