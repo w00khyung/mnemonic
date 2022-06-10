@@ -31,8 +31,8 @@ const navSection = () => {
     </div>
         <ul class="header-navbar-menu">
         <li><a href="/product">Product</a></li>
+        <li><a class="logout">${isLoggedIn ? `Logout` : `Login`}</a></li>
         ${isLoggedIn ? '' : `<li><a href="/register">Sign up</a></li>`}
-          <li><a class="logout">${isLoggedIn ? `Logout` : `Login`}</a></li>
           ${isAdmin ? `<li><a href="/admin">Admin</a></li>` : ''}
           ${
             isLoggedIn
