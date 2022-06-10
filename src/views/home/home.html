@@ -6,16 +6,17 @@
     <title>Mnemonic</title>
     <!-- 아이콘 -->
     <link
-      rel="icon"
+      rel="shortcut icon"
       type="image/png"
       sizes="16x16"
-      href="/elice-rabbit-favicon.png"
+      href="../../../uploads/favicon.png"
     />
+    <!-- href="kdt-sw2-busan-team06.elicecoding.com/favicon.ico" -->
     <!-- bulma css -->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
+    /> -->
     <!-- 폰트 어썸: 아이콘 -->
     <script
       defer
@@ -23,74 +24,109 @@
       crossorigin="anonymous"
     ></script>
     <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="../useful-css.css" />
+    <link rel="stylesheet" href="../components/css/header.css" />
+    <link rel="stylesheet" href="../components/css/scroll-top.css" />
     <link rel="stylesheet" href="./css/home.css" />
     <link rel="stylesheet" href="./css/nomalize.css" />
     <script src="home.js" type="module" defer></script>
   </head>
   <body>
-    <!-- 헤더 -->
-    <div class="shopping-mall-header"></div>
+    <div class="site-wrap">
+      <!-- 헤더 -->
+      <div class="shopping-mall-header"></div>
 
-    <div class="slide-container">
-      <div class="slider">
-        <div class="slides">
-          <input
-            type="radio"
-            class="radio-btn"
-            name="radio-btn"
-            id="radio1"
-            checked
-          />
-          <input type="radio" class="radio-btn" name="radio-btn" id="radio2" />
-          <input type="radio" class="radio-btn" name="radio-btn" id="radio3" />
-          <input type="radio" class="radio-btn" name="radio-btn" id="radio4" />
+      <!-- 슬라이더 -->
+      <div class="slide-container">
+        <div class="slider">
+          <img src="../../../uploads/test-banner01.png" alt="" />
 
-          <div class="slide first">
-            <img src="./img/bannerImg1.jpg" alt="" />
-          </div>
+          <!--           <div class="slides">
+            <input
+              type="radio"
+              class="radio-btn"
+              name="radio-btn"
+              id="radio1"
+              checked
+            />
+            <input
+              type="radio"
+              class="radio-btn"
+              name="radio-btn"
+              id="radio2"
+            />
+            <input
+              type="radio"
+              class="radio-btn"
+              name="radio-btn"
+              id="radio3"
+            />
+            <input
+              type="radio"
+              class="radio-btn"
+              name="radio-btn"
+              id="radio4"
+            />
 
-          <div class="slide">
-            <img src="./img/bannerImg2.jpg" alt="" />
-          </div>
-
-          <div class="slide">
-            <img src="./img/bannerImg3.jpg" alt="" />
-          </div>
-
-          <div class="slide">
-            <img src="./img/bannerImg4.jpg" alt="" />
-          </div>
-
-          <div class="slide">
-            <img src="./img/bannerImg1.jpg" alt="" />
-          </div>
-
-          <div class="navigation-auto">
-            <div class="auto-btn1"></div>
-            <div class="auto-btn2"></div>
-            <div class="auto-btn3"></div>
-            <div class="auto-btn4"></div>
-          </div>
-          <div class="navigation-manual">
-            <label for="radio1" class="manual-btn"></label>
-            <label for="radio2" class="manual-btn"></label>
-            <label for="radio3" class="manual-btn"></label>
-            <label for="radio4" class="manual-btn"></label>
-          </div>
-          <div class="arrow">
-            <div class="arrow-left">
-              <img src="./img/left-arrow.png" alt="" />
+            <div class="slide first">
+              <img src="./img/bannerImg1.jpg" alt="" />
             </div>
-            <div class="arrow-right">
-              <img src="./img/right-arrow.png" alt="" />
+
+            <div class="slide">
+              <img src="./img/bannerImg2.jpg" alt="" />
             </div>
-          </div>
+
+            <div class="slide">
+              <img src="./img/bannerImg3.jpg" alt="" />
+            </div>
+
+            <div class="slide">
+              <img src="./img/bannerImg4.jpg" alt="" />
+            </div>
+
+            <div class="slide">
+              <img src="./img/bannerImg1.jpg" alt="" />
+            </div>
+
+            <div class="navigation-auto">
+              <div class="auto-btn1"></div>
+              <div class="auto-btn2"></div>
+              <div class="auto-btn3"></div>
+              <div class="auto-btn4"></div>
+            </div>
+            <div class="navigation-manual">
+              <label for="radio1" class="manual-btn"></label>
+              <label for="radio2" class="manual-btn"></label>
+              <label for="radio3" class="manual-btn"></label>
+              <label for="radio4" class="manual-btn"></label>
+            </div>
+            <div class="arrow">
+              <div class="arrow-left">
+                <img src="./img/left-arrow.png" alt="" />
+              </div>
+              <div class="arrow-right">
+                <img src="./img/right-arrow.png" alt="" />
+              </div>
+            </div>
+          </div> -->
         </div>
       </div>
+
+      <div class="banner-box">
+        <div class="img-box">
+          <img src="../../../uploads/test-banner-02.png" alt="" />
+          <img src="../../../uploads/test-banner-03.png" alt="" />
+          <img src="../../../uploads/test-banner-04.png" alt="" />
+        </div>
+      </div>
+
+      <div class="setCategoryProducts"></div>
+
+      <footer class="display-center">
+        <p>footer</p>
+      </footer>
+      <!-- top btn -->
+      <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
     </div>
-
-    <div class="setCategoryProducts"></div>
-
-    <a id="backtotop"><i class="fa-solid fa-arrow-up-to-line"></i></a>
   </body>
 </html>

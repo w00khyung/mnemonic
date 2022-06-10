@@ -1,5 +1,7 @@
 import * as Api from '/api.js';
 import { navRender } from '../../components/header.js';
+import { pageScroll } from '../../components/pagescroll.js';
+import { mypageNavigation } from '../../components/mypage.js';
 
 const productName = document.querySelector('#product-name');
 const productPrice = document.querySelector('#product-price');
@@ -10,17 +12,38 @@ const imgId = document.querySelector('#imgId');
 const submitButton = document.querySelector('#submit');
 
 navRender();
-start();
+pageScroll();
+mypageNavigation();
+categoryList();
 addAllEvents();
 
-async function start() {
-  const user = await Api.get('/api/my');
+async function categoryList() {
+  const user = await Api.get('/api', 'my', true);
   document.querySelector('#user-name').value = user.fullName;
 
   const getCategory = await Api.get('/api/category/categorylist');
   const min = 0;
   const max = getCategory.length;
 
+  // 카테고리 code 순으로 정렬
+  const categoryCodeSort = categoryCode.sort((a, b) => {
+    if (a > b) return 1;
+    if (a === b) return 0;
+    if (a < b) return -1;
+  });
+
+  const sortedCategoryName = [];
+  const sortedCategoryId = [];
+
+  // category code순서대로 카테고리 이름 정렬
+  for (let i = min; i < max; i++) {
+    for (let n = min; n < max; n++) {
+      if (categoryList[n].code === categoryCodeSort[i]) {
+        sortedCategoryName.push(categoryList[n].name);
+        sortedCategoryId.push(categoryList[n]._id);
+      }
+    }
+  }
   for (let i = min; i < max; i++) {
     const opt = document.createElement('option');
     opt.value = getCategory[i]._id;
@@ -34,8 +57,8 @@ async function imageUp(e) {
   const photos = document.querySelector('input[type="file"]');
   formData.append(`photo`, photos.files[0]);
 
-  for (var pair of formData.entries()) {
-    console.log(pair[0] + ', ' + pair[1]);
+  for (const pair of formData.entries()) {
+    console.log(`${pair[0]}, ${pair[1]}`);
   }
   await fetch('/api/upload/imageUpload', {
     method: 'POST',
@@ -43,7 +66,7 @@ async function imageUp(e) {
   })
     .then((response) => response.json())
     .then((result) => {
-      document.querySelector('#imgId').src = result['imageUrl'];
+      document.querySelector('#imgId').src = result.imageUrl;
       console.log('성공:', result);
     })
     .catch((error) => {
@@ -68,7 +91,8 @@ async function handleSubmit(e) {
     const category = categotySelect.value;
     const data = { name, price, brand, content, imagePath, category };
 
-    await Api.post('/api/product/register', data);
+    await Api.post('/api/product/register', data, true);
+    alert('상품 추가가 완료되었습니다.');
 
     // 기본 페이지로 이동
     window.location.href = '/';

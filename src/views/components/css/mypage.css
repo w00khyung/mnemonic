@@ -1,0 +1,30 @@
+@import "../../useful-css.css";
+
+/* reset CSS */
+a {
+  color: var(--black-color);
+}
+/* clicked class */
+.focus {
+  color: var(--black-color);
+  font-weight: bold;
+}.mypage-container-left {
+  width: 13.75rem;
+  height: 43.75rem;
+}
+.mypage-container-left h2 {
+  margin-bottom: 1.25rem;
+  font-size: 1.87rem;
+  font-weight: bold;
+}
+.mypage-container-left ul {
+  margin-bottom: 3.12rem;
+}
+.mypage-container-left ul h3 {
+  margin: 0.3rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.mypage-container-left ul li a {
+  color: var(--gray-color);
+}

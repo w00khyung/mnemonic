@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>쇼핑-데모</title>
+    <title>Mnemonic</title>
+    <!-- 아이콘 -->
     <!-- 아이콘 -->
     <link
-      rel="icon"
+      rel="shortcut icon"
       type="image/png"
       sizes="16x16"
-      href="/elice-rabbit-favicon.png"
+      href="../../../uploads/favicon.png"
     />
     <!-- bulma css -->
     <link
@@ -25,34 +26,57 @@
     <!-- Daum 주소 API 사용하기 위한 파일 -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="../../useful-css.css" />
+    <link rel="stylesheet" href="../../components/css/header.css" />
+    <link rel="stylesheet" href="../../components/css/scroll-top.css" />
     <link rel="stylesheet" href="admin-orders.css" />
     <script src="admin-orders.js" type="module" defer></script>
   </head>
   <body>
-    <!-- 헤더 -->
-    <div class="shopping-mall-header"></div>
+    <div class="site-wrap">
+      <!-- 헤더 -->
+      <div class="shopping-mall-header"></div>
 
-    <!-- 주문조회 -->
-    <section class="section">
-      <div class="container">
-        <div class="block account-header">
-          <h1 class="subtitle is-4">관리자 주문조회</h1>
-        </div>
-        <div class="container orders-container" id="ordersContainer">
-          <div
-            class="columns notification is-info is-light is-mobile orders-top"
-          >
-            <div class="column is-2">날짜</div>
-            <div class="column is-2">아이디</div>
-            <div class="column is-4">주문정보</div>
-            <div class="column is-2">상태</div>
-            <div class="column is-2">신청</div>
+      <!-- 주문조회 -->
+      <section class="order-section">
+        <aside class="menu">
+          <p class="menu-label">회원</p>
+          <ul class="menu-list">
+            <li><a>회원 관리</a></li>
+            <li><a href="/admin/orders">주문 관리</a></li>
+            <li><a>배송 관리</a></li>
+          </ul>
+          <p class="menu-label">판매자</p>
+          <ul class="menu-list">
+            <li><a>판매자 관리</a></li>
+            <li><a>상품 관리</a></li>
+            <li><a>상품 문의 관리</a></li>
+            <li><a>리뷰 관리</a></li>
+          </ul>
+          <p class="menu-label">카테고리</p>
+          <ul class="menu-list">
+            <li><a href="/admin/category">카테고리 관리</a></li>
+          </ul>
+        </aside>
+        <div class="container">
+          <div class="block account-header">
+            <h1 class="subtitle is-4">관리자 주문조회</h1>
+          </div>
+          <div class="container orders-container" id="ordersContainer">
+            <div
+              class="columns notification is-info is-light is-mobile orders-top"
+            >
+              <div class="column is-2">주문일자<br />[주문번호]</div>
+              <div class="column is-2">아이디</div>
+              <div class="column is-4">주문정보</div>
+              <div class="column is-2">상태</div>
+              <div class="column is-2">신청</div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-   
+      </section>
+      <!-- top btn -->
+      <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
     </div>
   </body>
 </html>

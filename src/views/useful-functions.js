@@ -19,11 +19,82 @@ export const addCommas = (n) => {
 
 // 13,000원, 2개 등의 문자열에서 쉼표, 글자 등 제외 후 숫자만 뺴냄
 // 예시: 13,000원 -> 13000, 20,000개 -> 20000
-export const convertToNumber = (string) => {
-  return parseInt(string.replace(/(,|개|원)/g, ''));
+export const convertToNumber = (string) =>
+  parseInt(string.replace(/(,|개|원)/g, ''));
+
+// ms만큼 기다리게 함.
+export const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+export const isAuth = () => {
+  if (document.cookie.includes('refreshToken')) {
+    return true;
+  }
+  return false;
+};
+
+export const getCookie = (cookie) => {
+  const idx = document.cookie.indexOf(cookie);
+
+  if (idx === -1) {
+    return false;
+  }
+  const cookieValue = document.cookie
+    .slice(idx)
+    .split(';')
+    .find((row) => row.startsWith(cookie))
+    .split('=')[1];
+
+  return cookieValue;
+};
+
+export const setCookie = (cookieName, value) => {
+  document.cookie = `${cookieName}=${value}; path=/`;
+}
+
+export const deleteCookie = (cookie) => {
+  document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/`;
+};
+
+export const checkToken = async () => {
+  // access가 존재하지 않을 때만 요청 보내기
+  const accessToken = getCookie('accessToken');
+  const refreshToken = getCookie('refreshToken');
+
+  if (refreshToken) {
+    if (!accessToken) {
+      // refresh 검증 후 재발급 요청
+      const result = await fetch('/api/validateToken', {
+        method: 'GET',
+      });
+      // 검증 실패, 재발급 되지 않음.
+      if (result.status === 401) {
+        console.log(await result.json());
+        return false;
+      }
+      // 정상적으로 재발급 됨.
+      return true;
+    }
+    // access, refresh 모두 존재함.
+    return true;
+  }
+  // access, refresh token 모두 존재하지 않을 경우
+  return false;
 };
 
 // ms만큼 기다리게 함.
 export const wait = (ms) => {
   return new Promise((r) => setTimeout(r, ms));
+};
+
+export const checkAdminToken = async () => {
+  const token = getCookie('accessToken');
+  if (token) {
+    const res = await fetch('/api/isAdmin', {
+      method: 'GET',
+    });
+    if (res.ok) {
+      return true;
+    }
+    return false;
+  }
 };

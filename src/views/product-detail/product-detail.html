@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>제품 상세 페이지</title>
-
+    <title>Mnemonic</title>
     <!-- 아이콘 -->
     <link
-      rel="icon"
+      rel="shortcut icon"
       type="image/png"
       sizes="16x16"
-      href="/elice-rabbit-favicon.png"
+      href="../../../uploads/favicon.png"
     />
     <!-- bulma css -->
     <link
@@ -26,35 +25,51 @@
     ></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="../../useful-css.css" />
-    <link rel="stylesheet" href="product-detail.css" />
+    <link rel="stylesheet" href="../../../components/css/header.css" />
+    <link rel="stylesheet" href="../../../components/css/scroll-top.css" />
+    <link rel="stylesheet" href="./product-detail.css" />
     <link rel="stylesheet" href="./product-comment.css">
     <script src="product-detail.js" type="module" defer></script>
     <script src="./product-commnet.js" type="module" defer></script>
   </head>
   <body>
+    <div class="site-wrap">
     <!-- 헤더 -->
     <div class="shopping-mall-header"></div>
 
     <!-- 제품상세 -->
     <section class="product-detail-wrap"></section>
 
-    <!-- 댓글 -->
-    <section class="commnet-wrap">
-    </section>
-    <!-- 모달 -->
-  <section class="product-success-modal">
-    <div class="product-success-modal-wrap">
-      <p>장바구니에 성공적으로 담겼습니다.</p>
-        <div class="product-success-modal-btns">
-          <button class="button is-light product-list-btn">
-            <a href="/product">구경하기</a>
-          </button>
-          </button>
-          <button class="button is-black product-update-btn">
-            <a href="/cart">장바구니</a>
-          </button>
-        </div>
+    <div class="comment-box">
+      <!-- 댓글 작성 -->
+      <section class="comment-write-wrap"></section>
+
+      <!-- 댓글 리스트 -->
+      <section class="comment-list-wrap"></section>
+
+      <!-- 페이지 네이션  -->
+      <section class="pagination-wrap"></section>
     </div>
+   
+   <!-- 밑에 마진두기 -->
+   <div class="margin-footer"></div>
+    <!-- 모달 -->
+    <section class="product-success-modal">
+      <div class="product-success-modal-wrap">
+        <p>장바구니에 성공적으로 담겼습니다.</p>
+          <div class="product-success-modal-btns">
+            <button class="button is-light product-list-btn">
+              <a href="/product">구경하기</a>
+            </button>
+            </button>
+            <button class="button is-black product-update-btn">
+              <a href="/cart">장바구니</a>
+            </button>
+          </div>
+      </div>
   </section>
+  <!-- top btn -->
+  <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
+  </div>
   </body>
 </html>

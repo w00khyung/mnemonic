@@ -34,8 +34,8 @@ orderRouter.post('/', async (req, res, next) => {
 // 특정 사용자의 주문 내역 조회
 orderRouter.get('/', async (req, res, next) => {
   try {
-    const user = req.currentUserId;
-    const result = await orderService.getOrderList(user);
+    const userId = req.currentUserId;
+    const result = await orderService.getOrderList(userId);
     res.status(200).json({
       data: result,
     });

@@ -6,12 +6,23 @@ a {
 body {
   overflow: visible;
 }
+.site-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shopping-mall-header {
+  width: 100%;
+  position: fixed;
+  z-index: 30;
+}
 .product-detail-wrap {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
   height: 90vh;
+  margin-top: 11rem;
 }
 .product-detail-page {
   width: 80rem;
@@ -97,4 +108,13 @@ body {
 }
 .product-list-btn a {
   color: var(--black-color);
+}
+.cancel:hover {
+  background-color: black;
+}
+.comment-write-wrap {
+  width: 100%;
+}
+.comment-list-wrap {
+  width: 100%;
 }

@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" />
-    <title>쇼핑-데모</title>
+    <title>Mnemonic</title>
     <!-- 아이콘 -->
     <link
-      rel="icon"
+      rel="shortcut icon"
       type="image/png"
       sizes="16x16"
-      href="../elice-rabbit-favicon.png"
+      href="../../../uploads/favicon.png"
     />
     <!-- bulma css 관련 -->
     <link
@@ -24,80 +24,92 @@
     ></script>
 
     <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="../useful-css.css" />
+    <link rel="stylesheet" href="../components/css/header.css" />
+    <link rel="stylesheet" href="../components/css/scroll-top.css" />
     <link rel="stylesheet" href="cart.css" />
     <script src="cart.js" type="module" defer></script>
   </head>
   <body>
-    <!-- 헤더 -->
-    <div class="shopping-mall-header"></div>
+    <div class="site-wrap">
+      <!-- 헤더 -->
+      <div class="shopping-mall-header"></div>
 
-    <!-- 장바구니 -->
-    <cartContainer class="cartContainer">
-      <div class="container">
-        <div class="cart-header">
-          <div class="title">
-            <p class="is-size-2">장바구니</p>
-          </div>
-          <div class="subtitle">
-            <p class="is-size-6">
-              &gt; &nbsp; 주문결제 &nbsp; &gt; &nbsp;주문완료
-            </p>
-          </div>
-        </div>
-
-        <div class="tile is-ancestor">
-          <div class="tile is-8 is-parent cart-products">
-            <!-- 장바구니에 담긴 상품 모음 -->
-            <div class="box cart-products-container" id="cartProductsContainer">
-              <div class="cart-products-header">
-                <button class="button is-link selectDeleteBtn">선택삭제</button>
-                <button class="button is-link allDeleteBtn">전체삭제</button>
-              </div>
-
-              <!-- 장바구니에 담긴 상품들의 html 요소(카드 형태)가 주입되는 곳 -->
-              <div class="productTag">
-                <input type="checkbox" class="checkboxAll" />
-                <p>이미지</p>
-                <p>상품명</p>
-                <p>가격</p>
-                <p>수량</p>
-              </div>
-              <div class="emptyCart">장바구니가 비었습니다.</div>
+      <!-- 장바구니 -->
+      <section class="cartContainer">
+        <div class="container">
+          <div class="cart-header">
+            <div class="title">
+              <p class="is-size-2">장바구니</p>
+            </div>
+            <div class="subtitle">
+              <p class="is-size-6">
+                &gt; &nbsp; 주문결제 &nbsp; &gt; &nbsp;주문완료
+              </p>
             </div>
           </div>
-          <!-- 선택한 상품 총 요약 -->
-          <div class="tile is-parent tile-order-summary">
-            <div class="box order-summary">
-              <div class="header">
-                <p>결제정보</p>
-              </div>
-              <div class="order-info">
-                <div class="info">
-                  <p>상품수</p>
-                  <p id="productsCount"></p>
+
+          <div class="tile is-ancestor">
+            <div class="tile is-8 is-parent cart-products">
+              <!-- 장바구니에 담긴 상품 모음 -->
+              <div
+                class="box cart-products-container"
+                id="cartProductsContainer"
+              >
+                <div class="cart-products-header">
+                  <button class="button is-link selectDeleteBtn">
+                    선택삭제
+                  </button>
+                  <button class="button is-link allDeleteBtn">전체삭제</button>
                 </div>
-                <div class="info">
-                  <p>상품금액</p>
-                  <p id="productsTotal"></p>
+
+                <!-- 장바구니에 담긴 상품들의 html 요소(카드 형태)가 주입되는 곳 -->
+                <div class="productTag">
+                  <input type="checkbox" class="checkboxAll" />
+                  <p>이미지</p>
+                  <p>상품명</p>
+                  <p>가격</p>
+                  <p>수량</p>
                 </div>
-                <div class="info">
-                  <p>배송비</p>
-                  <p id="deliveryFee"></p>
+                <div class="emptyCart">장바구니가 비었습니다.</div>
+              </div>
+            </div>
+            <!-- 선택한 상품 총 요약 -->
+            <div class="tile is-parent tile-order-summary">
+              <div class="box order-summary">
+                <div class="header">
+                  <p>결제정보</p>
                 </div>
-              </div>
-              <div class="total">
-                <p class="total-label">총 결제금액</p>
-                <p class="total-price" id="orderTotal"></p>
-              </div>
-              <div class="purchase">
-                <button class="button is-info" id="purchaseButton">
-                  구매하기
-                </button>
+                <div class="order-info">
+                  <div class="info">
+                    <p>상품수</p>
+                    <p id="productsCount"></p>
+                  </div>
+                  <div class="info">
+                    <p>상품금액</p>
+                    <p id="productsTotal"></p>
+                  </div>
+                  <div class="info">
+                    <p>배송비</p>
+                    <p id="deliveryFee"></p>
+                  </div>
+                </div>
+                <div class="total">
+                  <p class="total-label">총 결제금액</p>
+                  <p class="total-price" id="orderTotal"></p>
+                </div>
+                <div class="purchase">
+                  <button class="button is-info" id="purchaseButton">
+                    구매하기
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </cartContainer>
+      </section>
+      <!-- top btn -->
+      <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
+    </div>
   </body>
 </html>

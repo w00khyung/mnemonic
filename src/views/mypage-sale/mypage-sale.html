@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>프로필 정보</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mnemonic</title>
     <!-- 아이콘 -->
     <link
-      rel="icon"
+      rel="shortcut icon"
       type="image/png"
       sizes="16x16"
-      href="/elice-rabbit-favicon.png"
+      href="../../../uploads/favicon.png"
     />
     <!-- bulma css -->
     <link
@@ -27,10 +27,137 @@
     ></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="../../useful-css.css" />
-  <link rel="stylesheet" href="mypage-profile.css" />
-  <script src="mypage-profile.js" type="module" defer></script>
-</head>
-<body>
-판매내역입니다.
-</body>
+    <link rel="stylesheet" href="../../components/css/header.css" />
+    <link rel="stylesheet" href="../../components/css/mypage.css" />
+    <link rel="stylesheet" href="../../components/css/scroll-top.css" />
+    <link rel="stylesheet" href="../mypage.css" />
+    <link rel="stylesheet" href="mypage-sale.css" />
+    <script src="mypage-sale.js" type="module" defer></script>
+  </head>
+  <body>
+    <div class="site-wrap">
+      <!-- 헤더 -->
+      <div class="shopping-mall-header"></div>
+
+      <!-- 판매 내역 -->
+      <section class="mypage-container display-center">
+        <section class="mypage-container-left"></section>
+        <section class="mypage-container-right">
+          <section class="mypage-sale-container-right">
+            <h2>판매 내역</h2>
+            <div class="mypage-sale-lists"></div>
+          </section>
+        </section>
+      </section>
+
+      <!-- 모달 -->
+      <section class="mypage-sale-modal">
+        <section class="mypage-sale-modal-wrap">
+          <div class="mypage-sale-modal-title-wrap">
+            <h2 class="mypage-sale-modal-title">제품정보 수정</h2>
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <div class="product-add-content">
+            <div class="product-add-content-left">
+              <img
+                id="imgId"
+                src="../../../uploads/basic-thumnail.png"
+                alt=""
+              />
+              <form
+                class="form"
+                name="form"
+                action=""
+                method="post"
+                onsubmit=""
+                enctype="multipart/form-data"
+              >
+                <div class="field">
+                  <label for="user-name">작성자</label>
+                  <input
+                    class="input setName"
+                    id="user-name"
+                    type="text"
+                    readonly
+                  />
+                </div>
+
+                <div class="field">
+                  <label for="product-name">상품이름</label>
+                  <input class="input" type="text" id="product-name" />
+                </div>
+
+                <div class="field">
+                  <label for="product-price">가격</label>
+                  <input class="input" type="text" id="product-price" />
+                </div>
+
+                <div class="field">
+                  <label for="product-brand">브랜드</label>
+                  <input class="input" type="text" id="product-brand" />
+                </div>
+              </form>
+            </div>
+            <div class="product-add-content-right">
+              <form
+                class="form"
+                name="form"
+                action=""
+                method="post"
+                onsubmit=""
+                enctype="multipart/form-data"
+              >
+                <div class="product-img">
+                  <label>이미지 업로드</label>
+                  <div class="upload-zone">
+                    <div class="field">
+                      <div class="custom-file">
+                        <input
+                          type="file"
+                          class="custom-file-input"
+                          id="inputGroupFile01"
+                          name="attachfile"
+                          accept="image/*,.img,.jpg"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="select product-category">
+                      <select id="product-category-select" required>
+                        <option selected>선택하세요.</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="product-note" class="product-add-contents"
+                    >내용</label
+                  >
+                  <textarea
+                    class="textarea is-small"
+                    id="product-note"
+                    type="text"
+                    rows="3"
+                  ></textarea>
+                </div>
+
+                <div class="field product-add-sumit">
+                  <button
+                    class="button is-black product-add-sumit-btn"
+                    id="submit"
+                  >
+                    수정하기
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </section>
+      <!-- top btn -->
+      <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
+    </div>
+  </body>
 </html>

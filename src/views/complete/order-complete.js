@@ -1,5 +1,8 @@
-import { navRender } from '/components/header.js';
+import { navRender } from '../../components/header.js';
+import { pageScroll } from '../../components/pagescroll.js';
+
 navRender();
+pageScroll();
 
 const orderDetailButton = document.querySelector('#orderDetailButton');
 const shoppingButton = document.querySelector('#shoppingButton');

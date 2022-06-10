@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>쇼핑-데모</title>
+    <title>Mnemonic</title>
     <!-- 아이콘 -->
     <link
-      rel="icon"
+      rel="shortcut icon"
       type="image/png"
       sizes="16x16"
-      href="/elice-rabbit-favicon.png"
+      href="../../../uploads/favicon.png"
     />
     <!-- bulma css 관련 -->
     <link
@@ -24,6 +24,8 @@
     ></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="../useful-css.css" />
+    <link rel="stylesheet" href="../components/css/header.css" />
+    <link rel="stylesheet" href="../components/css/scroll-top.css" />
     <link rel="stylesheet" href="login.css" />
     <script src="login.js" type="module" defer></script>
 
@@ -31,114 +33,62 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
   <body>
-    <!-- 헤더 -->
-    <div class="shopping-mall-header"></div>
+    <div class="site-wrap">
+      <!-- 헤더 -->
+      <div class="shopping-mall-header"></div>
 
-    <!-- 로그인 폼(Form) -->
-    <div class="login-form-container display-center">
-      <form class="box login-form-box" id="loginForm">
-        <p class="title is-5 has-text-info">어서오세요!</p>
-        <div class="field">
-          <label class="label" for="emailInput">이메일</label>
-          <div class="control">
-            <input
-              class="input"
-              id="emailInput"
-              type="email"
-              placeholder="abc@example.com"
-              autocomplete="on"
-            />
+      <!-- 로그인 폼(Form) -->
+      <div class="login-form-container display-center">
+        <form class="box login-form-box" id="loginForm">
+          <p class="title is-5" id="title">어서오세요!</p>
+          <div class="field">
+            <div class="lable-container">
+              <label class="label" for="emailInput">이메일</label>
+              <label class="emailLabel"></label>
+            </div>
+            <div class="control">
+              <input
+                class="input"
+                id="emailInput"
+                type="email"
+                placeholder="abc@example.com"
+                autocomplete="on"
+              />
+            </div>
           </div>
-        </div>
 
-        <div class="field mb-5">
-          <label class="label" for="passwordInput">비밀번호</label>
-          <div class="control">
-            <input
-              class="input"
-              id="passwordInput"
-              type="password"
-              placeholder="********"
-              autocomplete="on"
-            />
+          <div class="field mb-5">
+            <div class="lable-container">
+              <label class="label" for="passwordInput">비밀번호</label>
+              <label class="passwordLabel"></label>
+            </div>
+            <div class="control">
+              <input
+                class="input"
+                id="passwordInput"
+                type="password"
+                placeholder="********"
+                autocomplete="on"
+              />
+            </div>
           </div>
-        </div>
+          <button class="button is-info is-fullwidth" id="submitButton">
+            로그인하기
+          </button>
 
-        <button class="button is-info is-fullwidth" id="submitButton">
-          로그인하기
-        </button>
-
-        <!-- 구글 로그인 버튼 -->
-        <!-- <div
-          id="g_id_onload"
-          data-client_id="712926701732-kulb4bs65d4t7arno34o89skm3e75n3j.apps.googleusercontent.com"
-          data-callback="handleCredentialResponse"
-          data-login_uri="/api/google/login"
-          data-auto_prompt="false"
-          data-auto_select="true"
-        ></div>
-        <!-- 구글 로그인 모달창 -->
-        <!-- <div
-          class="g_id_signin"
-          data-type="standard"
-          data-size="large"
-          data-theme="outline"
-          data-text="sign_in_with"
-          data-shape="rectangular"
-          data-logo_alignment="left"
-        ></div> -->
-
-        <!-- 카카오 로그인 -->
-        <div>
-          <a id="kakao" href="/auth/kakao">카카오 간편 로그인</a>
-        </div>
-        <li onclick="kakaoLogin();">
-          <a href="javascript:void(0)">
-            <span>카카오 로그인</span>
-          </a>
-        </li>
-        <!-- 카카오 스크립트 -->
-        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-        <script>
-          Kakao.init('c1b1af7b8ea4af897fed56fba0952918'); //발급받은 키 중 javascript키를 사용해준다.
-          console.log(Kakao.isInitialized()); // sdk초기화여부판단
-          //카카오로그인
-          function kakaoLogin() {
-            Kakao.Auth.login({
-              success: function (response) {
-                Kakao.API.request({
-                  url: '/v2/user/me',
-                  success: function (response) {
-                    const { email, profile } = response.kakao_account;
-                    console.log(email, profile.nickname);
-                  },
-                  fail: function (error) {
-                    console.log(error);
-                  },
-                });
-              },
-              fail: function (error) {
-                console.log(error);
-              },
-            });
-          }
-          //카카오로그아웃
-          function kakaoLogout() {
-            if (Kakao.Auth.getAccessToken()) {
-              Kakao.API.request({
-                url: '/v1/user/unlink',
-                success: function (response) {
-                  console.log(response);
-                },
-                fail: function (error) {
-                  console.log(error);
-                },
-              });
-              Kakao.Auth.setAccessToken(undefined);
-            }
-          }
-        </script>
-      </form>
+          <!-- 카카오 로그인 -->
+          <button
+            type="button"
+            class="button is-fullwidth kakaoLoginBtn"
+            onclick="location.href='/auth/kakao';"
+          >
+            <i class="fa-solid fa-comment"></i>
+            <a class="kakaoLoginLable" href="/auth/kakao"> 카카오 로그인 </a>
+          </button>
+        </form>
+      </div>
+      <!-- top btn -->
+      <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
     </div>
   </body>
 </html>

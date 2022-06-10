@@ -1,3 +1,5 @@
+import { isAuth, getCookie, deleteCookie } from '../useful-functions.js';
+
 const UserLogOut = () => {
   if (
     !sessionStorage.getItem('accessToken') ||
@@ -9,8 +11,11 @@ const UserLogOut = () => {
   const logout = window.confirm('로그아웃 하시겠습니까?');
   if(!logout) return;
   sessionStorage.removeItem('email');
-  sessionStorage.removeItem('accessToken');
-  sessionStorage.removeItem('refreshToken');
+  sessionStorage.removeItem('icon');
+
+  deleteCookie('email');
+  deleteCookie('accessToken');
+  deleteCookie('refreshToken');
   window.location.href = '/';
 };
 
@@ -20,54 +25,36 @@ const onOffLoginOut = () => {
 };
 
 const navSection = () => {
-  const isLoggedIn =
-    sessionStorage.getItem('accessToken') &&
-    sessionStorage.getItem('refreshToken');
+  const isLoggedIn = isAuth();
+  const isAdmin = getCookie('email') === 'manager@gmail.com';
   const shoppingMallHeader = document.querySelector('.shopping-mall-header');
-  const header = `
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="container mt-3">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="/">
-        <img src="/elice-rabbit.png" width="30" height="30" />
-        <span class="has-text-link">쇼핑-n팀</span>
-      </a>
-  
-      <a
-        role="button"
-        class="navbar-burger"
-        aria-label="menu"
-        aria-expanded="false"
-        data-target="navbarBasicExample"
-      >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+  const header = `<nav class="header-navbar display-center">
+  <div class="header-navbar-container">
+    <div class="header-navbar-brand">
+      <a class="header-navbar-item" href="/">
+        <img src="../../../uploads/logo.svg" width="130"/>
       </a>
     </div>
-  
-      <div class="navbar-end breadcrumb my-auto" aria-label="breadcrumbs">
-        <ul id="navbar">
-        <li><a href="/product">제품페이지</a></li>
-        ${isLoggedIn ? `<li><a href="/product/add">상품등록</a></li>` : ''}
-        ${isLoggedIn ? `<li><a href="/mypage">마이페이지</a></li>` : ''}
-          <li><a class="logout">${isLoggedIn ? `로그아웃` : `로그인`}</a></li>
-          ${isLoggedIn ? '' : `<li><a href="/register">회원가입</a></li>`}
+        <ul class="header-navbar-menu">
+        <li><a href="/product">Product</a></li>
+        <li><a class="logout">${isLoggedIn ? `Logout` : `Login`}</a></li>
+        ${isLoggedIn ? '' : `<li><a href="/register">Sign up</a></li>`}
+          ${isAdmin ? `<li><a href="/admin">Admin</a></li>` : ''}
+          ${
+            isLoggedIn
+              ? `<li><a href="/mypage"><i class="fa-solid fa-user-large"></i></a></li>`
+              : ''
+          }
           ${
             isLoggedIn
               ? `<li>
           <a href="/cart" aria-current="page">
-            <span class="icon">
-              <i class="fas fa-cart-shopping"></i>
-            </span>
-            <span>카트</span>
+            <i class="fa-solid fa-cart-shopping"></i>
           </a>
-         
         </li>`
               : ''
           }
         </ul>
-      </div>
     </div>
   </div>
   </nav>
