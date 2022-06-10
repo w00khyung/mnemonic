@@ -46,9 +46,6 @@ body {
   width: 5rem;
   height: 5rem;
   margin-right: 1.25rem;
-  border-radius: 5rem;
-  background-color: var(--gray-color);
-  filter: grayscale(1);
 }
 .mypage-user-profile-top p {
   font-weight: bold;

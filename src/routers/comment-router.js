@@ -16,22 +16,22 @@ commentRouter.post('/', loginRequired, async (req, res, next) => {
       );
     }
 
-    // jwt에서 writerId 받아오기
-    const writerId = req.currentUserId;
+    // jwt에서 writerId 받아오기 -고치면 loginrequired랑 넣어서 수정
+    const writer = req.currentUserId;
 
     // req (request)의 body 에서 데이터 가져오기
     const { post, parentComment, comment } = req.body;
     if (parentComment < 1) {
       const newProduct = await commentService.addComment({
         post,
-        writerId,
+        writer,
         comment,
       });
       res.status(201).json(newProduct);
     } else {
       const newProduct = await commentService.addSubComment({
         post,
-        writerId,
+        writer,
         comment,
       });
       res.status(201).json(newProduct);
@@ -52,18 +52,26 @@ commentRouter.get('/', async (req, res, next) => {
   }
 });
 
-//  포스터별 댓글들 가져오기 크키만큼!
+//  포스터별 댓글들 가져오기!
 commentRouter.post('/products', async (req, res, next) => {
   try {
-    const { productId, start, end } = req.body;
-    const products = await commentService.getPostComments(
+    // const { productId } = req.params;
+    const { page, limit, productId } = req.body;
+
+    const comments = await commentService.getPostComments(
       productId,
-      Number(start),
-      Number(end)
+      page,
+      limit
+    );
+    const allCommentsLength = await commentService.getAllPostComments(
+      productId
     );
 
-    // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
-    res.status(200).json(products);
+    const sendCommentInfo = {
+      comments,
+      allCommentsLength,
+    };
+    res.status(200).json(sendCommentInfo);
   } catch (error) {
     next(error);
   }
@@ -74,10 +82,9 @@ commentRouter.post('/writer', async (req, res, next) => {
   try {
     const { userId } = req.body;
 
-    const products = await commentService.getWriterComments(userId);
+    const comments = await commentService.getWriterComments(userId);
 
-    // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
-    res.status(200).json(products);
+    res.status(200).json(comments);
   } catch (error) {
     next(error);
   }
@@ -94,6 +101,7 @@ commentRouter.patch('/:commentId', loginRequired, async (req, res, next) => {
         'headers의 Content-Type을 application/json으로 설정해주세요'
       );
     }
+
     const curretUserId = req.currentUserId;
 
     // body data 로부터 업데이트할 사용자 정보를 추출함.
@@ -109,7 +117,6 @@ commentRouter.patch('/:commentId', loginRequired, async (req, res, next) => {
       ...(parentComment && { parentComment }),
       ...(comment && { comment }),
     };
-
     const updatedCommentInfo = await commentService.setComment(
       commentIdInfo,
       toUpdate,
@@ -134,10 +141,11 @@ commentRouter.get('/:commentId', async (req, res, next) => {
   }
 });
 
+// 댓글 삭제
 commentRouter.delete('/:commentId', loginRequired, async (req, res, next) => {
   try {
     const { commentId } = req.params;
-    await commentService.deleteProduct(commentId);
+    await commentService.deleteComment(commentId);
     const success = {
       status: 200,
       message: '댓글이 정상적으로 삭제했습니다.',
