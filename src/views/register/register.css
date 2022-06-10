@@ -1,15 +1,5 @@
 @import '../useful-css.css';
 
-.site-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.shopping-mall-header {
-  width: 100%;
-  position: fixed;
-  z-index: 30;
-}
 .register-user-form-container {
   flex-direction: column;
   height: 85vh;
@@ -41,6 +31,7 @@
   border-color: #00d1b2;
   box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
 }
+
 .label-container {
   display: flex;
   justify-content: space-between;
@@ -51,8 +42,4 @@
 }
 .hidden {
   visibility: hidden;
-}
-
-.button.is-primary {
-  background-color: black;
 }

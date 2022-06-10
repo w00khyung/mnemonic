@@ -44,12 +44,6 @@ class ProductService {
     return products;
   }
 
-  // 상품 목록을 받음.
-  async getKeywordProducts(keyword) {
-    const products = await this.productModel.findKeyword(keyword);
-    return products;
-  }
-
   // 제품정보 수정
   async setProduct(productInfoRequierd, toUpdate, curretUserId) {
     const productId = productInfoRequierd;

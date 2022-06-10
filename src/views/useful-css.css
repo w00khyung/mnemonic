@@ -3,11 +3,6 @@
 }
 
 :root {
-/* size */
-/* 사이트 최소영역 가로 */
---site-width: 80rem; 
-
-  /* color */
   --black-color: #000;
   --gray-color: #999;
   --white-color: #fff;

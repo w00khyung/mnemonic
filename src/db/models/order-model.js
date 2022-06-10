@@ -9,8 +9,8 @@ export class OrderModel {
     return createdNewOrder;
   }
 
-  async findById(userId) {
-    const findUser = await Order.find({ orderer: userId, deletedAt: null });
+  async findById(user) {
+    const findUser = await Order.find({ user, deletedAt: null });
     return findUser;
   }
 

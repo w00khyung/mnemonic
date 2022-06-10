@@ -87,40 +87,4 @@ categoryRouter.delete('/code/:code', adminRequired, async (req, res, next) => {
     next(error);
   }
 });
-
-// 카테고리 정보 수정
-categoryRouter.patch('/:categoryId', adminRequired, async (req, res, next) => {
-  try {
-    if (is.emptyObject(req.body)) {
-      throw new Error(
-        'headers의 Content-Type을 application/json으로 설정해주세요'
-      );
-    }
-
-    // params로부터 id를 가져옴
-    const { categoryId } = req.params;
-
-    // body data 로부터 업데이트할 사용자 정보를 추출함.
-    const { name, code, codeRef } = req.body;
-
-    const categoryInfoRequired = categoryId;
-
-    // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
-    // 보내주었다면, 업데이트용 객체에 삽입함.
-    const toUpdate = {
-      ...(name && { name }),
-      ...(code && { code }),
-      ...(codeRef && { codeRef }),
-    };
-
-    const updatedCategoryInfo = await categoryService.setCategory(
-      categoryInfoRequired,
-      toUpdate
-    );
-
-    res.status(200).json(updatedCategoryInfo);
-  } catch (error) {
-    next(error);
-  }
-});
 export { categoryRouter };

@@ -7,8 +7,9 @@ class SocialLoginService {
     this.userModel = userModel;
   }
 
-  // 소셜 로그인 (카카오)
+  // 소셜 로그인 (구글)
   async kakaoLogin(code) {
+    // Authorization Server 부터 Access token 발급받기
     const tokenResponse = await axios({
       method: 'POST',
       url: 'https://kauth.kakao.com/oauth/token',

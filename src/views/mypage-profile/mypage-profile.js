@@ -1,16 +1,11 @@
 import * as Api from '/api.js';
-import { getCookie, deleteCookie } from '../../useful-functions.js';
 import { navRender } from '../../components/header.js';
-import { pageScroll } from '../../components/pagescroll.js';
-import { mypageNavigation } from '../../components/mypage.js';
 
 navRender();
-pageScroll();
-mypageNavigation();
 
 // get userInfo
-const userList = await Api.get('/api', 'userlist', true);
-const email = getCookie('email');
+const userList = await Api.get(`/api/userlist`);
+const email = sessionStorage.getItem('email');
 let userId = '';
 let userName = '';
 let userEmail = '';
@@ -74,8 +69,6 @@ const addressOneInput = document.querySelector('#address1');
 const addressTwoInput = document.querySelector('#address2');
 const profileUpdateBtn = document.querySelector('.profile-update-btn');
 const userDeleteBtn = document.querySelector('.profile-user-data-delete');
-const selectBox = document.querySelector('.selectBox');
-const profileIcon = document.querySelector('.profileIcon');
 
 // modal DOM
 const body = document.querySelector('body');
@@ -83,10 +76,9 @@ const modal = document.querySelector('.mypage-confirm-modal');
 const currentPasswordInput = document.querySelector('#currentPasswordInput');
 const clearBtn = document.querySelector('.clear-btn');
 const updateBtn = document.querySelector('.update-btn');
-const changeIconBtn = document.querySelector('.changeIcon');
+
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  changeIconBtn.addEventListener('click', handleIcon);
   postalCodeInput.addEventListener('click', findAddr);
   profileUpdateBtn.addEventListener('click', displayModal);
   clearBtn.addEventListener('click', backToProfile);
@@ -164,21 +156,6 @@ function findAddr() {
   }).open();
 }
 
-// change profile icon
-function handleIcon() {
-  selectBox.style.display = 'flex';
-  const iconImage = document.querySelectorAll('.iconImage');
-  iconImage.forEach((item) => {
-    item.addEventListener('click', () => {
-      if (!window.confirm('아이콘을 변경하시겠습니까?')) {
-        return;
-      }
-      profileIcon.src = item.src;
-      sessionStorage.setItem('icon', item.src);
-    });
-  });
-}
-
 // update user info
 async function handleSubmit(e) {
   e.preventDefault();
@@ -207,7 +184,7 @@ async function handleSubmit(e) {
       currentPassword,
     };
 
-    await Api.patch(`/api/users`, userId, data, true);
+    await Api.patch(`/api/users`, userId, data);
 
     alert('정상적으로 수정되었습니다.');
 
@@ -227,10 +204,10 @@ async function handleDelete(e) {
 
   // 회원정보 수정 api 요청
   try {
-    await Api.delete('/api/users', '', {}, true);
-    deleteCookie('email');
-    deleteCookie('accessToken');
-    deleteCookie('refreshToken');
+    await Api.delete('/api/users');
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('refreshToken');
 
     alert('정상적으로 삭제되었습니다.');
 
