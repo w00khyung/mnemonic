@@ -8,10 +8,14 @@ const proFileName = document.querySelector('.mypage-user-profile-name');
 const proFileEmail = document.querySelector('.mypage-user-profile-email');
 const proFilePhone = document.querySelector('.mypage-user-profile-phone');
 const proFileRole = document.querySelector('.mypage-user-profile-role');
-
+const mypageIcon = document.querySelector('.mypageIcon');
 navRender();
 pageScroll();
 mypageNavigation();
+
+if (sessionStorage.getItem('icon')) {
+  mypageIcon.src = sessionStorage.getItem('icon');
+}
 
 // get userInfo
 const userList = await Api.get(`/api/userlist`, '', true);
