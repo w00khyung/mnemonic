@@ -18,7 +18,7 @@ socialLoginRouter.get('/kakao/callback', async (req, res, next) => {
     const {
       query: { code },
     } = req;
-
+    console.log('hi');
     const userData = await socialLoginService.kakaoLogin(code);
     const { isRegister, email, fullName } = userData;
     // 로그인했던 적이 있으면 바로 로그인을 시켜주고 회원가입 절차는 생략!
