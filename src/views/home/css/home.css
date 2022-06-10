@@ -239,3 +239,38 @@ li > a {
   overflow: hidden;
   clip-path: polygon(0 0, 0 0, 0 0);
 }
+.setCategoryProducts {
+  width: 100%;
+  padding: 5rem 0 15rem 0;
+  overflow: hidden;
+}
+.setCategoryProducts section {
+  margin-bottom: 3rem;
+  
+}
+.setCategoryProducts section .inner {
+  width: 86rem;
+}
+footer {
+  width: 100%;
+  height: 10vh;
+  background-color: var(--black-color);
+  color: var(--white-color);
+}
+.banner-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.img-box {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+  padding: 10rem 0 5rem 0;
+}
+
+.banner-box img {
+  width: 26%;
+}

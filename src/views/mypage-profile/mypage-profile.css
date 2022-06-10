@@ -104,8 +104,13 @@ body {
   width:7rem;
   margin-bottom: 1rem;
 }
+
 .mypage-profile-icon-change .selectBox{
   display:none;
-  width:3rem;
+  width:4rem;
+  
+}
 
+.selectBox img , .profileIcon  {
+  border-radius: 50%;
 }
