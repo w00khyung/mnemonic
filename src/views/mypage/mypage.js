@@ -8,6 +8,8 @@ const proFileName = document.querySelector('.mypage-user-profile-name');
 const proFileEmail = document.querySelector('.mypage-user-profile-email');
 const proFilePhone = document.querySelector('.mypage-user-profile-phone');
 const proFileRole = document.querySelector('.mypage-user-profile-role');
+
+const mypageIcon = document.querySelector('.mypageIcon');
 const orderContainer = document.querySelector('.mypage-order');
 const saleContainer = document.querySelector('.mypage-sale');
 
@@ -17,6 +19,7 @@ const email = getCookie('email');
 const userEmail = userList.map((list) => list.email);
 let currentUser = '';
 
+
 navRender();
 pageScroll();
 mypageNavigation();
@@ -24,6 +27,11 @@ userInfo();
 orderHistory();
 userSaleList();
 userSaleListNone();
+
+// 변경된 아이콘 출력
+if (sessionStorage.getItem('icon')) {
+  mypageIcon.src = sessionStorage.getItem('icon');
+}
 
 // 유저 정보 출력
 async function userInfo() {
@@ -119,5 +127,6 @@ async function userSaleListNone() {
     <p>판매내역이 없습니다.</p>
     </div>
     `;
+
   }
 }

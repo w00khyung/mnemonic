@@ -74,6 +74,8 @@ const addressOneInput = document.querySelector('#address1');
 const addressTwoInput = document.querySelector('#address2');
 const profileUpdateBtn = document.querySelector('.profile-update-btn');
 const userDeleteBtn = document.querySelector('.profile-user-data-delete');
+const selectBox = document.querySelector('.selectBox');
+const profileIcon = document.querySelector('.profileIcon');
 
 // modal DOM
 const body = document.querySelector('body');
@@ -164,13 +166,17 @@ function findAddr() {
 
 // change profile icon
 function handleIcon() {
-  const iconSelect = document.querySelector('.mypage-profile-icon-change');
-  const selectIconBox = [];
-  selectIconBox.push({ iconFilePath: '../rose.jpg', iconValue: '1' });
-  selectIconBox.push({ iconFilePath: '../rose.jpg', iconValue: '2' });
-  selectIconBox.push({ iconFilePath: '../elice-rabbit.png', iconValue: '3' });
-
-  console.log(selectIconBox);
+  selectBox.style.display = 'flex';
+  const iconImage = document.querySelectorAll('.iconImage');
+  iconImage.forEach((item) => {
+    item.addEventListener('click', () => {
+      if (!window.confirm('아이콘을 변경하시겠습니까?')) {
+        return;
+      }
+      profileIcon.src = item.src;
+      sessionStorage.setItem('icon', item.src);
+    });
+  });
 }
 
 // update user info
