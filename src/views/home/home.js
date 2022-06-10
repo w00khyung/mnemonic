@@ -105,21 +105,6 @@ async function getProductsAndCategory() {
       return result;
     })
   );
-  const categoryofProdcuts = [
-    'product/top/',
-    '/product/outer/',
-    '/product/pants/',
-    '/product/onepiece/',
-    '/product/skirt/',
-    '/product/accessories',
-    '/product/bag/',
-    '/product/sneakers/',
-    '/product/shoes/',
-    '/product/watch/',
-    '/product/hat/',
-    '/product/socks/',
-  ];
-  let categoryNumber = 0;
   let insertProductsOfCategory = '';
   try {
     for (let i = 0; i < getProducts.length; i += 1) {
@@ -129,7 +114,6 @@ async function getProductsAndCategory() {
       }
 
       const products = getProducts[i];
-      categoryNumber = i;
       // 제폼 목록 페이지 구현하기 a herf="#"에 추가하기
       insertProductsOfCategory += `
   <section>
@@ -138,9 +122,7 @@ async function getProductsAndCategory() {
     <div class="category-container">
       <div class="category">${products[0].category.name}</div>
         <div class="class-contain">
-        <div class="class-append"><a href="${
-          categoryofProdcuts[categoryNumber]
-        }"> ${productLen > 4 ? '더보기' : ''}</a></div>
+        <div class="class-append"><a href="/product"> ${productLen > 4 ? '더보기' : ''}</a></div>
       </div>
     </div>
     <ul class="class-list" >

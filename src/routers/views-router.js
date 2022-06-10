@@ -28,8 +28,8 @@ viewsRouter.use('/order/complete', serveStatic('complete'));
 viewsRouter.use('/mypage', serveStatic('mypage'));
 viewsRouter.use('/mypage/orders', serveStatic('mypage-orders'));
 viewsRouter.use('/admin', serveStatic('admin'));
-viewsRouter.use('/orders/admin', serveStatic('admin-orders'));
-viewsRouter.use('/category', serveStatic('category'));
+viewsRouter.use('/admin/orders', serveStatic('admin-orders'));
+viewsRouter.use('/admin/category', serveStatic('category'));
 viewsRouter.use('/mypage/sale', serveStatic('mypage-sale'));
 viewsRouter.use('/mypage/profile', serveStatic('mypage-profile'));
 

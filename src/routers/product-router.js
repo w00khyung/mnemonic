@@ -57,6 +57,25 @@ productRouter.get('/productlist', async (req, res, next) => {
   }
 });
 
+// 특정 상품 목록을 가져옴 (배열 형태임)
+productRouter.post('/keyword', async (req, res, next) => {
+  try {
+    if (is.emptyObject(req.body)) {
+      throw new Error(
+        'headers의 Content-Type을 application/json으로 설정해주세요'
+      );
+    }
+    const { keyword } = req.body;
+    // 전체 제품 목록을 얻음
+    const products = await productService.getKeywordProducts(keyword);
+
+    // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
+    res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // 카테고리별 상품 목록을 가져옴 (배열 형태임) AND 특정 개수 출력 모두 출력아님!
 productRouter.post('/category/:categoryId', async (req, res, next) => {
   try {
@@ -173,7 +192,7 @@ productRouter.patch(
       // 제품 정보를 업데이트함.
       const updatedProductInfo = await productService.setUserProduct(
         productInfoRequired,
-        toUpdate,
+        toUpdate
       );
 
       // 업데이트 이후의 제품 데이터를 프론트에 보내 줌

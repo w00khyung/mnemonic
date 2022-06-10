@@ -1,3 +1,7 @@
+.comment-box {
+  width: 100%;
+}
+
 .write-container {
   width: 100%;
   display: flex;
