@@ -16,6 +16,7 @@ body {
 .mypage-sale-container-right {
   width: 100%;
   height: 90vh;
+  margin-top: 3rem;
 }
 .mypage-sale-container-right h2 {
   width: 100%;
@@ -149,4 +150,8 @@ input[type='file']::file-selector-button {
 .product-add-sumit {
   display: flex;
   justify-content: center;
+}
+.mypage-sale-list-none {
+  width: 100%;
+  height: 50vh;
 }

@@ -63,8 +63,16 @@ for (let i = 0; i < productList.length; i++) {
   }
 }
 
+const list = document.querySelectorAll('.mypage-sale-list');
 const saleListsBtnEdit = document.querySelectorAll('.mypage-sale-btn-edit');
 const saleListsBtnRemove = document.querySelectorAll('.mypage-sale-btn-remove');
+
+if (list.length === 0) {
+  saleLists.innerHTML = `<div class="mypage-sale-list-none display-center">
+  <p>판매내역이 없습니다.</p>
+  </div>
+  `;
+}
 
 function handleEdit(e) {
   const closeBtn = document.querySelector('.fa-xmark');
@@ -190,7 +198,6 @@ async function handleSubmit(e) {
     const category = categotySelect.value;
 
     const data = { name, price, brand, content, imagePath, category };
-
 
     await Api.patch(`/api/product/products/user`, productId, data, true);
     alert('성공적으로 수정을 완료했습니다.');
