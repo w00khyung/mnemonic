@@ -1,14 +1,11 @@
 import * as Api from '/api.js';
-import { navRender } from '/components/header.js';
-import { mypageNavigation } from '/components/mypage.js';
-import { adminnavRender } from '/components/admin-header.js';
+import { isAuth, deleteCookie } from '../../useful-functions.js';
+import { navRender } from '../../components/header.js';
+import { pageScroll } from '../../components/pagescroll.js';
+import { mypageNavigation } from '../../components/mypage.js';
 
-if (sessionStorage.getItem('email') === 'manager@gmail.com') {
-  adminnavRender();
-} else {
-  navRender();
-}
-
+navRender();
+pageScroll();
 mypageNavigation();
 
 // get userInfo
@@ -214,8 +211,8 @@ async function handleDelete(e) {
   try {
     await Api.delete('/api/users', '', {}, true);
     sessionStorage.removeItem('email');
-    sessionStorage.removeItem('accessToken');
-    sessionStorage.removeItem('refreshToken');
+    deleteCookie('accessToken');
+    deleteCookie('refreshToken');
 
     alert('정상적으로 삭제되었습니다.');
 

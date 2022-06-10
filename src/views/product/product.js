@@ -1,6 +1,10 @@
 import * as Api from '/api.js';
-import { addCommas } from '/useful-functions.js';
+import { isAuth, addCommas } from '../useful-functions.js';
 import { navRender } from '../components/header.js';
+import { pageScroll } from '../components/pagescroll.js';
+
+navRender();
+pageScroll();
 
 const productListUl = document.querySelector('.product-list-ul');
 const titleArea = document.querySelector('.product-list-area-top');
@@ -406,10 +410,7 @@ async function addProductCart(e) {
   };
 
   const dataString = JSON.stringify(data);
-  if (
-    !sessionStorage.getItem('accessToken') ||
-    !sessionStorage.getItem('refreshToken')
-  ) {
+  if (!isAuth()) {
     alert('로그인이 필요합니다.');
     return (window.location.href = '/login');
   }

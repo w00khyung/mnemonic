@@ -1,8 +1,8 @@
 import * as Api from '/api.js';
 import { addCommas } from '/useful-functions.js';
-import { navRender } from '/components/header.js';
-import { mypageNavigation } from '/components/mypage.js';
-import { adminnavRender } from '/components/admin-header.js';
+import { navRender } from '../../components/header.js';
+import { pageScroll } from '../../components/pagescroll.js';
+import { mypageNavigation } from '../../components/mypage.js';
 
 const saleBody = document.querySelector('body');
 const saleLists = document.querySelector('.mypage-sale-lists');
@@ -15,12 +15,8 @@ const productContent = document.querySelector('#product-note');
 const imgId = document.querySelector('#imgId');
 const submitButton = document.querySelector('#submit');
 
-if (sessionStorage.getItem('email') === 'manager@gmail.com') {
-  adminnavRender();
-} else {
-  navRender();
-}
-
+navRender();
+pageScroll();
 mypageNavigation();
 categoryList();
 
@@ -194,6 +190,7 @@ async function handleSubmit(e) {
     const category = categotySelect.value;
 
     const data = { name, price, brand, content, imagePath, category };
+
 
     await Api.patch(`/api/product/products/user`, productId, data, true);
     alert('성공적으로 수정을 완료했습니다.');

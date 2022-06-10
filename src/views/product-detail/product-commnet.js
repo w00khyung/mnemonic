@@ -1,4 +1,5 @@
 import * as Api from '/api.js';
+import { isAuth, deleteCookie } from '../useful-functions.js';
 import { timeForToday } from '/useful-functions.js';
 
 let timerComment = true;
@@ -51,10 +52,7 @@ async function renderCommentDetail() {
 async function handleSendComment(e) {
   e.preventDefault();
   // 토큰 아니면
-  if (
-    !sessionStorage.getItem('accessToken') ||
-    !sessionStorage.getItem('refreshToken')
-  ) {
+  if (!isAuth()) {
     alert('로그인이 필요합니다.');
     return (window.location.href = '/login');
   }

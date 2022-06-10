@@ -1,11 +1,9 @@
 import * as Api from '/api.js';
 import { navRender } from '../components/header.js';
-import { adminnavRender } from '/components/admin-header.js';
-if (sessionStorage.getItem('email') === 'manager@gmail.com') {
-  adminnavRender();
-} else {
-  navRender();
-}
+import { pageScroll } from '../components/pagescroll.js';
+
+navRender();
+pageScroll();
 
 const cartProductsContainer = document.querySelector('#cartProductsContainer');
 const checkboxAll = document.querySelector('.checkboxAll');

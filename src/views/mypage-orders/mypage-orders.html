@@ -25,10 +25,13 @@
     <!-- Daum 주소 API 사용하기 위한 파일 -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="../../useful-css.css" />
+    <link rel="stylesheet" href="../../components/css/header.css" />
+    <link rel="stylesheet" href="../../components/css/scroll-top.css" />
     <link rel="stylesheet" href="mypage-orders.css" />
     <script src="mypage-orders.js" type="module" defer></script>
   </head>
-  <body>
+    <div class="site-wrap">
     <!-- 헤더 -->
     <div class="shopping-mall-header"></div>
 
@@ -42,7 +45,7 @@
           <div
             class="columns notification is-info is-light is-mobile orders-top"
           >
-            <div class="column is-2">날짜</div>
+            <div class="column is-2">주문일자<br>[주문번호]</div>
             <div class="column is-6">주문정보</div>
             <div class="column is-2">상태</div>
             <div class="column is-2">신청</div>
@@ -50,8 +53,9 @@
         </div>
       </div>
     </section>
-
-   
     </div>
+    <!-- top btn -->
+    <a class="backtotop"><i class="fa-solid fa-angle-up"></i></a>
+  </div>
   </body>
 </html>

@@ -1,3 +1,14 @@
+@import '../../useful-css.css';
+
+.site-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shopping-mall-header {
+  position: fixed;
+  z-index: 30;
+}
 .navbar-menu .is-info:focus {
   box-shadow: none;
   outline: none;
@@ -9,7 +20,7 @@
 }
 .orders-container {
   margin: 5rem auto 2rem;
-  max-width: 1000px !important;
+  max-width: 1600px !important;
 }
 .orders-top {
   border-bottom: 1px solid #aaa;

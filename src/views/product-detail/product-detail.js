@@ -1,8 +1,10 @@
 import * as Api from '/api.js';
 import { addCommas, isAuth } from '/useful-functions.js';
 import { navRender } from '../../components/header.js';
+import { pageScroll } from '../../components/pagescroll.js';
 
 navRender();
+pageScroll();
 
 let productImagePath = '';
 let productBrand = '';
