@@ -18,6 +18,7 @@ body {
   align-items: center;
 }
 .shopping-mall-header {
+  width: 100%;
   position: fixed;
   z-index: 30;
 }
@@ -26,34 +27,13 @@ body {
   height: 90vh;
   margin-top: 3rem;
 }
-.mypage-container-left {
-  width: 13.75rem;
-  height: 43.75rem;
-  padding: 1.25rem;
-}
-.mypage-container-left h2 {
-  margin-bottom: 1.25rem;
-  font-size: 1.87rem;
-  font-weight: bold;
-}
-.mypage-container-left ul {
-  margin-bottom: 3.12rem;
-}
-.mypage-container-left ul h3 {
-  margin: 0.3rem 0;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-.mypage-container-left ul li a {
-  color: var(--gray-color);
-}
 .mypage-container-right {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 62.5rem;
   height: 43.75rem;
-  padding: 1.25rem 3.12rem;
+  padding-left: 2rem;
 }
 .mypage-user-profile-top {
   display: flex;

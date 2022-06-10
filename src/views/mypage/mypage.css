@@ -1,20 +1,12 @@
 @import '../useful-css.css';
 
-/* reset CSS */
-a {
-  color: var(--black-color);
-}
-/* clicked class */
-.focus {
-  color: var(--black-color);
-  font-weight: bold;
-}
 .site-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .shopping-mall-header {
+  width: 100%;
   position: fixed;
   z-index: 30;
 }
@@ -23,31 +15,9 @@ a {
   height: 90vh;
   margin-top: 3rem;
 }
-.mypage-container-left {
-  width: 13.75rem;
-  height: 43.75rem;
-  padding: 1.25rem;
-}
-.mypage-container-left h2 {
-  margin-bottom: 1.25rem;
-  font-size: 1.87rem;
-  font-weight: bold;
-}
-.mypage-container-left ul {
-  margin-bottom: 3.12rem;
-}
-.mypage-container-left ul h3 {
-  margin: 0.3rem 0;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-.mypage-container-left ul li a {
-  color: var(--gray-color);
-}
 .mypage-container-right {
   width: 62.5rem;
   height: 43.75rem;
-  padding: 1.25rem 3.12rem;
 }
 .mypage-container-right img {
   width: 7.5rem;
@@ -88,7 +58,8 @@ a {
   height: 80%;
   margin-top: 2.5rem;
 }
-.mypage-user-shopping p {
+.mypage-user-shopping .mypage-user-shopping-order-list,
+.mypage-user-shopping .mypage-user-shopping-sale-list {
   font-size: 1.25rem;
   font-weight: bold;
   padding-bottom: 0.62rem;
@@ -114,4 +85,57 @@ a {
   position: absolute;
   top: 0.3rem;
   right: 0;
+}
+.mypage-order, .mypage-sale {
+  width: 100%;
+  height: 28rem;
+  overflow: hidden;
+}
+.mypage-order .orders-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+}
+.order-item-number {
+  width: 30%;
+  padding: 1rem;
+}
+.order-item-info {
+  width: 45%;
+  padding: 1rem;
+}
+.order-item-state {
+  width: 25%;
+  padding-left: 2rem;
+}
+.mypage-sale-list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.3rem;
+}
+.mypage-sale-list img {
+  width: 5rem;
+  height: 5rem;
+}
+.mypage-sale-list-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 50%;
+  margin-left: 1.5rem;
+}
+.mypage-sale-list-brand {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.mypage-sale-list-content {
+  font-size: 0.9rem;
+  color: var(--gray-color);
+}
+.mypage-sale-list-price {
+  width: 30%;
+  font-weight: bold;
+  border-bottom: none !important;
 }
