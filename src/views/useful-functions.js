@@ -1,5 +1,3 @@
-import * as Api from '/api.js';
-
 // 문자열+숫자로 이루어진 랜덤 5글자 반환
 export const randomId = () => Math.random().toString(36).substring(2, 7);
 
@@ -15,15 +13,10 @@ export const validateEmail = (email) =>
 export const addCommas = (n) =>
   n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-// 휴대폰 번호 하이픈 추가
-export const addHyphen = (n) =>
-  n.toString().replace(/\B(?=(\d{4})+(?!\d))/g, '-');
-
 // 13,000원, 2개 등의 문자열에서 쉼표, 글자 등 제외 후 숫자만 뺴냄
 // 예시: 13,000원 -> 13000, 20,000개 -> 20000
-export const convertToNumber = (string) => {
-  return parseInt(string.replace(/(,|개|원)/g, ''));
-};
+export const convertToNumber = (string) =>
+  parseInt(string.replace(/(,|개|원)/g, ''));
 
 export const timeForToday = (value) => {
   const today = new Date();

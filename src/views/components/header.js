@@ -1,10 +1,13 @@
 const UserLogOut = () => {
-  if (!isAuth()) {
+  if (
+    !sessionStorage.getItem('accessToken') ||
+    !sessionStorage.getItem('refreshToken')
+  ) {
     window.location.href = '/login';
     return;
   }
   const logout = window.confirm('로그아웃 하시겠습니까?');
-  if (!logout) return;
+  if(!logout) return;
   sessionStorage.removeItem('email');
   sessionStorage.removeItem('accessToken');
   sessionStorage.removeItem('refreshToken');
