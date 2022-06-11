@@ -86,12 +86,12 @@ const updateBtn = document.querySelector('.update-btn');
 const changeIconBtn = document.querySelector('.changeIcon');
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  changeIconBtn.addEventListener('click', handleIcon);
   postalCodeInput.addEventListener('click', findAddr);
   profileUpdateBtn.addEventListener('click', displayModal);
   clearBtn.addEventListener('click', backToProfile);
   updateBtn.addEventListener('click', handleSubmit);
   userDeleteBtn.addEventListener('click', handleDelete);
+  changeIconBtn.addEventListener('click', handleIcon);
 }
 
 addAllEvents();
@@ -163,18 +163,22 @@ function findAddr() {
     },
   }).open();
 }
-
+if (sessionStorage.getItem('icon')) {
+  profileIcon.src = sessionStorage.getItem('icon');
+}
 // change profile icon
 function handleIcon() {
   selectBox.style.display = 'flex';
   const iconImage = document.querySelectorAll('.iconImage');
+
   iconImage.forEach((item) => {
     item.addEventListener('click', () => {
-      if (!window.confirm('아이콘을 변경하시겠습니까?')) {
+      if (window.confirm('아이콘을 변경하시겠습니까?')) {
+        profileIcon.src = item.src;
+        sessionStorage.setItem('icon', item.src);
+      } else {
         return;
       }
-      profileIcon.src = item.src;
-      sessionStorage.setItem('icon', item.src);
     });
   });
 }
@@ -219,6 +223,7 @@ async function handleSubmit(e) {
   }
 }
 
+// 회원 탈퇴 기능
 async function handleDelete(e) {
   e.preventDefault();
 
