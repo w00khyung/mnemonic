@@ -36,8 +36,16 @@
   padding-bottom: 0.7rem;
 }
 .orders-container {
-  margin: 5rem auto 2rem;
-  max-width: 1600px !important;
+  width: 98%;
+}
+.container-top{
+  display: flex;
+  align-items: center;
+  margin-top: 0.1rem;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid var(--gray-color) !important;
+  background-color: rgb(238, 238, 238) !important;
+  color: var(--black-color) !important;
 }
 .orders-top {
   border-bottom: 1px solid #aaa;

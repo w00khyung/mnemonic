@@ -38,9 +38,9 @@ async function addAllElements() {
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   setCategoryProducts.addEventListener('click', goToProductDetail);
-  getArrowLeft.addEventListener('click', previousSlide);
+/*   getArrowLeft.addEventListener('click', previousSlide);
   getArrowRight.addEventListener('click', nextSlide);
-  radioController();
+  radioController(); */
 }
 function previousSlide() {
   for (let i = 0; i < radioButton.length; i += 1) {
@@ -154,7 +154,6 @@ async function getProductsAndCategory() {
         </div>
         </a>
       </li>
-
       `;
       }
       insertProductsOfCategory += `
@@ -189,3 +188,27 @@ async function getDataFromApi() {
   console.log({ data });
   console.log({ random });
 }
+
+const imgSlide = document.querySelector(".banner-box");
+const imgBox = document.querySelector(".img-box");
+const slideImg = document.querySelector(".banner-img");
+
+let currentSlide = 0;
+
+setInterval(function() {
+  let from = -(document.body.offsetWidth * currentSlide);
+  let to = from - document.body.offsetWidth;
+  imgBox.animate({
+    marginLeft: [from + "px", to + "px"]
+  }, {
+    duration: 500,
+    easing: "ease",
+    iterations: 1,
+    fill: "both"
+  });
+  currentSlide++;
+  if (currentSlide === 5) {
+    currentSlide = -0;
+  }
+}, 5000);
+// img slide

@@ -63,4 +63,6 @@
   margin-bottom: 1rem;
   margin-top: 2rem;
 }
-
+.fa-circle-check {
+  color: var(--black-color);
+}

@@ -69,7 +69,7 @@ function cartDataDisplay() {
        <input type="checkbox">
         <p><a href="/product-detail"><img src="${storageDataParse.imagePath}" alt="" /></a></p>
       <div class="content">
-        <p><a href="/product-detail">${storageDataParse.name}</a></p>
+        <p><a href="/product-detail" class="product-name">${storageDataParse.name}</a></p>
         </div>
         <p class="price">${storageDataParse.price}</p>
         <input type="number" class="itemquantity" min="1" max="99" value="${storageDataParse.quantity}" ></input>
