@@ -95,7 +95,7 @@ input[type='number']::-webkit-outer-spin-button {
   top: 0.5rem;
 }
 .order-summary {
-  background-color: #f0f5f7;
+  background-color: var(--white-color);
   width: 100%;
 }
 .order-summary .header {

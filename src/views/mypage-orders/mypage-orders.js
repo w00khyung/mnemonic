@@ -24,10 +24,10 @@ async function orderHistory() {
     ordersContainer.insertAdjacentHTML(
       'beforeend',
       `<div class="columns orders-item" >
-          <div class="column is-2">${todayResult}<br>[${data[i]._id}]</div>
-          <div class="column is-6">${purchaseInfo[i]}<br></div>
-          <div class="column is-2">상품 준비중</div>
-          <div class="column is-2"><button class="orderCancel" id="${data[i]._id}">주문 취소</button></div>
+          <div class="column is-2 text-eliellipsis">${todayResult}<br>[${data[i]._id}]</div>
+          <div class="column is-6 text-eliellipsis">${purchaseInfo[i]}<br></div>
+          <div class="column is-2 text-eliellipsis">상품 준비중</div>
+          <div class="column is-2 text-eliellipsis"><button class="button is-light orderCancel" id="${data[i]._id}">주문 취소</button></div>
         </div> `
     );
   }
