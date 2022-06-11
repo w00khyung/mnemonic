@@ -20,7 +20,7 @@ socialLoginRouter.get('/kakao/callback', async (req, res, next) => {
     const {
       query: { code },
     } = req;
-    console.log('hi');
+
     const userData = await socialLoginService.kakaoLogin(code);
     const { isRegister, email, fullName } = userData;
     const password = 'kakao';
