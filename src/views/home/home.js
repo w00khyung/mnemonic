@@ -207,7 +207,7 @@ setInterval(function() {
     fill: "both"
   });
   currentSlide++;
-  if (currentSlide === 4) {
+  if (currentSlide === 5) {
     currentSlide = -0;
   }
 }, 5000);
