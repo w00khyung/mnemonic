@@ -196,8 +196,8 @@ const slideImg = document.querySelector(".banner-img");
 let currentSlide = 0;
 
 setInterval(function() {
-  let from = -(1691 * currentSlide);
-  let to = from - 1691;
+  let from = -(document.body.offsetWidth * currentSlide);
+  let to = from - document.body.offsetWidth;
   imgBox.animate({
     marginLeft: [from + "px", to + "px"]
   }, {
