@@ -7,6 +7,7 @@
 }
 .shopping-mall-header {
   width: 100%;
+  position: fixed;
   z-index: 30;
 }
 .header-search-input {
@@ -24,9 +25,8 @@
 }
 #main {
   display: flex;
-  
+  margin-top: 50px;
   height: 70vh;
-  align-items: baseline;
 }
 aside {
   display: flex;
@@ -45,13 +45,4 @@ aside {
   width: 80vw;
   flex-direction: column;
   padding: 1em;
-}
-
-.message {
-  display: flex;
-  flex-direction: column;
-  margin-top: 60px;
-}
-.card {
-  width:50%;
 }
