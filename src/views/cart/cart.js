@@ -2,9 +2,6 @@ import * as Api from '/api.js';
 import { navRender } from '../components/header.js';
 import { pageScroll } from '../components/pagescroll.js';
 
-navRender();
-pageScroll();
-
 const cartProductsContainer = document.querySelector('#cartProductsContainer');
 const checkboxAll = document.querySelector('.checkboxAll');
 const allDeleteBtn = document.querySelector('.allDeleteBtn');
@@ -14,6 +11,9 @@ const productsCountInfo = document.querySelector('#productsCount');
 const productsTotalInfo = document.querySelector('#productsTotal');
 const orderTotalInfo = document.querySelector('#orderTotal');
 const orderPaymentBtn = document.querySelector('#purchaseButton');
+
+navRender();
+pageScroll();
 
 // 체크박스 클릭했을 때 장바구니의 모든 상품 전부 선택
 function selectAllCheckbox() {
@@ -26,7 +26,8 @@ function selectAllCheckbox() {
     }
   });
 }
-// 카트에 담긴 상품들의 정보(상품 수량, 상품 가격등)
+
+// 카트에 담긴 상품들의 정보(상품 수량, 상품 가격등) 결제창에 표시
 function purchaseCartInfo() {
   let productsCount = 0;
   let productsTotal = 0;
@@ -48,8 +49,8 @@ function purchaseCartInfo() {
   ).toLocaleString()}원`;
 }
 
+// localStorage에 저장된 값 가져와서 장바구니 담긴 상품 출력
 function cartDataDisplay() {
-  // localStorage에 저장된 값 가져와서 장바구니에 출력
   if (localStorage.length !== 0) {
     const emptyCart = document.querySelector('.emptyCart');
     emptyCart.style.display = 'none';
@@ -60,7 +61,7 @@ function cartDataDisplay() {
 
     const storageDataParse = JSON.parse(data);
 
-    // 사진이랑 품목 클릭시 주소 이동 부분 변수값 고민 중 나중에 수정 필요
+    // 사진이랑 품목 클릭시 주소 이동 미구현 , 나중에 수정 필요
     cartProductsContainer.insertAdjacentHTML(
       'beforeend',
       `
@@ -68,7 +69,7 @@ function cartDataDisplay() {
        <input type="checkbox">
         <p><a href="/product-detail"><img src="${storageDataParse.imagePath}" alt="" /></a></p>
       <div class="content">
-        <p><a href="/product-detail">${storageDataParse.name}</a></p>
+        <p><a href="/product-detail" class="product-name">${storageDataParse.name}</a></p>
         </div>
         <p class="price">${storageDataParse.price}</p>
         <input type="number" class="itemquantity" min="1" max="99" value="${storageDataParse.quantity}" ></input>
@@ -93,10 +94,12 @@ function selectItemDelete() {
 cartDataDisplay();
 purchaseCartInfo();
 
+// 장바구니 전체 삭제 기능
 allDeleteBtn?.addEventListener('click', () => {
   window.localStorage.clear();
   window.location.reload();
 });
+
 checkboxAll?.addEventListener('click', selectAllCheckbox);
 selectDeleteBtn?.addEventListener('click', selectItemDelete);
 orderPaymentBtn?.addEventListener('click', () => {
