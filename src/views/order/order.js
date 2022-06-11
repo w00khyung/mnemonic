@@ -2,9 +2,6 @@ import * as Api from '../api.js';
 import { navRender } from '../components/header.js';
 import { pageScroll } from '../components/pagescroll.js';
 
-navRender();
-pageScroll();
-
 const checkoutButton = document.querySelector('#checkoutButton');
 const requestSelectBox = document.querySelector('#requestSelectBox');
 const receiverName = document.querySelector('#receiverName');
@@ -23,6 +20,12 @@ const requestInputValue = document.querySelector('#customRequest');
 const cartItemInfo = [];
 const totalAmount = 0;
 let requestValue;
+
+navRender();
+pageScroll();
+cartPurchaseInfo();
+
+// 배송 주문 정보 입력
 async function deliveryInfo() {
   if (!receiverName.value) {
     return alert('이름을 입력하세요');
@@ -61,7 +64,6 @@ async function deliveryInfo() {
   } catch (err) {
     alert(`문제발생 ${err}`);
   }
-  // 주문 완료 페이지로 이동
 }
 
 // 주소 api 이용해서 주소 찾기
@@ -98,6 +100,7 @@ function searchAddress() {
   }).open();
 }
 
+// 결제창 정보 표시
 function cartPurchaseInfo() {
   let productsTotal = 0;
   const deliveryFee = 3000;
@@ -118,6 +121,8 @@ function cartPurchaseInfo() {
   totalAmount = productsTotal + deliveryFee;
   orderTotalInfo.innerText = `${totalAmount.toLocaleString()}원`;
 }
+
+// 요청 사항 기능
 function requestText() {
   if (requestSelectBox.value === '0') {
     requestValue = '요청 없음';
@@ -131,7 +136,6 @@ function requestText() {
   }
   return requestValue;
 }
-cartPurchaseInfo();
 
 checkoutButton.addEventListener('click', deliveryInfo);
 requestSelectBox.addEventListener('change', requestText);
